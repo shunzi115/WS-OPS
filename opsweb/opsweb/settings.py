@@ -50,6 +50,7 @@ INSTALLED_APPS = (
     'api',
     'workform',
     'publish',
+    'taskschedule',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -121,7 +122,7 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "static"),
 )
 #STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
@@ -129,15 +130,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "upload/")
 MEDIA_URL = "/upload/" 
 
 # 定时任务配置
-CRONJOBS = [  
-    # 每隔2分钟运行下面的函数，使得 ServerModel 模型与阿里云上的ECS保持一致
-    ('*/2 * * * *', 'resources.cron.ServerAliyunAutoAddCrontab'),
-    ('*/10 * * * *', 'resources.cron.ServerAliyunAutoRefreshCrontab'),
-    ('*/15 * * * *', 'resources.cron.CmdbAutoAddCrontab'),
-    ('10 23 * * *', 'resources.cron.ServerStatisticByDayCrontab'),
-    ('10 23 * * *', 'resources.cron.CmdbStatisticByDayCrontab'),
-    ('55 23 * * *', 'monitor.cron.ZabbixHostSyncCrontab'),
-]
+#CRONJOBS = [  
+#    # 每隔2分钟运行下面的函数，使得 ServerModel 模型与阿里云上的ECS保持一致
+#    ('*/2 * * * *', 'resources.cron.ServerAliyunAutoAddCrontab'),
+#    ('*/10 * * * *', 'resources.cron.ServerAliyunAutoRefreshCrontab'),
+#    ('*/15 * * * *', 'resources.cron.CmdbAutoAddCrontab'),
+#    ('10 23 * * *', 'resources.cron.ServerStatisticByDayCrontab'),
+#    ('10 23 * * *', 'resources.cron.CmdbStatisticByDayCrontab'),
+#    ('55 23 * * *', 'monitor.cron.ZabbixHostSyncCrontab'),
+#]
 
 # 日志配置
 LOGGING = {
@@ -280,3 +281,4 @@ CELERY_ENABLE_UTC = False
 CELERY_TIMEZONE = 'Asia/Shanghai'
 CELERYD_MAX_TASKS_PER_CHILD = 10
 CELERYD_LOG_FILE = os.path.join(BASE_DIR,'logs','celery.log')
+#CELERYD_HIJACK_ROOT_LOGGER = False

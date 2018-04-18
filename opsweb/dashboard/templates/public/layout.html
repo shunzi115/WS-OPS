@@ -17,6 +17,7 @@
 <link rel="stylesheet" type="text/css" href="/static/plugin/dataTables/dataTables.bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/static/plugin/jquery-ui-1.12.1/jquery-ui.css">
 <link rel="stylesheet" href="/static/plugin/bootstrap-multiselect/dist/css/bootstrap-multiselect.css" type="text/css"/>
+<link href="/static/plugin/datetimepicker-master/jquery.datetimepicker.css" rel="stylesheet" type="text/css">
 <link href="/static/plugin/metismenu/metismenu.min.css" rel="stylesheet">
 <link href="/static/plugin/chosen/css/chosen.min.css" rel="stylesheet" type="text/css">
 <link href="/static/plugin/chosen/css/chosen-bootstrap.css" rel="stylesheet" type="text/css">
@@ -58,6 +59,7 @@
 <!--
 <script src="/static/plugin/jQuery-File-Upload-9.18.0/js/jquery.fileupload-ui.js"></script>
 -->
+<script src="/static/plugin/datetimepicker-master/build/jquery.datetimepicker.full.js"></script>
 <script src='/static/plugin/parsley/parsley.min.js'></script>
 <script src='/static/js/opsweb.js'></script>
 <script src="/static/plugin/metismenu/metismenu.min.js"></script>
@@ -180,6 +182,24 @@
     </ul>
 </li>
 <!--发布管理结束-->         
+
+<!--任务调度系统-->         
+<li>
+    <a href="#" ><i class="fa fa-pied-piper-alt"></i><span class="nav-label">任务调度系统</span><span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level collapse" >
+            <li>
+                <a href="{% url 'time_schedule_list' %}" class="menu-link">任务时间配置</a>
+            </li>
+            <li>
+                <a href="{% url 'task_list' %}" class="menu-link">定时任务管理</a>
+            </li>
+            <li>
+                <a href="{% url 'task_result_list' %}" class="menu-link">任务执行结果</a>
+            </li>
+        </ul>
+</li>
+<!--任务调度系统结束-->         
+
 
 <!--监控管理-->
 <li>

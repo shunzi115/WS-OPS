@@ -618,7 +618,7 @@ class ServerIdcInfoView(LoginRequiredMixin,View):
                 wslog_error().error("服务器在 %s zabbix 中不存在" %(server_idc_obj.private_ip))
                 server_idc_info["monitor_status"] = '未监控'
 
-            server_idc_info["disk"] = server_idc_info["disk"].replace("</br>","\n")
+            server_idc_info["disk"] = server_idc_info["disk"].replace("</br>","\n") if server_idc_info["disk"] else ''
             if server_idc_info.get("expired_time"):
                 server_idc_info["expired_time"] = server_idc_info["expired_time"]
             if server_idc_info.get("offline_time"):

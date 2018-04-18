@@ -32,4 +32,5 @@ urlpatterns = [
     url(r'^captcha/', include("captcha.urls")),
     url(r'^publish/', include("publish.urls")),
     url(r'^dbmanager/', include("dbmanager.urls")),
+    url(r'^taskschedule/', include("taskschedule.urls")),
 ]

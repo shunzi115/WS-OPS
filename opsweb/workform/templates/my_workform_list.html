@@ -54,7 +54,7 @@
                     <tbody>
                         {% for pub in object_list %}
                         <tr class="gradeX">
-                            <td class="text-center" style="vertical-align: middle"><strong>{{ pub.title|truncatechars:10 }}</strong></td>
+                            <td class="text-center" style="vertical-align: middle"><a href="{% url 'pub_workform_detail' pub.id %}"><strong>{{ pub.title|truncatechars:10 }}</strong></a></td>
                             <td class="text-center" style="vertical-align: middle">{{ pub.applicant.userextend.cn_name }}</td>
                             <td class="text-center" style="vertical-align: middle">
                                 {% for i in level_range %}
@@ -191,7 +191,7 @@
                     <tbody id="my_audit_list_tbody">
                         {% for my_approvaled in approvaled_workform_list %}
                         <tr class="gradeX">
-                            <td class="text-center" style="vertical-align: middle"><strong>{{ my_approvaled.title|truncatechars:10 }}</strong></td>
+                            <td class="text-center" style="vertical-align: middle"><a href="{% url 'pub_workform_detail' my_approvaled.id %}"><strong>{{ my_approvaled.title|truncatechars:10 }}</strong></a></td>
                             <td class="text-center" style="vertical-align: middle">{{ my_approvaled.applicant.userextend.cn_name }}</td>
                             <td class="text-center" style="vertical-align: middle">
                                 {% for i in level_range %}

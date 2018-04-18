@@ -1,152 +1,638 @@
-2018-04-11 17:01:50,132-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.82 在 zabbix 中不存在
-2018-04-11 17:01:50,146-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.77 在 zabbix 中不存在
-2018-04-11 17:01:50,165-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.81 在 zabbix 中不存在
-2018-04-11 17:01:50,184-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.76 在 zabbix 中不存在
-2018-04-11 17:01:50,189-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.75 在 zabbix 中不存在
-2018-04-11 17:01:50,194-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.79 在 zabbix 中不存在
-2018-04-11 17:02:00,526-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.82 在 zabbix 中不存在
-2018-04-11 17:02:00,545-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.77 在 zabbix 中不存在
-2018-04-11 17:02:00,569-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.81 在 zabbix 中不存在
-2018-04-11 17:02:00,592-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.76 在 zabbix 中不存在
-2018-04-11 17:02:00,598-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.75 在 zabbix 中不存在
-2018-04-11 17:02:00,603-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.79 在 zabbix 中不存在
-2018-04-11 17:09:31,373-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.82 在 zabbix 中不存在
-2018-04-11 17:09:31,394-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.77 在 zabbix 中不存在
-2018-04-11 17:09:31,422-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.81 在 zabbix 中不存在
-2018-04-11 17:09:31,450-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.76 在 zabbix 中不存在
-2018-04-11 17:09:31,456-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.75 在 zabbix 中不存在
-2018-04-11 17:09:31,463-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.79 在 zabbix 中不存在
-2018-04-11 17:09:35,905-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.82 在 zabbix 中不存在
-2018-04-11 17:09:35,922-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.77 在 zabbix 中不存在
-2018-04-11 17:09:35,944-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.81 在 zabbix 中不存在
-2018-04-11 17:09:35,966-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.76 在 zabbix 中不存在
-2018-04-11 17:09:35,972-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.75 在 zabbix 中不存在
-2018-04-11 17:09:35,978-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.79 在 zabbix 中不存在
-2018-04-11 17:09:36,984-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.82 在 zabbix 中不存在
-2018-04-11 17:09:36,998-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.77 在 zabbix 中不存在
-2018-04-11 17:09:37,017-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.81 在 zabbix 中不存在
-2018-04-11 17:09:37,035-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.76 在 zabbix 中不存在
-2018-04-11 17:09:37,040-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.75 在 zabbix 中不存在
-2018-04-11 17:09:37,045-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.79 在 zabbix 中不存在
-2018-04-11 17:09:42,751-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.82 在 zabbix 中不存在
-2018-04-11 17:09:42,767-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.77 在 zabbix 中不存在
-2018-04-11 17:09:42,795-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.81 在 zabbix 中不存在
-2018-04-11 17:09:42,818-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.76 在 zabbix 中不存在
-2018-04-11 17:09:42,823-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.75 在 zabbix 中不存在
-2018-04-11 17:09:42,827-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.79 在 zabbix 中不存在
-2018-04-11 17:10:04,176-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 400 Error:InvalidParameter The instance Id 'i-2zednvbin1s1aicwimg2' does not exist. RequestID: D035FE4D-2B97-4761-93EA-E1F717D33038
-2018-04-11 17:10:04,176-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.134.172 自动刷新失败,错误信息: aliyun api 获取续费状态失败，请查看日志
-2018-04-11 17:10:09,866-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 400 Error:InvalidParameter The instance Id 'i-2ze2kvdczytchwve66h4' does not exist. RequestID: 045CAB66-E1C2-4A9D-BDE5-BB29F2DDEE6C
-2018-04-11 17:10:09,866-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.134.50 自动刷新失败,错误信息: aliyun api 获取续费状态失败，请查看日志
-2018-04-11 17:10:41,191-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 17:10:41,191-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 17:11:13,733-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 17:11:13,733-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 17:13:19,012-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.82 在 zabbix 中不存在
-2018-04-11 17:13:19,026-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.77 在 zabbix 中不存在
-2018-04-11 17:13:19,045-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.81 在 zabbix 中不存在
-2018-04-11 17:13:19,063-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.76 在 zabbix 中不存在
-2018-04-11 17:13:19,068-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.75 在 zabbix 中不存在
-2018-04-11 17:13:19,073-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.79 在 zabbix 中不存在
-2018-04-11 17:13:26,643-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.82 在 zabbix 中不存在
-2018-04-11 17:13:26,658-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.77 在 zabbix 中不存在
-2018-04-11 17:13:26,675-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.81 在 zabbix 中不存在
-2018-04-11 17:13:26,694-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.76 在 zabbix 中不存在
-2018-04-11 17:13:26,699-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.75 在 zabbix 中不存在
-2018-04-11 17:13:26,704-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.79 在 zabbix 中不存在
-2018-04-11 17:13:59,358-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.82 在 zabbix 中不存在
-2018-04-11 17:13:59,372-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.77 在 zabbix 中不存在
-2018-04-11 17:13:59,390-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.81 在 zabbix 中不存在
-2018-04-11 17:13:59,410-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.76 在 zabbix 中不存在
-2018-04-11 17:13:59,415-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.75 在 zabbix 中不存在
-2018-04-11 17:13:59,420-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.79 在 zabbix 中不存在
-2018-04-11 17:14:43,458-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.82 在 zabbix 中不存在
-2018-04-11 17:14:43,473-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.77 在 zabbix 中不存在
-2018-04-11 17:14:43,492-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.81 在 zabbix 中不存在
-2018-04-11 17:14:43,511-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.76 在 zabbix 中不存在
-2018-04-11 17:14:43,516-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.75 在 zabbix 中不存在
-2018-04-11 17:14:43,520-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.79 在 zabbix 中不存在
-2018-04-11 17:20:42,189-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 17:20:42,190-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 17:21:16,241-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 17:21:16,242-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 17:30:48,790-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 17:30:48,791-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 17:31:24,949-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 17:31:24,949-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 17:40:40,477-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 17:40:40,477-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 17:41:14,182-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 17:41:14,183-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 17:50:41,215-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 17:50:41,215-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 17:51:13,764-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 17:51:13,765-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 18:00:45,062-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 18:00:45,062-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 18:01:19,655-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 18:01:19,655-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 18:10:44,604-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 18:10:44,605-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 18:11:20,028-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 18:11:20,028-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 18:20:43,401-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 18:20:43,401-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 18:21:19,383-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 18:21:19,384-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 18:30:41,399-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 18:30:41,399-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 18:31:17,277-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 18:31:17,277-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 18:40:40,867-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 18:40:40,868-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 18:41:14,577-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 18:41:14,577-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 18:50:45,170-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 18:50:45,171-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 18:51:17,771-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 18:51:17,771-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 19:00:44,677-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 19:00:44,678-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 19:01:20,825-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 19:01:20,826-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 19:10:41,311-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 19:10:41,312-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 19:11:14,513-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 19:11:14,513-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 19:20:41,043-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 19:20:41,044-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 19:21:13,661-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 19:21:13,662-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 19:30:42,756-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 19:30:42,757-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 19:31:15,899-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 19:31:15,899-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 19:40:40,801-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 19:40:40,802-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 19:41:15,419-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 19:41:15,419-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 19:50:41,753-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 19:50:41,754-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 19:51:15,696-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 19:51:15,697-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 20:00:45,141-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 20:00:45,141-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 20:01:21,015-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 20:01:21,016-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 20:10:43,527-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 20:10:43,528-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 20:11:16,178-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 20:11:16,178-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 20:20:43,283-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 20:20:43,283-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 20:21:15,700-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 20:21:15,701-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 20:30:43,640-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 20:30:43,641-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 20:31:16,253-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 20:31:16,254-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 20:40:40,969-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 20:40:40,970-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-04-11 20:41:14,454-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
-2018-04-11 20:41:14,455-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 11:02:21,052-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.37.78 在 zabbix 中不存在
+2018-04-18 11:02:21,058-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.37.77 在 zabbix 中不存在
+2018-04-18 11:02:21,148-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.82 在 zabbix 中不存在
+2018-04-18 11:02:21,163-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.77 在 zabbix 中不存在
+2018-04-18 11:02:21,182-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.81 在 zabbix 中不存在
+2018-04-18 11:02:21,200-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.76 在 zabbix 中不存在
+2018-04-18 11:02:21,205-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.75 在 zabbix 中不存在
+2018-04-18 11:02:21,209-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:474]-服务器 10.82.40.79 在 zabbix 中不存在
+2018-04-18 11:10:42,372-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 11:10:42,372-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 11:11:15,009-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 11:11:15,010-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 11:20:41,064-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 11:20:41,064-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 11:21:14,616-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 11:21:14,616-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 11:30:39,774-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 11:30:39,775-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 11:31:13,912-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 11:31:13,913-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 11:40:41,593-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 11:40:41,594-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 11:41:14,374-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 11:41:14,375-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 11:50:43,825-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 11:50:43,825-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 11:51:16,285-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 11:51:16,285-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 12:00:46,291-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 12:00:46,292-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 12:01:19,891-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 12:01:19,892-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 12:10:39,696-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 12:10:39,697-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 12:11:12,616-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 12:11:12,617-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 12:20:43,476-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 12:20:43,476-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 12:21:16,112-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 12:21:16,112-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 12:30:40,749-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 12:30:40,749-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 12:31:13,058-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 12:31:13,059-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 12:40:41,595-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 12:40:41,596-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 12:41:14,867-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 12:41:14,868-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 12:50:40,839-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 12:50:40,839-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 12:51:14,205-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 12:51:14,205-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 13:00:41,250-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 13:00:41,251-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 13:01:13,518-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 13:01:13,519-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 13:10:43,063-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 13:10:43,063-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 13:11:15,973-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 13:11:15,973-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 13:20:40,611-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 13:20:40,611-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 13:21:13,533-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 13:21:13,533-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 13:30:41,658-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 13:30:41,658-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 13:31:14,914-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 13:31:14,914-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 13:40:41,925-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 13:40:41,926-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 13:41:15,570-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 13:41:15,571-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 13:50:44,431-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 13:50:44,432-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 13:51:17,725-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 13:51:17,725-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 14:00:43,158-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 14:00:43,159-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 14:01:24,253-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 14:01:24,254-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 14:10:45,221-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 14:10:45,221-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 14:11:20,605-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 14:11:20,606-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 14:20:43,329-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 14:20:43,330-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 14:21:25,272-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 14:21:25,273-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 14:30:44,661-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 14:30:44,661-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 14:31:22,044-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 14:31:22,044-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 14:40:41,489-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 14:40:41,490-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 14:41:15,769-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 14:41:15,769-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 14:50:40,683-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 14:50:40,683-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 14:51:16,618-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 14:51:16,619-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 15:00:44,519-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 15:00:44,519-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 15:01:21,043-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 15:01:21,044-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 15:10:45,840-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 15:10:45,840-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 15:11:21,219-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 15:11:21,219-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 15:20:46,777-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 15:20:46,777-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 15:21:25,897-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 15:21:25,897-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 15:30:43,398-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 15:30:43,399-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 15:31:26,207-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 15:31:26,207-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 15:40:40,185-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 15:40:40,185-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 15:41:16,157-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 15:41:16,157-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 15:50:41,912-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 15:50:41,912-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 15:51:14,657-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 15:51:14,658-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 16:00:45,641-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 16:00:45,642-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 16:01:21,380-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 16:01:21,380-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 16:10:41,929-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 16:10:41,929-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 16:11:16,071-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 16:11:16,072-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 16:20:44,731-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 16:20:44,732-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 16:21:17,505-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 16:21:17,506-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 16:30:45,184-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 16:30:45,185-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 16:31:18,467-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 16:31:18,468-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 16:40:47,691-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 16:40:47,691-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 16:41:22,775-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 16:41:22,776-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 16:50:43,117-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 16:50:43,118-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 16:51:18,119-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 16:51:18,120-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 17:00:45,457-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 17:00:45,457-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 17:01:20,390-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 17:01:20,390-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 17:10:45,859-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 17:10:45,859-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 17:11:26,008-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 17:11:26,008-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 17:30:08,703-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 400 Error:InvalidParameter The instance Id 'i-2zef9edjszup43gvald8' does not exist. RequestID: C85366D2-648A-475B-9AEE-39BF621AF446
+2018-04-18 17:30:08,703-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.134.164 自动刷新失败,错误信息: aliyun api 获取续费状态失败，请查看日志
+2018-04-18 17:30:46,970-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 17:30:46,971-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 17:31:08,965-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 400 Error:InvalidParameter The instance Id 'i-2ze8pmxwulw7xosgg0bp' does not exist. RequestID: 269DD18E-2F75-4725-B178-AC6E8F840F88
+2018-04-18 17:31:08,965-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.134.71 自动刷新失败,错误信息: aliyun api 获取续费状态失败，请查看日志
+2018-04-18 17:31:22,893-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 400 Error:InvalidParameter The instance Id 'i-2zecmpeul4cko8duo0a5' does not exist. RequestID: 177E7343-D435-4287-955A-B275FA13A232
+2018-04-18 17:31:22,893-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.134.19 自动刷新失败,错误信息: aliyun api 获取续费状态失败，请查看日志
+2018-04-18 17:31:26,390-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 500 Error:InternalError The request processing has failed due to some unknown error, exception or failure. RequestID: 5ECD90CC-F17D-4D55-9439-65BEB2B9A4EC
+2018-04-18 17:31:26,390-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.134.82 自动刷新失败,错误信息: aliyun api 获取续费状态失败，请查看日志
+2018-04-18 17:31:34,544-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 17:31:34,544-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 17:40:44,199-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 17:40:44,200-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 17:41:17,580-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 17:41:17,581-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 18:00:05,056-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 18:00:05,057-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.134.172 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 18:00:41,238-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 18:00:41,239-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 18:01:16,325-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 18:01:16,325-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 18:10:44,329-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 18:10:44,329-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 18:11:19,344-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 18:11:19,345-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 18:20:45,248-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 18:20:45,248-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 18:21:19,926-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 18:21:19,926-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 18:30:42,768-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 18:30:42,768-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 18:31:15,733-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 18:31:15,734-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 18:40:41,204-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 18:40:41,204-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 18:41:14,217-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 18:41:14,218-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 18:50:43,087-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 18:50:43,087-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 18:51:16,255-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 18:51:16,255-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 19:00:41,316-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 19:00:41,316-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 19:01:17,814-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 19:01:17,814-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 19:10:42,004-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 19:10:42,004-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 19:11:14,876-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 19:11:14,877-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 19:20:40,249-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 19:20:40,250-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 19:21:13,097-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 19:21:13,098-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 19:30:41,729-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 19:30:41,730-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 19:31:15,322-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 19:31:15,323-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 19:40:46,134-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 19:40:46,135-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 19:41:20,023-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 19:41:20,023-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 19:48:37,926-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/workform/views.py-[line:423]-用户 Anthony.qiu 审批失败,你没有权限审核 WorkFormModel 模型对象 id: 352 流程进度: 3 的工单
+2018-04-18 19:50:41,566-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 19:50:41,567-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 19:51:14,944-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 19:51:14,944-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 20:00:05,040-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 20:00:05,040-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.134.172 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 20:00:41,826-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 20:00:41,826-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 20:01:16,388-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 20:01:16,388-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 20:10:43,809-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 20:10:43,810-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 20:11:19,317-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 20:11:19,318-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 20:20:45,387-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 20:20:45,387-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 20:21:18,699-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 20:21:18,699-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 20:30:44,553-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 20:30:44,553-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 20:31:18,134-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 20:31:18,135-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 20:40:51,140-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 20:40:51,141-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 20:41:24,138-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 20:41:24,138-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 20:50:44,214-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 20:50:44,215-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 20:51:16,953-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 20:51:16,953-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 21:00:47,722-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 21:00:47,722-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 21:01:21,197-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 21:01:21,198-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 21:10:44,656-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 21:10:44,656-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 21:11:18,177-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 21:11:18,177-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 21:20:44,594-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 21:20:44,595-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 21:21:18,384-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 21:21:18,385-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 21:30:44,821-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 21:30:44,822-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 21:31:18,611-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 21:31:18,611-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 21:40:44,540-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 21:40:44,541-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 21:41:20,805-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 21:41:20,806-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 21:50:44,564-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 21:50:44,564-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 21:51:18,536-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 21:51:18,537-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 22:00:43,706-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 22:00:43,706-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 22:01:17,304-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 22:01:17,304-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 22:10:46,079-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 22:10:46,080-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 22:11:19,556-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 22:11:19,557-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:33]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 22:27:46,576-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: ecdd131c-2b0d-42e6-bd28-e5a185cc1d67 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,577-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: da943523-3dfd-453c-b49d-4b17eef916b4 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,579-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 3510297c-69f8-4003-94eb-261fb84611fc 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,580-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 3d7b87d9-de7c-4b8c-8efe-76f0ce1e94b3 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,582-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 2c0c32c6-790b-47d5-813e-fd20ed581a3f 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,583-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: b5983c24-c923-496b-9b09-d09c441a604d 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,584-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 223da1cd-9de0-4ba9-a0b5-d4b2f9a6d9a4 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,585-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 82e396cf-bdde-487a-bdc2-d6a3bda96c40 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,587-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 2f809773-77b7-471a-977e-c3db3b3cc01e 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,588-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 0677441e-a9c2-45d4-b450-c59eab9529eb 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,589-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: b3961f90-0527-425d-8cf0-18d4f59a5eba 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,591-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: f3ec73e9-1e15-40cd-b239-da62b6b47829 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,592-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 77477a37-45c5-4485-9430-29135e862a37 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,594-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 371eab2d-b6a9-4910-b85c-56e1ea885d08 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,596-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 2698ad5f-9206-4144-892a-4c4f240d07da 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,597-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 7f2af534-82e2-45ba-a027-16149f0b3cd1 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,599-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 90f19685-c9b3-4bd1-afd8-5c5eefa2b3bd 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,600-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 9195d720-2dde-4617-95bb-81e593500101 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,602-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: a30c6d4b-bcf1-48cd-92d9-7c5194e9ab3c 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,603-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: a8ebd376-852a-4be8-8a15-840e7b69cf50 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,605-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 38527966-bc70-40fa-9a81-c7690cf0cf99 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,606-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 31203fdb-066a-46ef-820a-85b89dc5e1d6 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,607-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 40f0a813-9e20-4062-a599-682ed7332c52 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,609-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: dae6dfdb-ff55-419d-92a6-d147fbcf9686 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,610-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: fb0c7da3-a05e-44b3-bb19-3720598406a9 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,612-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 8f724057-f1e4-4b71-9dd3-588aa83023ae 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,613-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: f44e36f3-767e-4a93-9d45-ac85f8d3be99 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,614-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 255cfe8c-b2dc-417c-bcc3-292687e754a5 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,615-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 5f9d8e14-c48b-4058-b0cc-33dd816f5b24 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,616-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 5b4979b3-84e1-47ba-b089-76ff5ac80a3a 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,618-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 8a1be1a5-1423-428c-b1da-dc40ef2667e2 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,619-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 9343fb89-3e72-4409-b3c5-36f479e0b3ed 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,620-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 36b6beb4-089d-489a-942a-f2178ea00496 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,622-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 2865691c-1204-4880-be30-1716298f8910 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,623-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 79259970-9672-4022-b897-b41ccff6fa00 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,625-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 210701bf-505f-44f1-8f10-ea05dd682142 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,626-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 83f56eb7-a526-43f2-839a-b57db080163a 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,627-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 7d25e914-b492-4b59-9fae-62ed59a2f032 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,629-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 12f0c976-9bd4-4b2b-be93-5f57930179e9 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,630-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 3bc5ff74-cb5c-4b39-a4e6-7398ff06a369 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,632-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: ce9af600-fcac-4fa0-abda-de548ab1bdb0 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,634-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: e4a37f0c-3c9a-4be9-904a-33552e3b93da 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,635-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: c1d4936e-b0b3-422d-af2a-924bc6268b4e 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,636-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 0ad82ed4-3746-42e5-8bc6-c95d53afdf46 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,637-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 96d2432a-5556-4046-bf9e-6ccd41923fb0 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,639-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: f5814ba0-e151-40c6-89d4-c9170e55b199 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,640-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 81aa968a-9e6d-4a16-bbaa-962b6464519b 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,641-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 211245f3-f05a-4029-b5bd-867202a2e4dc 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,642-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: db11c2ce-264f-4897-8aa9-fd75db0d4536 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,644-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 343b6505-79f4-4a4c-aee4-9c9b6ff29182 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,645-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 2d642081-303b-45e8-aae1-c7c5f34ca8d2 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,646-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 9c7e2c94-fc8f-4ce6-be45-10b6eabaf3e2 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,648-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 19fb96c3-9813-4b49-a588-96f23645c630 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,649-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 9618ef06-5112-49c7-8266-995940a87a7e 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,650-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 9d728de9-1a19-4997-9cd4-9f33f85222dc 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,651-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 2b69911e-7ce3-4fa5-91fa-604eb999be7b 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,653-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 72db4052-5e11-45bb-81b3-30b9823ecba4 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,654-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 8dbf3201-a2db-4a01-82dd-8ad02fd782ba 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,655-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 30f65a4a-c8de-4320-b05b-a00d39434efc 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,656-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 39227d78-e2c5-450b-bea5-ee880576241b 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,658-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 93abef63-675b-4dd1-918a-5446c5647cbb 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,659-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 17eea04a-96a2-451a-a650-02278f8860cc 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,660-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 5c86b400-05ac-45b8-ac30-acff8d219a48 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,662-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 855fc187-43c6-413d-a190-6d9afe4911cd 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,663-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 8027b625-2cd1-421e-860b-d95f25141676 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,664-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 1f3d6e06-420e-4941-9aee-788c0cbefb8f 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,666-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 01305b3e-6cd3-4bca-9cb0-0907d204cfd6 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,667-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 3967d009-1720-452d-94ce-82b3ed8ed569 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,668-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: b4b3563c-3a4a-4922-9919-e9ab92eca908 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,670-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: e94a7634-a58f-4be8-aadb-5dafafa00fc2 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,672-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 26442d37-84b8-4949-9d75-daae51a24265 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,673-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 9d41ed4a-826f-4bcf-b7a1-a8bae80e6993 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,675-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 7bbf9110-3a61-43f0-970f-97ea6579e333 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,676-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: ff3a0bcd-d36f-4f3e-b26c-e340fed7b827 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,677-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: b4a12fde-0787-40d4-87ef-450006a5bc49 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,678-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 23798992-5b96-4bc4-80b6-f5bceace3093 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,680-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: d26fc0d7-5d14-4c22-80da-29081e9818b2 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,681-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 5048ff93-52a1-49c8-a72b-5ee3989f29d3 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,682-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: f7fee9d1-6e4b-435b-bb0c-3c3fcc28fd5c 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,683-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 45b04b80-d417-4cfc-a6db-bc2eebec1f25 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,685-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 5f8e78c0-f3f4-4d86-9e00-6f97c67fa089 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,686-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: dcb86634-1682-4687-a280-17293e670a29 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,687-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 3f37f3bb-5df9-4410-8153-6868775d95a7 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,689-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 6d48cabb-5e32-44ed-ac23-d23d46f4a0db 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,690-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 00b3a7c7-a576-48a4-b37b-3edebfed0130 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,691-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 138f82ce-98db-4daf-9ac0-b0415d2a0426 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,692-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 940f2b8f-ebe8-4c92-aa30-b1a092d4ff05 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,693-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 47236083-1ccc-4d3f-9033-8f7e6bcbc797 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,695-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 2658952b-82b3-4811-b0ac-e7f7c30a64c2 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,696-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 820fa448-cdf4-41d6-89a6-6d93a0a822ea 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,697-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 6ae4e14b-e1b9-44dd-94d7-f7766c5a942f 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,699-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: a1fed136-6adf-4c81-a804-e529e3950656 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,700-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 9fc96a09-8500-4c03-bdf0-4c52a2a9c9a4 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,701-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 21fe8c6a-dbbf-472f-8d43-188dac4fab86 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,702-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 5c83568c-2782-42ad-86a7-3adc44436268 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,704-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 0cb24846-e77d-41a9-8944-da4838da630a 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,705-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 6ae56a56-7088-438a-9263-82a8f134ef90 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,706-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: fd002004-911b-4605-99b8-d3421cfc4852 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:27:46,707-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: fa564cf2-ce23-4b63-844e-bad862eb88c4 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,370-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: ecdd131c-2b0d-42e6-bd28-e5a185cc1d67 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,372-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: da943523-3dfd-453c-b49d-4b17eef916b4 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,373-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 3510297c-69f8-4003-94eb-261fb84611fc 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,374-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 3d7b87d9-de7c-4b8c-8efe-76f0ce1e94b3 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,375-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 2c0c32c6-790b-47d5-813e-fd20ed581a3f 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,376-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: b5983c24-c923-496b-9b09-d09c441a604d 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,378-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 223da1cd-9de0-4ba9-a0b5-d4b2f9a6d9a4 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,379-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 82e396cf-bdde-487a-bdc2-d6a3bda96c40 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,380-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 2f809773-77b7-471a-977e-c3db3b3cc01e 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,381-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 0677441e-a9c2-45d4-b450-c59eab9529eb 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,382-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: b3961f90-0527-425d-8cf0-18d4f59a5eba 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,383-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: f3ec73e9-1e15-40cd-b239-da62b6b47829 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,385-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 77477a37-45c5-4485-9430-29135e862a37 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,386-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 371eab2d-b6a9-4910-b85c-56e1ea885d08 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,387-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 2698ad5f-9206-4144-892a-4c4f240d07da 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,388-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 7f2af534-82e2-45ba-a027-16149f0b3cd1 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,389-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 90f19685-c9b3-4bd1-afd8-5c5eefa2b3bd 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,390-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 9195d720-2dde-4617-95bb-81e593500101 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,391-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: a30c6d4b-bcf1-48cd-92d9-7c5194e9ab3c 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,392-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: a8ebd376-852a-4be8-8a15-840e7b69cf50 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,394-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 38527966-bc70-40fa-9a81-c7690cf0cf99 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,395-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 31203fdb-066a-46ef-820a-85b89dc5e1d6 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,396-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 40f0a813-9e20-4062-a599-682ed7332c52 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,397-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: dae6dfdb-ff55-419d-92a6-d147fbcf9686 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,399-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: fb0c7da3-a05e-44b3-bb19-3720598406a9 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,400-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 8f724057-f1e4-4b71-9dd3-588aa83023ae 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,401-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: f44e36f3-767e-4a93-9d45-ac85f8d3be99 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,402-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 255cfe8c-b2dc-417c-bcc3-292687e754a5 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,404-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 5f9d8e14-c48b-4058-b0cc-33dd816f5b24 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,405-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 5b4979b3-84e1-47ba-b089-76ff5ac80a3a 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,406-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 8a1be1a5-1423-428c-b1da-dc40ef2667e2 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,408-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 9343fb89-3e72-4409-b3c5-36f479e0b3ed 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,409-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 36b6beb4-089d-489a-942a-f2178ea00496 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,410-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 2865691c-1204-4880-be30-1716298f8910 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,411-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 79259970-9672-4022-b897-b41ccff6fa00 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,413-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 210701bf-505f-44f1-8f10-ea05dd682142 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,414-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 83f56eb7-a526-43f2-839a-b57db080163a 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,416-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 7d25e914-b492-4b59-9fae-62ed59a2f032 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,417-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 12f0c976-9bd4-4b2b-be93-5f57930179e9 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,418-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 3bc5ff74-cb5c-4b39-a4e6-7398ff06a369 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,420-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: ce9af600-fcac-4fa0-abda-de548ab1bdb0 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,421-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: e4a37f0c-3c9a-4be9-904a-33552e3b93da 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,422-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: c1d4936e-b0b3-422d-af2a-924bc6268b4e 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,423-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 0ad82ed4-3746-42e5-8bc6-c95d53afdf46 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,425-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 96d2432a-5556-4046-bf9e-6ccd41923fb0 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,426-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: f5814ba0-e151-40c6-89d4-c9170e55b199 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,427-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 81aa968a-9e6d-4a16-bbaa-962b6464519b 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,429-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 211245f3-f05a-4029-b5bd-867202a2e4dc 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,430-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: db11c2ce-264f-4897-8aa9-fd75db0d4536 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,432-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 343b6505-79f4-4a4c-aee4-9c9b6ff29182 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,433-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 2d642081-303b-45e8-aae1-c7c5f34ca8d2 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,435-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 9c7e2c94-fc8f-4ce6-be45-10b6eabaf3e2 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,436-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 19fb96c3-9813-4b49-a588-96f23645c630 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,438-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 9618ef06-5112-49c7-8266-995940a87a7e 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,439-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 9d728de9-1a19-4997-9cd4-9f33f85222dc 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,440-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 2b69911e-7ce3-4fa5-91fa-604eb999be7b 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,442-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 72db4052-5e11-45bb-81b3-30b9823ecba4 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,443-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 8dbf3201-a2db-4a01-82dd-8ad02fd782ba 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,445-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 30f65a4a-c8de-4320-b05b-a00d39434efc 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,446-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 39227d78-e2c5-450b-bea5-ee880576241b 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,448-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 93abef63-675b-4dd1-918a-5446c5647cbb 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,449-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 17eea04a-96a2-451a-a650-02278f8860cc 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,450-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 5c86b400-05ac-45b8-ac30-acff8d219a48 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,451-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 855fc187-43c6-413d-a190-6d9afe4911cd 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,453-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 8027b625-2cd1-421e-860b-d95f25141676 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,454-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 1f3d6e06-420e-4941-9aee-788c0cbefb8f 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,456-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 01305b3e-6cd3-4bca-9cb0-0907d204cfd6 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,457-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 3967d009-1720-452d-94ce-82b3ed8ed569 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,459-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: b4b3563c-3a4a-4922-9919-e9ab92eca908 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,460-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: e94a7634-a58f-4be8-aadb-5dafafa00fc2 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,462-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 26442d37-84b8-4949-9d75-daae51a24265 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,464-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 9d41ed4a-826f-4bcf-b7a1-a8bae80e6993 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,466-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 7bbf9110-3a61-43f0-970f-97ea6579e333 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,467-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: ff3a0bcd-d36f-4f3e-b26c-e340fed7b827 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,469-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: b4a12fde-0787-40d4-87ef-450006a5bc49 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,471-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 23798992-5b96-4bc4-80b6-f5bceace3093 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,473-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: d26fc0d7-5d14-4c22-80da-29081e9818b2 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,474-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 5048ff93-52a1-49c8-a72b-5ee3989f29d3 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,475-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: f7fee9d1-6e4b-435b-bb0c-3c3fcc28fd5c 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,476-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 45b04b80-d417-4cfc-a6db-bc2eebec1f25 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,478-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 5f8e78c0-f3f4-4d86-9e00-6f97c67fa089 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,479-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: dcb86634-1682-4687-a280-17293e670a29 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,481-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 3f37f3bb-5df9-4410-8153-6868775d95a7 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,482-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 6d48cabb-5e32-44ed-ac23-d23d46f4a0db 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,483-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 00b3a7c7-a576-48a4-b37b-3edebfed0130 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,485-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 138f82ce-98db-4daf-9ac0-b0415d2a0426 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,486-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 940f2b8f-ebe8-4c92-aa30-b1a092d4ff05 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,488-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 47236083-1ccc-4d3f-9033-8f7e6bcbc797 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,489-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 2658952b-82b3-4811-b0ac-e7f7c30a64c2 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,491-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 820fa448-cdf4-41d6-89a6-6d93a0a822ea 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,492-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 6ae4e14b-e1b9-44dd-94d7-f7766c5a942f 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,493-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: a1fed136-6adf-4c81-a804-e529e3950656 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,494-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 9fc96a09-8500-4c03-bdf0-4c52a2a9c9a4 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,495-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 21fe8c6a-dbbf-472f-8d43-188dac4fab86 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,496-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 5c83568c-2782-42ad-86a7-3adc44436268 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,498-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 0cb24846-e77d-41a9-8944-da4838da630a 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,499-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 6ae56a56-7088-438a-9263-82a8f134ef90 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,500-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: fd002004-911b-4605-99b8-d3421cfc4852 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:28:00,501-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: fa564cf2-ce23-4b63-844e-bad862eb88c4 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:48:18,921-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 22:48:18,921-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/tasks.py-[line:39]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 22:48:54,136-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:89]-("'ResultCallback' object has no attribute 'data'",)
+2018-04-18 22:48:54,136-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/tasks.py-[line:39]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-04-18 22:55:33,331-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: ecdd131c-2b0d-42e6-bd28-e5a185cc1d67 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,333-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: da943523-3dfd-453c-b49d-4b17eef916b4 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,334-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 3510297c-69f8-4003-94eb-261fb84611fc 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,336-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 3d7b87d9-de7c-4b8c-8efe-76f0ce1e94b3 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,337-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 2c0c32c6-790b-47d5-813e-fd20ed581a3f 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,338-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: b5983c24-c923-496b-9b09-d09c441a604d 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,340-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 223da1cd-9de0-4ba9-a0b5-d4b2f9a6d9a4 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,341-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 82e396cf-bdde-487a-bdc2-d6a3bda96c40 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,342-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 2f809773-77b7-471a-977e-c3db3b3cc01e 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,344-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 0677441e-a9c2-45d4-b450-c59eab9529eb 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,345-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: b3961f90-0527-425d-8cf0-18d4f59a5eba 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,346-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: f3ec73e9-1e15-40cd-b239-da62b6b47829 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,347-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 77477a37-45c5-4485-9430-29135e862a37 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,348-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 371eab2d-b6a9-4910-b85c-56e1ea885d08 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,350-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 2698ad5f-9206-4144-892a-4c4f240d07da 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,351-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 7f2af534-82e2-45ba-a027-16149f0b3cd1 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,352-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 90f19685-c9b3-4bd1-afd8-5c5eefa2b3bd 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,354-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 9195d720-2dde-4617-95bb-81e593500101 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,355-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: a30c6d4b-bcf1-48cd-92d9-7c5194e9ab3c 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,357-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: a8ebd376-852a-4be8-8a15-840e7b69cf50 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,359-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 38527966-bc70-40fa-9a81-c7690cf0cf99 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,361-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 31203fdb-066a-46ef-820a-85b89dc5e1d6 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,363-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 40f0a813-9e20-4062-a599-682ed7332c52 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,365-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: dae6dfdb-ff55-419d-92a6-d147fbcf9686 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,367-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: fb0c7da3-a05e-44b3-bb19-3720598406a9 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,368-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 8f724057-f1e4-4b71-9dd3-588aa83023ae 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,369-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: f44e36f3-767e-4a93-9d45-ac85f8d3be99 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,371-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 255cfe8c-b2dc-417c-bcc3-292687e754a5 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,372-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 5f9d8e14-c48b-4058-b0cc-33dd816f5b24 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,374-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 5b4979b3-84e1-47ba-b089-76ff5ac80a3a 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,375-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 8a1be1a5-1423-428c-b1da-dc40ef2667e2 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,377-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 9343fb89-3e72-4409-b3c5-36f479e0b3ed 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,378-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 36b6beb4-089d-489a-942a-f2178ea00496 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,379-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 2865691c-1204-4880-be30-1716298f8910 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,380-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 79259970-9672-4022-b897-b41ccff6fa00 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,381-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 210701bf-505f-44f1-8f10-ea05dd682142 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,387-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 83f56eb7-a526-43f2-839a-b57db080163a 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,389-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 7d25e914-b492-4b59-9fae-62ed59a2f032 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,391-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 12f0c976-9bd4-4b2b-be93-5f57930179e9 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,392-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 3bc5ff74-cb5c-4b39-a4e6-7398ff06a369 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,393-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: ce9af600-fcac-4fa0-abda-de548ab1bdb0 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,395-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: e4a37f0c-3c9a-4be9-904a-33552e3b93da 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,397-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: c1d4936e-b0b3-422d-af2a-924bc6268b4e 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,398-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 0ad82ed4-3746-42e5-8bc6-c95d53afdf46 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,399-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 96d2432a-5556-4046-bf9e-6ccd41923fb0 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,401-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: f5814ba0-e151-40c6-89d4-c9170e55b199 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,403-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 81aa968a-9e6d-4a16-bbaa-962b6464519b 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,405-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 211245f3-f05a-4029-b5bd-867202a2e4dc 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,407-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: db11c2ce-264f-4897-8aa9-fd75db0d4536 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,408-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 343b6505-79f4-4a4c-aee4-9c9b6ff29182 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,410-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 2d642081-303b-45e8-aae1-c7c5f34ca8d2 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,412-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 9c7e2c94-fc8f-4ce6-be45-10b6eabaf3e2 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,413-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 19fb96c3-9813-4b49-a588-96f23645c630 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,415-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 9618ef06-5112-49c7-8266-995940a87a7e 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,416-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 9d728de9-1a19-4997-9cd4-9f33f85222dc 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,417-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 2b69911e-7ce3-4fa5-91fa-604eb999be7b 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,419-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 72db4052-5e11-45bb-81b3-30b9823ecba4 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,420-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 8dbf3201-a2db-4a01-82dd-8ad02fd782ba 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,422-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 30f65a4a-c8de-4320-b05b-a00d39434efc 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,423-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 39227d78-e2c5-450b-bea5-ee880576241b 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,425-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 93abef63-675b-4dd1-918a-5446c5647cbb 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,426-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 17eea04a-96a2-451a-a650-02278f8860cc 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,428-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 5c86b400-05ac-45b8-ac30-acff8d219a48 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,430-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 855fc187-43c6-413d-a190-6d9afe4911cd 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,432-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 8027b625-2cd1-421e-860b-d95f25141676 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,434-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 1f3d6e06-420e-4941-9aee-788c0cbefb8f 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,435-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 01305b3e-6cd3-4bca-9cb0-0907d204cfd6 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,440-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 3967d009-1720-452d-94ce-82b3ed8ed569 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,442-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: b4b3563c-3a4a-4922-9919-e9ab92eca908 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,444-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: e94a7634-a58f-4be8-aadb-5dafafa00fc2 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,446-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 26442d37-84b8-4949-9d75-daae51a24265 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,448-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 9d41ed4a-826f-4bcf-b7a1-a8bae80e6993 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,450-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 7bbf9110-3a61-43f0-970f-97ea6579e333 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,451-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: ff3a0bcd-d36f-4f3e-b26c-e340fed7b827 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,453-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: b4a12fde-0787-40d4-87ef-450006a5bc49 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,455-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 23798992-5b96-4bc4-80b6-f5bceace3093 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,457-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: d26fc0d7-5d14-4c22-80da-29081e9818b2 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,459-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 5048ff93-52a1-49c8-a72b-5ee3989f29d3 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 22:55:33,461-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: f7fee9d1-6e4b-435b-bb0c-3c3fcc28fd5c 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,677-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: ecdd131c-2b0d-42e6-bd28-e5a185cc1d67 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,679-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: da943523-3dfd-453c-b49d-4b17eef916b4 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,681-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 3510297c-69f8-4003-94eb-261fb84611fc 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,682-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 3d7b87d9-de7c-4b8c-8efe-76f0ce1e94b3 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,684-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 2c0c32c6-790b-47d5-813e-fd20ed581a3f 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,685-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: b5983c24-c923-496b-9b09-d09c441a604d 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,687-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 223da1cd-9de0-4ba9-a0b5-d4b2f9a6d9a4 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,689-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 82e396cf-bdde-487a-bdc2-d6a3bda96c40 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,690-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 2f809773-77b7-471a-977e-c3db3b3cc01e 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,692-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 0677441e-a9c2-45d4-b450-c59eab9529eb 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,694-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: b3961f90-0527-425d-8cf0-18d4f59a5eba 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,695-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: f3ec73e9-1e15-40cd-b239-da62b6b47829 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,697-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 77477a37-45c5-4485-9430-29135e862a37 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,699-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 371eab2d-b6a9-4910-b85c-56e1ea885d08 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,700-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 2698ad5f-9206-4144-892a-4c4f240d07da 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,702-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 7f2af534-82e2-45ba-a027-16149f0b3cd1 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,703-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 90f19685-c9b3-4bd1-afd8-5c5eefa2b3bd 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,704-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 9195d720-2dde-4617-95bb-81e593500101 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,706-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: a30c6d4b-bcf1-48cd-92d9-7c5194e9ab3c 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,707-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: a8ebd376-852a-4be8-8a15-840e7b69cf50 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,708-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 38527966-bc70-40fa-9a81-c7690cf0cf99 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,710-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 31203fdb-066a-46ef-820a-85b89dc5e1d6 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,711-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 40f0a813-9e20-4062-a599-682ed7332c52 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,713-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: dae6dfdb-ff55-419d-92a6-d147fbcf9686 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,714-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: fb0c7da3-a05e-44b3-bb19-3720598406a9 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,715-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 8f724057-f1e4-4b71-9dd3-588aa83023ae 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,717-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: f44e36f3-767e-4a93-9d45-ac85f8d3be99 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,718-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 255cfe8c-b2dc-417c-bcc3-292687e754a5 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,719-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 5f9d8e14-c48b-4058-b0cc-33dd816f5b24 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,721-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 5b4979b3-84e1-47ba-b089-76ff5ac80a3a 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,722-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 8a1be1a5-1423-428c-b1da-dc40ef2667e2 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,723-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 9343fb89-3e72-4409-b3c5-36f479e0b3ed 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,725-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 36b6beb4-089d-489a-942a-f2178ea00496 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,726-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 2865691c-1204-4880-be30-1716298f8910 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,727-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 79259970-9672-4022-b897-b41ccff6fa00 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,729-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 210701bf-505f-44f1-8f10-ea05dd682142 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,730-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 83f56eb7-a526-43f2-839a-b57db080163a 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,732-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 7d25e914-b492-4b59-9fae-62ed59a2f032 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,734-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 12f0c976-9bd4-4b2b-be93-5f57930179e9 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,736-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 3bc5ff74-cb5c-4b39-a4e6-7398ff06a369 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,737-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: ce9af600-fcac-4fa0-abda-de548ab1bdb0 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,739-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: e4a37f0c-3c9a-4be9-904a-33552e3b93da 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,740-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: c1d4936e-b0b3-422d-af2a-924bc6268b4e 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,742-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 0ad82ed4-3746-42e5-8bc6-c95d53afdf46 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,743-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 96d2432a-5556-4046-bf9e-6ccd41923fb0 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,744-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: f5814ba0-e151-40c6-89d4-c9170e55b199 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,746-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 81aa968a-9e6d-4a16-bbaa-962b6464519b 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,747-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 211245f3-f05a-4029-b5bd-867202a2e4dc 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,748-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: db11c2ce-264f-4897-8aa9-fd75db0d4536 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,751-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 343b6505-79f4-4a4c-aee4-9c9b6ff29182 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,752-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 2d642081-303b-45e8-aae1-c7c5f34ca8d2 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,753-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 9c7e2c94-fc8f-4ce6-be45-10b6eabaf3e2 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,755-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 19fb96c3-9813-4b49-a588-96f23645c630 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,756-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 9618ef06-5112-49c7-8266-995940a87a7e 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,757-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 9d728de9-1a19-4997-9cd4-9f33f85222dc 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,759-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 2b69911e-7ce3-4fa5-91fa-604eb999be7b 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,760-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 72db4052-5e11-45bb-81b3-30b9823ecba4 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,761-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 8dbf3201-a2db-4a01-82dd-8ad02fd782ba 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,762-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 30f65a4a-c8de-4320-b05b-a00d39434efc 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,764-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 39227d78-e2c5-450b-bea5-ee880576241b 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,765-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 93abef63-675b-4dd1-918a-5446c5647cbb 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,766-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 17eea04a-96a2-451a-a650-02278f8860cc 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,768-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 5c86b400-05ac-45b8-ac30-acff8d219a48 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,769-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 855fc187-43c6-413d-a190-6d9afe4911cd 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,770-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 8027b625-2cd1-421e-860b-d95f25141676 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,771-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 1f3d6e06-420e-4941-9aee-788c0cbefb8f 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,773-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 01305b3e-6cd3-4bca-9cb0-0907d204cfd6 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,775-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 3967d009-1720-452d-94ce-82b3ed8ed569 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,776-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: b4b3563c-3a4a-4922-9919-e9ab92eca908 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,778-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: e94a7634-a58f-4be8-aadb-5dafafa00fc2 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,779-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 26442d37-84b8-4949-9d75-daae51a24265 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,780-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 9d41ed4a-826f-4bcf-b7a1-a8bae80e6993 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,782-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 7bbf9110-3a61-43f0-970f-97ea6579e333 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,783-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: ff3a0bcd-d36f-4f3e-b26c-e340fed7b827 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,784-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: b4a12fde-0787-40d4-87ef-450006a5bc49 失败,错误信息: ('TaskResultRecord matching query does not exist.',)
+2018-04-18 23:00:58,786-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/taskschedule/templatetags/get_task_name.py-[line:12]-TaskResultRecord 模型中查询 task_id: 23798992-5b96-4bc4-80b6-f5bceace3093 失败,错误信息: ('TaskResultRecord matching query does not exist.',)

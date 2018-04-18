@@ -1,0 +1,198 @@
+{% extends "public/layout.html" %}
+
+{% block breadcrumb %}
+     任务调度系统 / <strong class="active">任务管理</strong>
+{% endblock %}
+
+{% block body %}
+<div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                 <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>填写任务信息</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <form id="TaskAddForm" class="form-horizontal nice-validator n-yellow Formvalid" novalidate="novalidate">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="name" class="col-sm-2 control-label col-sm-offset-1">名称 <span class="red-fonts ">*</span></label>
+                                <div class="col-sm-6">
+                                    <input name="name" placeholder="name" type="text" class="form-control" aria-required="true">
+                                </div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label for="description" class="col-sm-2 control-label col-sm-offset-1">描述 <span class="red-fonts">*</span></label>
+                                <div class="col-sm-6">
+                                    <textarea id="description" name="description" class="form-control" aria-required="true" rows="2"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label for="task" class="col-sm-2 control-label col-sm-offset-1">已注册task <span class="red-fonts">*</span></label>
+                                <div class="col-sm-6">
+                                    <select name="task" class="form-control choices" aria-required="true">
+                                        <option value="">请选择一个 task...</option>
+                                        {% for rt in registered_tasks_list %}
+                                            <option value="{{ rt }}">{{ rt }}.</option>
+                                        {% endfor %}
+                                    </select>
+                                 </div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label for="schedule" class="col-sm-2 control-label col-sm-offset-1">调度策略 <span class="red-fonts ">*</span></label>
+                                <div class="col-sm-6">
+                                    <select name="schedule" id="schedule" class="form-control choices" aria-required="true">
+                                        <option value="">请选择一个 调度策略...</option>
+                                        <option value="crontab">Crontab 调度</option>
+                                        <option value="interval">Interval 调度</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="crontab_div" style="display:none">
+                                <label for="crontab" class="col-sm-2 control-label col-sm-offset-1">Crontab 调度 <span class="red-fonts ">*</span></label>
+                                <div class="col-sm-6">
+                                    <select name="crontab" id="crontab" class="form-control choices" aria-required="true">
+                                        <option value="">请选择一个计划任务...</option>
+                                        {% for crontab in crontab_schedule_list %}
+                                            <option value="{{ crontab.id }}">
+                                                {{ crontab.minute }} {{ crontab.hour }} {{ crontab.day_of_month }} {{ crontab.month_of_year }} {{ crontab.day_of_week }} -- (分/时/日/月/周)
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="interval_div" style="display:none">
+                                <label for="interval" class="col-sm-2 control-label col-sm-offset-1">Interval 调度 <span class="red-fonts ">*</span></label>
+                                <div class="col-sm-6">
+                                    <select name="interval" id="interval" class="form-control choices" aria-required="true">
+                                        <option value="">请选择一个间隔周期...</option>
+                                        {% for interval in interval_schedule_list %}
+                                            <option value="{{ interval.id }}"> {{ interval.every }} {{ interval.period }} </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label for="args" class="col-sm-2 control-label col-sm-offset-1">参数(列表) </label>
+                                <div class="col-sm-6">
+                                    <textarea name="args" class="form-control" aria-required="true" rows="1" style="text-align: light">[]</textarea>
+                                </div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label for="kwargs" class="col-sm-2 control-label col-sm-offset-1">参数(字典) </label>
+                                <div class="col-sm-6">
+                                    <textarea name="kwargs" class="form-control" aria-required="true" rows="1">{}</textarea>
+                                 </div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label for="expires" class="col-sm-2 control-label col-sm-offset-1">过期时间 </label>
+                                <div class="col-sm-6">
+                                    <input id="expires" name="expires" type="text" class="form-control" aria-required="true">
+                                </div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label for="enabled" class="col-sm-2 control-label col-sm-offset-1">状态 <span class="red-fonts">*</span></label>
+                                <div class="col-sm-6">
+                                    <div class="radio i-checks col-sm-offset-1 col-sm-5">
+                                        <label><input type="radio" value="True" class="status" name="enabled" checked="">&nbsp 激活</label>
+                                    </div>
+                                    <div class="radio i-checks col-sm-offset-1 col-sm-5">
+                                        <label><input type="radio" value="False" class="status" name="enabled">&nbsp 关闭</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-4">
+                                    <button id="submit_button" class="btn btn-primary">添加</button>
+                                    <button class="btn btn-warning" type="reset">取消</button>
+                                    <button class="btn btn-info" type="reset">重置</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<!-- 添加IDC结束 -->
+{% endblock %}
+
+{% block js %}
+
+<script>
+$("#schedule").change(function(){
+    var schedule_str = $(this).val()
+    if(schedule_str=='crontab'){
+        $("#interval_div").attr('style','display:none')
+        $("#crontab_div").removeAttr('style')
+    }else if(schedule_str=='interval'){
+        $("#crontab_div").attr('style','display:none')
+        $("#interval_div").removeAttr('style')
+    }else{
+        $("#interval_div").attr('style','display:none')
+        $("#crontab_div").attr('style','display:none')
+    }
+});
+
+<!-- 添加任务 -->
+$("#submit_button").click(function(){
+    var data_str = $("#TaskAddForm").serialize()
+    var url = "{% url 'task_add' %}"
+    $.post(url,data_str,function(data){
+        if(data.result==0){
+           swal({
+                title: "Good Job",
+                text: data.msg,
+                type: "success",
+                confirmButtonText:"确定"
+                },
+                function(){
+                    location.href = "{% url 'task_list' %}"
+                }
+            )
+        }else{
+            swal("Oh,My God",data.msg,"error")
+        }
+    });
+    return false;
+});
+
+$("#expires").datetimepicker({
+    minDate:'1',
+    minTime:new Date(),
+});
+$.datetimepicker.setLocale('zh')
+
+<!-- 结束 -->
+</script>
+
+{% endblock %}

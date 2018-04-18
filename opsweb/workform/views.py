@@ -1,12 +1,12 @@
 from django.shortcuts import render,reverse
 from django.http import HttpResponse,JsonResponse,StreamingHttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import View,TemplateView,ListView
+from django.views.generic import View,TemplateView,ListView, DetailView
 from accounts.permission.permission_required_mixin import PermissionRequiredMixin
 from dashboard.utils.wslog import wslog_error,wslog_info
 from workform.models import WorkFormModel,ProcessModel,ApprovalFormModel,WorkFormTypeModel,WorkFormBaseModel
 from opsweb.settings import MEDIA_ROOT
-from datetime import datetime
+from datetime import *
 import os
 import json
 from workform.forms import PubWorkFormAddForm,WorkFormApprovalForm,SqlWorkFormAddForm,OthersWorkFormAddForm
@@ -16,6 +16,16 @@ from dashboard.utils.utc_to_local import utc_to_local
 from dashboard.utils.ws_mail_send import mail_send
 from workform.tasks import workform_mail_send
 import time
+
+#0418 add
+from dbmanager.models import OnlineDdlJob, SqlProduct, Cluster, Instance
+from dbmanager.tasks import sync_workform_sql
+import sqlparse
+from dbmanager.tasks import execute_onlineddl_job
+
+oneday = timedelta(days=30)
+days_30_ago = datetime.now() - oneday
+
 
 ''' 添加 发布工单 '''
 class PubWorkFormAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
@@ -229,6 +239,7 @@ class WorkFormAddBaseView(LoginRequiredMixin,View):
                                                                                             workform_obj.process_step.step,
                                                                                             request.get_host() + reverse("my_workform_list"))
             try:
+                sync_workform_sql.delay(workform_obj.id)
                 workform_mail_send.delay(email_subject,email_content,approver_can_email_list,html_content=email_content)
             except Exception as e:
                 pass
@@ -274,6 +285,7 @@ class WorkFormListView(LoginRequiredMixin,ListView):
     # 过滤模型中的数据
     def get_queryset(self):
         queryset = super(WorkFormListView,self).get_queryset()
+        queryset = queryset.filter(create_time__gte=days_30_ago)
 
         search_name = self.request.GET.get('search',None)
         if search_name:
@@ -308,14 +320,14 @@ class MyWorkFormListView(WorkFormListView):
     def get_context_data(self,**kwargs):
         context = super(MyWorkFormListView,self).get_context_data(**kwargs)
         ''' 我审核过的工单 '''
-        context["approvaled_workform_list"] = WorkFormModel.objects.filter(approvalformmodel__approver__username__exact=self.request.user.username).exclude(applicant__username__exact=self.request.user.username).distinct()
+        context["approvaled_workform_list"] = WorkFormModel.objects.filter(create_time__gte=days_30_ago).filter(approvalformmodel__approver__username__exact=self.request.user.username).exclude(applicant__username__exact=self.request.user.username).distinct()
 
         return context
 
     def get_queryset(self):
         queryset = super(MyWorkFormListView,self).get_queryset()
         ''' 我发出或我可以审核的工单 '''
-        queryset = WorkFormModel.objects.filter(Q(applicant__username__exact=self.request.user.username)|Q(approver_can__username__exact=self.request.user.username)).distinct()
+        queryset = WorkFormModel.objects.filter(create_time__gte=days_30_ago).filter(Q(applicant__username__exact=self.request.user.username)|Q(approver_can__username__exact=self.request.user.username)).distinct()
 
         search_name = self.request.GET.get('search',None)
         if search_name:
@@ -418,6 +430,8 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
             af_obj.approve_note = workform_approval_form.cleaned_data.get("approve_note")
             af_obj.approval_time = datetime.now().strftime("%Y-%m-%d %X")
             af_obj.save(update_fields=["approver","result","approve_note","approval_time"])   
+            if wf_obj.process_step_id == 3 and wf_obj.sql == 'yes':
+                execute_onlineddl_job.delay(wf_obj.id)
         except Exception as e:
             ret["result"] = 1
             ret["msg"] = "审批失败，更新 ApprovalFormModel 模型对象 workform_id: %s 流程进度: %s 的工单 审批信息失败,请联系运维同事" %(wf_id,process_step_id)
@@ -727,3 +741,22 @@ class WorkFormUploadFilePreviewView(LoginRequiredMixin,View):
         #response['Content-Disposition']="attachment;filename='%s'" %(filename)
         return response   
 
+
+''' 工单详情 '''
+class WorkFormDetailView(LoginRequiredMixin,DetailView):
+    template_name = "workform_detail.html"
+    model = WorkFormModel
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['sql_detail'] = list(OnlineDdlJob.objects.values('id','sql','result','status','ddl_type').filter(workform_id=self.kwargs.get('pk')))
+        context['approval_result'] = dict(ApprovalFormModel.RESULT_CHOICES)
+        database_name = OnlineDdlJob.objects.values('database').filter(workform_id=self.kwargs.get('pk'))[:1]
+
+        if len(database_name) > 0:
+            cluster = Cluster.objects.get(database__name='%s' % database_name[0]['database'])
+            instance = Instance.objects.filter(Q(cluster__id=cluster.id))
+            context['db_info'] = instance
+            context['dbname'] = database_name[0]['database']
+        print(context)
+        return context

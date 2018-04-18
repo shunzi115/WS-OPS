@@ -1,0 +1,542 @@
+{% extends "public/layout.html" %}
+
+{% load time_schedule %}
+
+{% block breadcrumb %}
+    任务调度系统 / <strong class="active">任务管理</strong>
+{% endblock %}
+
+{% block body %}
+<div class="col-sm-12">
+    <table class="table table-striped table-bordered table-hover " id="EditTable">
+        <caption>
+            <div>
+                <form class="form-inline">
+                    {% csrf_token %}
+                    <a href="{% url 'task_add' %}"class="btn btn-primary" style="text-align:light">添加任务</a>
+                    <button type="submit" class="btn btn-primary" style="float:right">搜索</button>
+                    <div class="form-group" style="text-align:right;float: right;margin-right: 10px;">
+                        <input type="text" class="form-control" name="search" value="{{ search }}" placeholder="名称 | task">
+                    </div>
+                </form> 
+            </div>
+        </caption>  
+        <thead>
+            <tr>
+                <th class="text-center">任务名称</th>
+                <th class="text-center">task (模板)</th>
+                <th class="text-center">调度周期</th>
+                <th class="text-center">参数(列表)</th>
+                <th class="text-center">参数(字典)</th>
+                <th class="text-center">过期时间</th>
+                <th class="text-center">状态</th>
+                <th class="text-center">最后一次运行时间</th>
+                <th class="text-center">运行次数</th>
+                <th class="text-center">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tl in object_list %}
+            <tr class="gradeX">
+                <td class="text-center" style="vertical-align: middle"><strong>{{ tl.name }}</strong></td>
+                <td class="text-center" style="vertical-align: middle">{{ tl.task }}</td>
+                {% if tl.crontab %}
+                    <td class="text-center" style="vertical-align: middle">{{ tl.crontab|get_crontab_schedule }}</td>
+                {% elif tl.interval %}
+                    <td class="text-center" style="vertical-align: middle">{{ tl.interval|get_interval_schedule }}</td>
+                {% else %}
+                    <td class="text-center" style="vertical-align: middle">空</td>
+                {% endif %}
+                <td class="text-center" style="vertical-align: middle">{{ tl.args | truncatechars:10}}</td>
+                <td class="text-center" style="vertical-align: middle">{{ tl.kwargs | truncatechars:10 }}</td>
+                <td class="text-center" style="vertical-align: middle">{{ tl.expires|date:"Y-m-d H:i:s" }}</td>
+                {% if tl.enabled %}
+                    <td class="text-center" style="vertical-align: middle;color:#1ab394">激活</td>
+                {% else %}
+                    <td class="text-center" style="vertical-align: middle;color: red;">关闭</td>
+                {% endif %}
+                <td class="text-center" style="vertical-align: middle">{{ tl.last_run_at|date:"Y-m-d H:i:s" }}</td>
+                <td class="text-center" style="vertical-align: middle">{{ tl.total_run_count }}</td>
+                <td class="text-center" style="vertical-align: middle">
+                    <button data-id="{{ tl.id }}" class="btn btn-sm btn-info task_detail">详情</button>
+                    <button data-id="{{ tl.id }}" class="btn btn-sm btn-Primary task_update">编辑</button>
+                    <button data-id="{{ tl.id }}" data-del="{{ tl.name }}" class="btn btn-sm btn-danger del-btn">删除</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- 列表分页 -->
+    <div class="text-center">
+        <ul class="pagination">
+            <li class="disabled"><a href="#">总页数: {{ page_obj.paginator.num_pages }}</a></li>
+
+            {% if page_obj.number != 1 %}
+                <li><a href={% url "cmdb_list" %}?page=1{{ search_uri }}>首页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">首页</a></li>
+            {% endif %}
+
+            {% if page_obj.has_previous %}
+                <li><a href={% url "cmdb_list" %}?page={{ page_obj.previous_page_number }}{{ search_uri }}>上一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">上一页</a></li>
+            {% endif %}
+
+            {% for page in page_range %}
+               {% if page == page_obj.number %}
+                  <li class="active"><a href={% url "cmdb_list" %}?page={{ page }}{{ search_uri }}>{{ page }}</a></li>
+               {% else %}
+                  <li><a href={% url "cmdb_list" %}?page={{ page }}{{ search_uri }}>{{ page }}</a></li>
+               {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li><a href={% url "cmdb_list" %}?page={{ page_obj.next_page_number }}{{ search_uri }}>下一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">下一页</a></li>
+            {% endif %}
+            
+            {% if page_obj.number != page_obj.paginator.num_pages %}
+                <li><a href={% url "cmdb_list" %}?page={{ page_obj.paginator.num_pages }}{{ search_uri }}>末页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">末页</a></li>
+            {% endif %}
+
+            <li class="disabled"><a href="#">总条数: {{ page_obj.paginator.count }}</a></li>
+        </ul>
+    </div>
+    <!-- 分页结束 -->    
+
+    <!-- 更新模态框 -->
+    <div class="modal fade"  id ="UpdateModal">   
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h2 class="modal-title">更新 任务信息</h2>
+                </div>
+                <div class="modal-body">
+                    <form id="TaskUpdateForm" class="form-horizontal nice-validator n-yellow Formvalid" novalidate="novalidate">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" id='id_update' readonly>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                &nbsp<label for="name" style="width:30%" class="control-label text-right ">名称 <span class="red-fonts ">*&nbsp</span></label>
+                                &nbsp<input id='name_update' name="name" style="width:65%" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="task" style="width:30%" class="control-label text-right">task <span class="red-fonts">*&nbsp</span></label>
+                                <select name="task" id="task_update" style="width: 65%;" class="form-control choices del_selected" aria-required="true">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="description" style="width:15%" class="control-label text-right">描述 <span class="red-fonts">*&nbsp</span></label>
+                                <textarea id='description_update' name="description" style="width: 79%;" type="text" class="form-control" aria-required="true"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="schedule" style="width:15%" class="control-label">调度策略 <span class="red-fonts ">*&nbsp</span></label>
+                                <select name="schedule" id="schedule_update" style="width: 79%;" class="form-control choices del_selected" aria-required="true">
+                                    <option value="crontab">Crontab 调度</option>
+                                    <option value="interval">Interval 调度</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row" id="crontab_div" style="display:none">
+                            <div class="form-group col-sm-12">
+                                <label for="crontab" style="width:15%" class="control-label">Crontab 调度 <span class="red-fonts ">*&nbsp</span></label>
+                                <select name="crontab" id="crontab_update" style="width: 79%;" class="form-control choices del_selected" aria-required="true">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-inline row" id="interval_div" style="display:none">
+                            <div class="form-group col-sm-12">
+                                <label for="interval" style="width:15%" class="control-label">Interval 调度 <span class="red-fonts ">*&nbsp</span></label>
+                                <select name="interval" id="interval_update" style="width: 79%;" class="form-control choices del_selected" aria-required="true">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="args" style="width:15%" class="control-label text-right">参数(列表) <span class="red-fonts">*&nbsp</span></label>
+                                <textarea id='args_update' name="args" style="width: 79%;" type="text" class="form-control" aria-required="true" rows="1"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="kwargs" style="width:15%" class="control-label text-right">参数(字典) <span class="red-fonts">*&nbsp</span></label>
+                                <textarea id='kwargs_update' name="kwargs" style="width: 79%;" type="text" class="form-control" aria-required="true" rows="1"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="expires" style="width:15%" class="control-label text-right">过期时间 <span class="red-fonts">*&nbsp</span></label>
+                                <input id='expires_update' name="expires" type="text" style="width: 79%;" class="form-control" aria-required="true">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12" id="enabled_update">
+                                <label for="enabled" style="width:15%" class="control-label text-right">状态 <span class="red-fonts">*&nbsp</span></label>
+                                <div style="width:30%" class="radio i-checks col-sm-offset-1">
+                                    <label><input type="radio" value="True" class="status" name="enabled">激活</label>
+                                </div>
+                                <div style="width:30%" class="radio i-checks">
+                                    <label><input type="radio" value="False" class="status" name="enabled">关闭</label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn_sub"  id = "task_update_btn" >更新</button>
+                    <button class="btn btn-warning exit-btn" data-dismiss="modal">退出</button>
+                    <button class="btn btn-info btn_reset" type="reset">重置</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- 详情模态框 -->
+    <div class="modal fade"  id ="DetailModal">   
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h2 class="modal-title">任务信息</h2>
+                </div>
+                <div class="modal-body">
+                    <form id="TaskDetailForm" class="form-horizontal nice-validator n-yellow Formvalid" novalidate="novalidate">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" id='id_detail' readonly>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                &nbsp<label for="name" style="width:30%" class="control-label text-right ">名称 <span class="red-fonts ">*&nbsp</span></label>
+                                &nbsp<input id='name_detail' name="name" style="width:65%" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="total_run_count" style="width:30%" class="control-label text-right">运行次数 &nbsp</label>
+                                <input id='total_run_count_detail' name="total_run_count" style="width:65%" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="description" style="width:15%" class="control-label text-right">描述 <span class="red-fonts">*&nbsp</span></label>
+                                <textarea id='description_detail' name="description" style="width: 79%;" type="text" class="form-control" aria-required="true" readonly></textarea>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                &nbsp<label for="task" style="width:30%" class="control-label text-right">task <span class="red-fonts">*&nbsp</span></label>
+                                &nbsp<input id='task_detail' name="task" type="text" style="width:65%" class="form-control" aria-required="true" readonly>
+                            </div>
+
+                             <div class="form-group col-sm-6">
+                                <label for="schedule" style="width:30%" class="control-label text-right">调度周期 <span class="red-fonts">*&nbsp</span></label>
+                                <input id='schedule_detail' name="schedule" type="text" style="width:65%" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="args" style="width:15%" class="control-label text-right">参数(列表) <span class="red-fonts">*&nbsp</span></label>
+                                <textarea id='args_detail' name="args" style="width: 79%;" type="text" class="form-control" aria-required="true" rows="1" readonly></textarea>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="kwargs" style="width:15%" class="control-label text-right">参数(字典) <span class="red-fonts">*&nbsp</span></label>
+                                <textarea id='kwargs_detail' name="kwargs" style="width: 79%;" type="text" class="form-control" aria-required="true" rows="1" readonly></textarea>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                &nbsp<label for="exchange" style="width:30%" class="control-label text-right">Exchange &nbsp</label>
+                                &nbsp<input id='exchange_detail' name="exchange" type="text" style="width:65%" class="form-control" aria-required="true" readonly>
+                            </div>
+
+                             <div class="form-group col-sm-6">
+                                <label for="queue" style="width:30%" class="control-label text-right">Queue &nbsp</label>
+                                <input id='queue_detail' name="queue" type="text" style="width:65%" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                &nbsp<label for="routing_key" style="width:30%" class="control-label text-right">Routing Key &nbsp</label>
+                                &nbsp<input id='routing_key_detail' name="routing_key" type="text" style="width:65%" class="form-control" aria-required="true" readonly>
+                            </div>
+
+                             <div class="form-group col-sm-6">
+                                <label for="date_changed" style="width:30%" class="control-label text-right">最近修改时间 <span class="red-fonts">*&nbsp</span></label>
+                                <input id='date_changed_detail' name="date_changed" type="text" style="width:65%" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                &nbsp<label for="expires" style="width:30%" class="control-label text-right">过期时间 <span class="red-fonts">*&nbsp</span></label>
+                                &nbsp<input id='expires_detail' name="expires" type="text" style="width:65%" class="form-control" aria-required="true" readonly>
+                            </div>
+
+                             <div class="form-group col-sm-6">
+                                <label for="last_run_at" style="width:30%" class="control-label text-right">最近运行时间 <span class="red-fonts">*&nbsp</span></label>
+                                <input id='last_run_at_detail' name="last_run_at" type="text" style="width:65%" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12" id="enabled_detail">
+                                <label for="enabled" style="width:15%" class="control-label text-right">状态 <span class="red-fonts">*&nbsp</span></label>
+                                <div style="width:30%" class="radio i-checks col-sm-offset-1">
+                                    <label><input type="radio" value="0" class="status" name="enabled">激活</label>
+                                </div>
+                                <div style="width:30%" class="radio i-checks">
+                                    <label><input type="radio" value="1" class="status" name="enabled">关闭</label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary exit-btn" data-dismiss="modal">退出</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <!-- 删除模态框 -->
+    <div class="modal fade" id='DeleteModal'>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">删除</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="data-del"></p>
+                    <p style="color:red"><b>你确认要删除吗?</b></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-warning del-sure" data-id=''>确认</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+
+$.getJSON("{% url 'get_task_api' %}",function(data){
+    var task_str = ''
+    $.each(data,function(k,v){
+        task_str += '<option value='+v+'>'+v+'</option>'
+    });
+    $("#task_update").append(task_str)
+});
+
+$.getJSON("{% url 'get_crontab_api' %}",function(data){
+    var crontab_str = '<option value="">请选择...</option>'
+    $.each(data,function(k,v){
+        crontab_str += '<option value='+v.id+'>'+v.crontabs_str+'</option>'
+    });
+    $("#crontab_update").append(crontab_str)
+});
+
+$.getJSON("{% url 'get_interval_api' %}",function(data){
+    var interval_str = '<option value="">请选择...</option>'
+    $.each(data,function(k,v){
+        interval_str += '<option value='+v.id+'>'+v.intervals_str+'</option>'
+    });
+    $("#interval_update").append(interval_str)
+});
+
+<!--详情-->
+$(".task_detail").click(function(){
+    var id = $(this).attr("data-id")
+    var url = "{% url 'task_info' %}?id="+id
+    $("#enabled_detail input").removeAttr("checked");
+    $("#enabled_detail input").removeAttr("disabled");
+    $.getJSON(url,function(data) {
+        if (data.result == 0) {
+            data = data.pt_info
+            $("#id_detail").val(data.id)
+            $("#name_detail").val(data.name)
+            $("#total_run_count_detail").val(data.total_run_count)
+            $("#description_detail").val(data.description)
+            $("#task_detail").val(data.task)
+            $("#schedule_detail").val(data.schedule)
+            $("#args_detail").val(data.args)
+            $("#kwargs_detail").val(data.kwargs)
+            $("#exchange_detail").val(data.exchange)
+            $("#queue_detail").val(data.queue)
+            $("#routing_key_detail").val(data.routing_key)
+            $("#date_changed_detail").val(data.date_changed)
+            $("#expires_detail").val(data.expires)
+            $("#last_run_at_detail").val(data.last_run_at)
+            $("#enabled_detail input[value='" + data.enabled + "']").attr("checked", "checked")
+            $("#enabled_detail input[value!='" + data.enabled + "']").attr("disabled", "disabled")
+            $("#DetailModal").modal("show")
+        } else {
+            swal("OH,My God", data.msg, "error")
+        }
+    });
+});
+
+<!--更新-->
+$(".task_update").click(function(){
+    var id = $(this).attr("data-id")
+    var url = "{% url 'task_update' %}?id="+id
+    $("#enabled_update input").removeAttr("checked");
+    $(".del_selected option").prop("selected",false);
+    $("#interval_div").attr('style','display:none')
+    $("#crontab_div").attr('style','display:none')
+    $.getJSON(url,function(data) {
+        if (data.result == 0) {
+            data = data.pt_info
+            $("#id_update").val(data.id)
+            $("#name_update").val(data.name)
+            $("#description_update").val(data.description)
+            $("#args_update").val(data.args)
+            $("#kwargs_update").val(data.kwargs)
+            $("#expires_update").val(data.expires)
+            if(data.schedule=='crontab'){
+                $("#crontab_div").removeAttr('style')
+                $("#crontab_update option[value='" + data.crontab + "']").prop("selected", true)
+            }else{
+                $("#interval_div").removeAttr('style')
+                $("#interval_update option[value='" + data.interval + "']").prop("selected", true)
+            }
+            $("#task_update option[value='" + data.task + "']").prop("selected", true)
+            $("#schedule_update option[value='" + data.schedule + "']").prop("selected", true)
+            $("#enabled_update input[value='" + data.enabled.toString().toLowerCase().replace(/\b[a-z]/g,function(c){return c.toUpperCase()}) + "']").attr("checked", "checked")
+            $("#UpdateModal").modal("show")
+        } else {
+            swal("OH,My God", data.msg, "error")
+        }
+    });
+});
+
+$(document).on('change',"#schedule_update",function(){
+    var schedule_str = $(this).val()
+    if(schedule_str=='crontab'){
+        $("#interval_div").attr('style','display:none')
+        $("#interval_update option").prop("selected", false)
+        $("#crontab_div").removeAttr('style')
+
+    }else{
+        $("#crontab_div").attr('style','display:none')
+        $("#crontab_update option").prop("selected", false)
+        $("#interval_div").removeAttr('style')
+    }
+});
+
+$("#expires_update").datetimepicker({
+    minDate:'1',
+    minTime:new Date(),
+});
+$.datetimepicker.setLocale('zh')
+
+{#$(".choices").multiselect({#}
+{#    enableFiltering: true,#}
+{#    maxHeight: 200,#}
+{#    buttonWidth: '79%',#}
+{#    nonSelectedText: '请选择...',#}
+{#    delimiterText: ' ; ',#}
+{#    selectedClass: 'multiselect-selected',#}
+{#    enableCaseInsensitiveFiltering: true,#}
+{#    disableIfEmpty: true,#}
+{#});#}
+
+$("#task_update_btn").click(function(){
+    var str = $("#TaskUpdateForm").serialize()
+    var url = "{% url 'task_update' %}"
+    $.post(url,str,function(data){
+        if(data.result==0){
+           $("#UpdateModal").modal("hide")
+           swal({
+             title:"Good",
+             text:data.msg,
+             type:'success',
+             confirmButtonText:"确定"
+             },
+             function(){
+                location.reload()
+           })
+       }else{
+            swal("OH,My God",data.msg,"error")
+       }; 
+    });
+    return false;
+});
+
+<!--删除-->
+$(".del-btn").click(function(){
+    var cid = $(this).attr("data-id")
+    var data = $(this).attr("data-del")
+    $(".del-sure").attr('data-id',cid)
+    $("#data-del").html(data)
+    $("#DeleteModal").modal("show")
+});
+
+$(".del-sure").click(function(){
+   var cid = $(this).attr('data-id')
+   var url = "{% url 'task_delete' %}"
+   $('#DeleteModal').modal('hide')
+   $.post(url,{"id": cid},function(data){
+       if(data.result==0){
+           swal({
+             title:"Good",
+             text:data.msg,
+             type:'success',
+             confirmButtonText:"确定"
+             },
+             function(){
+                location.reload()
+           })
+       }else{
+            swal("OH,My God",data.msg,"error")
+       };
+   });
+   return false;
+});
+
+</script>
+
+{% endblock %}

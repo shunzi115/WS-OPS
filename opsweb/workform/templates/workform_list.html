@@ -44,7 +44,7 @@
         <tbody>
             {% for pub in object_list %}
             <tr class="gradeX">
-                <td class="text-center" style="vertical-align: middle"><strong>{{ pub.title|truncatechars:15 }}</strong></td>
+                <td class="text-center" style="vertical-align: middle"><a href="{% url 'pub_workform_detail' pub.id %}"><strong>{{ pub.title|truncatechars:15 }}</strong></a></td>
                 <td class="text-center" style="vertical-align: middle">{{ pub.applicant.userextend.cn_name }}</td>
                 <td class="text-center" style="vertical-align: middle">
                     {% for i in level_range %}

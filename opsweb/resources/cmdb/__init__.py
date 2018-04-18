@@ -170,6 +170,7 @@ class CmdbAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
 
         try:
             cmdb_obj = CmdbModel(**cmdb_add_form.cleaned_data)
+            cmdb_obj.save()
         except Exception as e:
             ret["result"] = 1
             ret["msg"] = "CmdbModel 模型对象: %s 添加失败,请查看日志" %(cmdb_add_form.cleaned_data.get("name"))

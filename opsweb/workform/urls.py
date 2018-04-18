@@ -7,6 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 urlpatterns = [
     url(r'^pub/',include([
         url(r'^add/$',views.PubWorkFormAddView.as_view(),name="pub_workform_add"),
+        url(r'^detail/(?P<pk>\d+)/$',views.WorkFormDetailView.as_view(),name="pub_workform_detail"),
     ])),
 
     url(r'^sql/',include([
