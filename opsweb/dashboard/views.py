@@ -18,6 +18,9 @@ class IndexView(LoginRequiredMixin,TemplateView):
         context["workform_module_echart_data"] = self.wf_info.get_workform_count_by_module()
         return context
 
+class InnerPortalView(LoginRequiredMixin,TemplateView):
+    template_name = "inner_portal.html"
+
 class NoPermissionView(TemplateView):
     template_name = "public/no_permission.html"
 

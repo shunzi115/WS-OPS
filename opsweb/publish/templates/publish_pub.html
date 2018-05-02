@@ -166,20 +166,21 @@ $("#pub_exec").click(function(){
         $.post(url,str,function(data){
             if(data.result == 0){
                 $("#result").val(data.msg)
-                cron_id=setInterval(function(){
+                var cron_get=function(){
                     var url_str = url + '?ansible_log_file=' + data.ansible_log_file + '&shell_pid=' + data.shell_pid + '&ph_id=' + data.ph_id
                     $.getJSON(url_str,function(data_1){
                         if(data_1.shell_returncode==0){
                             $("#result").html(data_1.ansible_log);
+                            setTimeout(cron_get,1000);
                         }else{
                             $("#result").html(data_1.ansible_log);
-                            clearInterval(cron_id);
                             if(data_1.errcode==1){
                                 swal("OH,My God","执行ansible-playbook脚本异常,请运维检查...","error")
                             }
                         };
                     });
-                },1000);
+                };
+                setTimeout(cron_get,1000);
             }else{
                 swal("OH My God",data.msg,"error")
             }; 

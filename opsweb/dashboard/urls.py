@@ -21,5 +21,6 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.IndexView.as_view(),name="index"),
+    url(r'^portal/$',views.InnerPortalView.as_view(),name="inner_portal"),
     url(r'^nopermission/(?P<next_uri>[\s\S]*)/$', views.NoPermissionView.as_view(),name="no_permission"),
 ]

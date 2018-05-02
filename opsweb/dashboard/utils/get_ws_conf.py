@@ -6,7 +6,7 @@ import configparser,traceback
 
 wsconf = configparser.ConfigParser()
 
-def get_myconf(config_name='/root/ws-ops.conf',section=''):
+def get_myconf(config_name='/root/.ws-ops.conf',section=''):
 
     ret = {"result":0,"msg":None}
 

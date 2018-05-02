@@ -1,0 +1,228 @@
+{% extends "public/layout.html" %}
+
+{% block breadcrumb %}
+Dashboard / <strong class="active">内部 Portal</strong>
+{% endblock %}
+
+{% block css %}
+<style type="text/css">
+a:hover {
+    color: red!important;
+    background: #d2d6de;
+}
+</style>
+{% endblock%}
+
+{% block body %}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="font-size:18px">
+                    <i class="fa fa-bar-chart">  监控工具</i>
+            </div>
+            <div class="panel-body">
+                <div class="col-lg-2 col-lg-offset-1">
+                    <div style="height: 80px;line-height: 80px;vertical-align:middle;display:  flex;align-items:  center;justify-content:  center;">
+                        <img src="/static/img/zabbix.jpg" alt="Zabbix" class="img-rounded center-block img-responsive" width="100px" style="vertical-align:middle;">
+                    </div>
+                    <ul class="list-inline text-center" style="font-size: 25px;margin: 5px;">
+                        <li><a target='_blank' style="color: #7895a0" href="#">online</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <div style="height: 80px;line-height: 80px;vertical-align:middle;display:  flex;align-items:  center;justify-content:  center;">
+                        <img src="/static/img/cat.png" alt="Cat" class="img-circle center-block img-responsive" width="100px">
+                    </div>
+                    <ul class="list-inline text-center" style="font-size: 25px;margin: 5px;">
+                        <li><a target='_blank' style="color: #7895a0" href="#">online</a></li>
+                        <li><a target='_blank' style="color: #7895a0" href="#">dev</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <div style="height: 80px;line-height: 80px;vertical-align:middle;display:  flex;align-items:  center;justify-content:  center;">
+                        <img src="/static/img/mysql.png" alt="Mysql" class="img-rounded center-block img-responsive" width="100px">
+                    </div>
+                    <ul class="list-inline text-center" style="font-size: 25px;margin: 5px;">
+                        <li><a target='_blank' style="color: #7895a0" href="#">online</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <div style="height: 80px;line-height: 80px;vertical-align:middle;display:  flex;align-items:  center;justify-content:  center;">
+                        <img src="/static/img/rocketmq.png" alt="RocketMQ" class="img-rounded center-block img-responsive" width="100px" style="vertical-align:middle">
+                    </div>
+                    <ul class="list-inline text-center" style="font-size: 25px;margin: 5px;">
+                        <li><a target='_blank' style="color: #7895a0" href="#">online</a></li>
+                        <li><a target='_blank' style="color: #7895a0" href="#">dev</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <div style="height: 80px;line-height: 80px;vertical-align:middle;display:  flex;align-items:  center;justify-content:  center;">
+                        <img src="/static/img/dubbo.png" alt="Dubbo" class="img-circle center-block img-responsive" width="100px">
+                    </div>
+                    <ul class="list-inline text-center" style="font-size: 25px;margin:5px;">
+                        <li><a target='_blank' style="color: #7895a0" href="#">online</a></li>
+                        <li><a target='_blank' style="color: #7895a0" href="#">dev</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="font-size:18px">
+                    <i class="fa fa-chain-broken">  打包上线相关</i>
+            </div>
+            <div class="panel-body">
+                <div class="col-lg-2 col-lg-offset-1">
+                    <div style="height: 80px;line-height: 80px;vertical-align:middle;display:  flex;align-items:  center;justify-content:  center;">
+                        <img src="/static/img/gitlab.png" alt="GitLab" class="img-circle center-block img-responsive" width="100px" style="vertical-align:middle;">
+                    </div>
+                    <ul class="list-inline text-center" style="font-size: 25px;margin: 5px;">
+                        <li><a target='_blank' style="color: #7895a0" href="#">dev</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <div style="height: 80px;line-height: 80px;vertical-align:middle;display:  flex;align-items:  center;justify-content:  center;">
+                        <img src="/static/img/svn.png" alt="Svn" class="img-rounded center-block img-responsive" width="100px">
+                    </div>
+                    <ul class="list-inline text-center" style="font-size: 25px;margin: 5px;">
+                        <li><a id="svn_id" style="color: #7895a0" href="#">online</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <div style="height: 80px;line-height: 80px;vertical-align:middle;display:  flex;align-items:  center;justify-content:  center;">
+                        <img src="/static/img/nexus.png" alt="Nexus" class="img-rounded center-block img-responsive" width="100px">
+                    </div>
+                    <ul class="list-inline text-center" style="font-size: 25px;margin: 5px;">
+                        <li><a target='_blank' style="color: #7895a0" href="#">online</a></li>
+                        <li><a target='_blank' style="color: #7895a0" href="#">dev</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <div style="height: 80px;line-height: 80px;vertical-align:middle;display:  flex;align-items:  center;justify-content:  center;">
+                        <img src="/static/img/wiki.png" alt="WiKi" class="img-rounded center-block img-responsive" width="100px" style="vertical-align:middle">
+                    </div>
+                    <ul class="list-inline text-center" style="font-size: 25px;margin: 5px;">
+                        <li><a target='_blank' style="color: #7895a0" href="#">online</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <div style="height: 80px;line-height: 80px;vertical-align:middle;display:  flex;align-items:  center;justify-content:  center;">
+                        <img src="/static/img/jenkins.png" alt="Jenkins" class="img-rounded center-block img-responsive" width="100px">
+                    </div>
+                    <ul class="list-inline text-center" style="font-size: 25px;margin: 5px;">
+                        <li><a target='_blank' style="color: #7895a0" href="#">online</a></li>
+                        <li><a target='_blank' style="color: #7895a0" href="#">dev</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="font-size:18px">
+                    <i class="fa fa-user-secret">  后台管理</i>
+            </div>
+            <div class="panel-body">
+                <div class="col-lg-2">
+                    <div style="height: 80px;line-height: 80px;vertical-align:middle;display:  flex;align-items:  center;justify-content:  center;">
+                        <img src="/static/img/aliyun.png" alt="Aliyun" class="img-rounded center-block img-responsive" width="100px" style="vertical-align:middle;">
+                    </div>
+                    <ul class="list-inline text-center" style="font-size: 25px;margin: 5px;">
+                        <li><a target='_blank' style="color: #7895a0" href="#">online</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <div style="height: 80px;line-height: 80px;vertical-align:middle;display:  flex;align-items:  center;justify-content:  center;">
+                        <img src="/static/img/diamond.png" alt="Diamond" class="img-rounded center-block img-responsive" width="100px" style="vertical-align:middle;">
+                    </div>
+                    <ul class="list-inline text-center" style="font-size: 25px;margin: 5px;">
+                        <li><a target='_blank' style="color: #7895a0" href="#">online</a></li>
+                        <li><a target='_blank' style="color: #7895a0" href="#">dev</a></li>
+                        <li><a target='_blank' style="color: #7895a0" href="#">daily</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <div style="height: 80px;line-height: 80px;vertical-align:middle;display:  flex;align-items:  center;justify-content:  center;">
+                        <h2><b>莴笋统一后台</b></h2>
+                    </div>
+                    <ul class="list-inline text-center" style="font-size: 25px;margin: 5px;">
+                        <li><a target='_blank' style="color: #7895a0" href="#">online</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <div style="height: 80px;line-height: 80px;vertical-align:middle;display:  flex;align-items:  center;justify-content:  center;">
+                        <img src="/static/img/zento.png" alt="Zento" class="img-rounded center-block img-responsive" width="100px">
+                    </div>
+                    <ul class="list-inline text-center" style="font-size: 25px;margin: 5px;">
+                        <li><a target='_blank' style="color: #7895a0" href="#">dev</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <div style="height: 80px;line-height: 80px;vertical-align:middle;display:  flex;align-items:  center;justify-content:  center;">
+                        <img src="/static/img/e_portal.png" alt="ePortal" class="img-rounded center-block img-responsive" width="100px" style="vertical-align:middle">
+                    </div>
+                    <ul class="list-inline text-center" style="font-size: 25px;margin: 5px;">
+                        <li><a target='_blank' style="color: #7895a0" href="#">online</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <div style="height: 80px;line-height: 80px;vertical-align:middle;display:  flex;align-items:  center;justify-content:  center;">
+                        <img src="/static/img/e_service.png" alt="sService" class="img-rounded center-block img-responsive" width="100px">
+                    </div>
+                    <ul class="list-inline text-center" style="font-size: 25px;margin: 5px;">
+                        <li><a target='_blank' style="color: #7895a0" href="#">online</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade"  id ="SvnModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">访问SVN正确姿势</h4>
+            </div>
+            <div class="modal-body">
+                <div id="result" style="margin-left: 25px;margin-right: 20px;">
+                    <ol>
+                        <li>
+                            下载软件 TortoiseSVN(<a target='_blank' href="https://tortoisesvn.net/downloads.html">官网</a>或<a target='_blank' href="#">Wiki</a>)
+                        </li>
+                        <li>
+                            提交工单(<a href="{% url 'others_workform_add' %}" style="font-size: 5px">链接</a>)给运维，开通 svn 账号和权限
+                        </li>
+                        <li>
+                            参照文档(<a target='_blank' href="https://blog.csdn.net/maplejaw_/article/details/52874348">使用文档</a>)安装 TortoiseSVN,并完善配置(svn版本库url:"svn://IP/product")
+                        </li>
+                        <li>
+                            现在你可以愉快的使用 svn 啦
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary exit-btn" data-dismiss="modal">退出</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+{% endblock %}
+
+{% block js %}
+<script>
+$("#svn_id").click(function(){
+    $("#SvnModal").modal("show")
+})
+</script>
+{% endblock %}

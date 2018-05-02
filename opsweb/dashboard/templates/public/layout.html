@@ -101,7 +101,18 @@
 
 <!--大盘-->
 <li>
-<a href="/"><i class="fa fa-dashboard"></i><span class="nav-label">Dashboard</span></a>
+<a href="#"><i class="fa fa-dashboard"></i><span class="nav-label">Dashboard</span><span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level  collapse">
+        <li>
+            <a href="/" class="menu-link">概览</a>
+        </li>
+        <li>
+            <a href="/healthcheck" target='_blank'>应用健康检查</a>
+        </li>
+        <li>
+	        <a href="{% url 'inner_portal' %}" class="menu-link">内部 Portal</a>
+        </li>
+    </ul>
 </li>
 <!--大盘结束-->
 
@@ -174,10 +185,10 @@
     <a href="#"><i class="fa fa-eye-slash"></i> <span class="nav-label">发布系统</span><span class="fa arrow"></span></a>
     <ul class="nav nav-second-level collapse">
         <li> 
-	        <a href="{% url 'publish_pub' %}">自动化发布</a>
+	        <a href="{% url 'publish_pub' %}" class="menu-link">自动化发布</a>
         </li>
         <li> 
-	        <a href="{% url 'publish_list' %}">发布历史</a>
+	        <a href="{% url 'publish_list' %}" class="menu-link">发布历史</a>
         </li>
     </ul>
 </li>
@@ -228,25 +239,19 @@
 
 <!--小工具-->
 <li>
-    <a><i class="fa fa-deafness"></i> <span class="nav-label">第三方工具</span><span class="fa arrow"></span></a>
+    <a href="#"><i class="fa fa-deafness"></i> <span class="nav-label">第三方工具</span><span class="fa arrow"></span></a>
     <ul class="nav nav-second-level collapse">
-        <li> 
-            <a href="#">IP 138</a>
+        <li>
+	        <a href="#" class="menu-link">IP 138</a>
         </li>
         <li>
-            <a href="#">天气预报</a>
+	        <a href="#" class="menu-link">json 格式转换</a>
         </li>
         <li>
-            <a href="#">json 格式转换</a>
+	        <a href="#" class="menu-link">豆瓣</a>
         </li>
         <li>
-            <a href="#">豆瓣图书</a>
-        </li>
-        <li>
-            <a href="#">豆瓣电影</a>
-        </li>
-        <li>
-            <a href="#">知乎</a>
+	        <a href="#" class="menu-link">知乎</a>
         </li>
     </ul>
 </li>

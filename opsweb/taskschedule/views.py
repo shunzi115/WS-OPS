@@ -17,7 +17,7 @@ from django.forms.models import model_to_dict
 from celery.task.control import inspect
 from itertools import chain
 
-class TimeScheduleListView(TemplateView):
+class TimeScheduleListView(LoginRequiredMixin,TemplateView):
     template_name = "time_schedule_list.html"
 
     def get_context_data(self):
@@ -26,9 +26,17 @@ class TimeScheduleListView(TemplateView):
         context["interval_list"] = IntervalSchedule.objects.all()
         return context
 
-class CrontabScheduleAddView(View):
+class CrontabScheduleAddView(LoginRequiredMixin,View):
+    permission_required = "djcelery.add_crontabschedule"
+
     def post(self,request):
         ret = {"result":0}
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'添加 CrontabSchedule '的权限,请联系运维!"
+            return JsonResponse(ret)        
+
         crontab_schedule_add_form = CrontabScheduleForm(request.POST)
         if not crontab_schedule_add_form.is_valid():
             ret["result"] = 1
@@ -47,9 +55,17 @@ class CrontabScheduleAddView(View):
             ret["msg"] = "添加 CrontabSchedule 对象成功"
         return JsonResponse(ret)
 
-class IntervalScheduleAddView(View):
+class IntervalScheduleAddView(LoginRequiredMixin,View):
+    permission_required = "djcelery.add_intervalschedule"
+
     def post(self,request):
         ret = {"result":0}
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'添加 IntervalSchedule '的权限,请联系运维!"
+            return JsonResponse(ret)
+
         interval_schedule_add_form = IntervalScheduleForm(request.POST)
         if not interval_schedule_add_form.is_valid():
             ret["result"] = 1
@@ -68,7 +84,9 @@ class IntervalScheduleAddView(View):
             ret["msg"] = "添加 IntervalSchedule 对象成功"
         return JsonResponse(ret)
 
-class CrontabScheduleUpdateView(View):
+class CrontabScheduleUpdateView(LoginRequiredMixin,View):
+    permission_required = "djcelery.change_crontabschedule"
+   
     def get(self,request):
         ret = {"result": 0}
         cs_id = request.GET.get("id")
@@ -83,6 +101,12 @@ class CrontabScheduleUpdateView(View):
 
     def post(self,request):
         ret = {"result":0}
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'修改 CrontabSchedule '的权限,请联系运维!"
+            return JsonResponse(ret)
+
         cs_id = request.POST.get("id")
         try:
             cs_obj = CrontabSchedule.objects.get(id__exact=cs_id)
@@ -113,7 +137,9 @@ class CrontabScheduleUpdateView(View):
             ret["msg"] = "更新 CrontabSchedule 对象成功"
         return JsonResponse(ret)
 
-class IntervalScheduleUpdateView(View):
+class IntervalScheduleUpdateView(LoginRequiredMixin,View):
+    permission_required = "djcelery.change_intervalschedule"
+
     def get(self,request):
         ret = {"result": 0}
         is_id = request.GET.get("id")
@@ -128,6 +154,12 @@ class IntervalScheduleUpdateView(View):
 
     def post(self,request):
         ret = {"result":0}
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'修改 IntervalSchedule '的权限,请联系运维!"
+            return JsonResponse(ret)
+
         is_id = request.POST.get("id")
         try:
             is_obj = IntervalSchedule.objects.get(id__exact=int(is_id))
@@ -155,9 +187,17 @@ class IntervalScheduleUpdateView(View):
             ret["msg"] = "更新IntervalSchedule 对象成功"
         return JsonResponse(ret)
 
-class CrontabScheduleDeleteView(View):
+class CrontabScheduleDeleteView(LoginRequiredMixin,View):
+    permission_required = "djcelery.delete_crontabschedule"
+
     def post(self,request):
         ret = {"result":0}
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'删除 CrontabSchedule '的权限,请联系运维!"
+            return JsonResponse(ret)
+
         cs_id = request.POST.get("id")
         try:
             cs_obj = CrontabSchedule.objects.get(id__exact=cs_id)
@@ -176,9 +216,17 @@ class CrontabScheduleDeleteView(View):
 
         return JsonResponse(ret)
 
-class IntervalScheduleDeleteView(View):
+class IntervalScheduleDeleteView(LoginRequiredMixin,View):
+    permission_required = "djcelery.delete_intervalschedule"
+
     def post(self,request):
         ret = {"result":0}
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'删除 IntervalSchedule '的权限,请联系运维!"
+            return JsonResponse(ret)    
+
         is_id = request.POST.get("id")
         try:
             is_obj = IntervalSchedule.objects.get(id__exact=is_id)
@@ -197,7 +245,7 @@ class IntervalScheduleDeleteView(View):
 
         return JsonResponse(ret)
 
-class TaskListView(ListView):
+class TaskListView(LoginRequiredMixin,ListView):
     model = PeriodicTask
     template_name = "task_list.html"
     paginate_by = 10
@@ -247,7 +295,10 @@ class TaskListView(ListView):
         page_range = range(page_start, page_end)
         return page_range
 
-class TaskAddView(TemplateView):
+class TaskAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
+    permission_required = "djcelery.add_periodictask"
+    permission_redirect_url = "task_list"
+
     template_name = 'task_add.html'
     i_obj = inspect()
     def get_context_data(self, **kwargs):
@@ -259,6 +310,12 @@ class TaskAddView(TemplateView):
 
     def post(self,request):
         ret = {"result":0}
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'添加定时任务'的权限,请联系运维!"
+            return JsonResponse(ret)
+
         task_add_form = TaskAddForm(request.POST)
         if not task_add_form.is_valid():
             ret["result"] = 1
@@ -284,7 +341,7 @@ class TaskAddView(TemplateView):
 
         return JsonResponse(ret)
 
-class TaskInfoView(View):
+class TaskInfoView(LoginRequiredMixin,View):
     def get(self,request):
         ret = {"result": 0}
         pt_id = request.GET.get("id")
@@ -317,7 +374,9 @@ class TaskInfoView(View):
 
         return JsonResponse(ret)
 
-class TaskUpdateView(View):
+class TaskUpdateView(LoginRequiredMixin,View):
+    permission_required = "djcelery.change_periodictask"
+
     def get(self,request):
         ret = {"result": 0}
         pt_id = request.GET.get("id")
@@ -343,6 +402,12 @@ class TaskUpdateView(View):
 
     def post(self,request):
         ret = {"result":0}
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'修改定时任务'的权限,请联系运维!"
+            return JsonResponse(ret)
+
         pt_id = request.POST.get("id")
         try:
             pt_obj = PeriodicTask.objects.get(id__exact=int(pt_id))
@@ -383,9 +448,17 @@ class TaskUpdateView(View):
             ret["msg"] = "更新 PeriodicTask 对象成功"
         return JsonResponse(ret)
 
-class TaskDeleteView(View):
+class TaskDeleteView(LoginRequiredMixin,View):
+    permission_required = "djcelery.delete_periodictask"
+
     def post(self,request):
         ret = {"result":0}
+    
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'删除定时任务'的权限,请联系运维!"
+            return JsonResponse(ret)
+
         pt_id = request.POST.get("id")
         try:
             pt_obj = PeriodicTask.objects.get(id__exact=pt_id)
@@ -404,7 +477,7 @@ class TaskDeleteView(View):
 
         return JsonResponse(ret)
 
-class TaskResultListView(ListView):
+class TaskResultListView(LoginRequiredMixin,ListView):
     model = TaskMeta
     template_name = "task_result_list.html"
     ordering = "-id"
@@ -414,9 +487,17 @@ class TaskResultListView(ListView):
         queryset = queryset.all()[:100]
         return queryset
 
-class TaskResultDeleteView(View):
+class TaskResultDeleteView(LoginRequiredMixin,View):
+    permission_required = "djcelery.delete_taskmeta"
+
     def post(self,request):
         ret = {"result":0}
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'删除任务执行结果'的权限,请联系运维!"
+            return JsonResponse(ret)
+
         tm_id = request.POST.get("id")
         try:
             tm_obj = TaskMeta.objects.get(id__exact=tm_id)

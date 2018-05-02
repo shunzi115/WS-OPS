@@ -239,6 +239,7 @@ class WorkFormAddBaseView(LoginRequiredMixin,View):
                                                                                             workform_obj.process_step.step,
                                                                                             request.get_host() + reverse("my_workform_list"))
             try:
+                #拆分SQL
                 sync_workform_sql.delay(workform_obj.id)
                 workform_mail_send.delay(email_subject,email_content,approver_can_email_list,html_content=email_content)
             except Exception as e:
@@ -387,6 +388,7 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
 
         wf_id = request.POST.get("id")
         process_step_id = request.POST.get("process_step_id")
+        sql_auto_execute = request.POST.get("sql_auto_execute")
 
         workform_approval_form = WorkFormApprovalForm(request.POST)
 
@@ -430,7 +432,8 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
             af_obj.approve_note = workform_approval_form.cleaned_data.get("approve_note")
             af_obj.approval_time = datetime.now().strftime("%Y-%m-%d %X")
             af_obj.save(update_fields=["approver","result","approve_note","approval_time"])   
-            if wf_obj.process_step_id == 3 and wf_obj.sql == 'yes':
+            #执行SQL
+            if wf_obj.process_step_id == 3 and wf_obj.sql == 'yes'  and sql_auto_execute == 1:
                 execute_onlineddl_job.delay(wf_obj.id)
         except Exception as e:
             ret["result"] = 1

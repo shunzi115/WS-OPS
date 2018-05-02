@@ -78,6 +78,22 @@
                         </div>
                         {% if object.sql == 'yes' %}
                         <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><span class="red-fonts">是否自动执行SQL</span></label>
+                            <div class="col-sm-8 row">
+                                <div class="col-sm-3">
+                                    <div class="radio i-checks">
+                                        <label><input type="radio" value="1" name="sql_auto_execute" checked="checked">是</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="radio i-checks">
+                                        <label><input type="radio" value="0" name="sql_auto_execute">否</label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                         <div class="table-responsive">
                         <table cellpadding="4" cellspacing="0" border="0" width="100%" class="table">
                             <caption><b>数据库服务器信息</b></caption>

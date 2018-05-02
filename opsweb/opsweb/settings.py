@@ -22,10 +22,10 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'utils'))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ')wl07)zwx1ou41mef(=@&1#9ru0bmt1)aeqb&%x3xnv1$d#dw@'
-
+#SECRET_KEY = ')wl07)zwx1ou41mef(=@&1#9ru0bmt1)aeqb&%x3xnv1$d#dw@'
+SECRET_KEY = ')wl07)zwx1ou41mef(=@&1#9ru0bmt1)ebqb&%x3wnv1$d#dw@'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False 
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -93,7 +93,7 @@ DATABASES = {
         #'ENGINE': 'django.db.backends.sqlite3',
         #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 	    'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django',
+        'NAME': 'opsweb_dev2',
         'USER': 'root',
         'PASSWORD': '123456',
         'HOST': '127.0.0.1',
@@ -272,7 +272,7 @@ EMAIL_USE_SSL = True
 ## celery 配置
 import  djcelery
 djcelery.setup_loader()
-BROKER_URL = 'redis://172.17.134.23:6379/6'
+BROKER_URL = 'redis://172.17.134.23:6379/8'
 BROKER_TRANSPORT = 'redis'
 CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend'
