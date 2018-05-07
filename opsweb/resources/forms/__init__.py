@@ -1,7 +1,7 @@
 from django import forms
-from resources.models import IDC,ServerModel,CmdbModel
+from resources.models import IDC,ServerModel,CmdbModel,FirewallRulesModel
 import os
-
+from django.forms import ModelForm
 
 class IdcAddForm(forms.Form):
     name = forms.CharField(required=True,error_messages={"required":"简称不能为空"})
@@ -59,7 +59,6 @@ class ServerAliyunAddForm(forms.Form):
             raise forms.ValidationError("IDC 不存在")
         else:
             return idc_obj
-    
 
 class ServerAliyunUpdateForm(forms.Form):
     ssh_port = forms.CharField(required=True,max_length=5,error_messages={"required":"SSH端口不能为空","max_length":"SSH端口不能超过5位数字"})
@@ -80,7 +79,6 @@ class ServerAliyunUpdateForm(forms.Form):
             raise forms.ValidationError("IDC 不存在")
         else:
             return idc_obj
-
 
 class ServerIdcAddForm(ServerAliyunAddForm):
     idrac_ip = forms.GenericIPAddressField(required=False,protocol="IPv4",error_messages={"invalid":"IPv4地址无效"})
@@ -177,3 +175,74 @@ class CmdbUpdateForm(CmdbAddForm):
     def clean_name(self):
         name = self.cleaned_data.get("name")
         return name
+
+class FirewallRulesForm(ModelForm):
+    class Meta:
+        model = FirewallRulesModel
+        fields = ["s_hostname","s_ip","d_hostname","d_ip","d_port","protocol","comment","app_name","applicant","expiry_date","action"]
+        error_messages = {
+            "s_hostname": {
+                "max_length": "源主机名长度不能超过100字符",
+            },
+            "s_ip": {
+                "required": "必须填写源IP",
+            },
+            "d_hostname": {
+                "max_length": "目标主机名长度不能超过100字符",
+            },
+            "d_ip": {
+                "required": "必须填写目标IP",
+            },
+            "d_port": {
+                "required": "必须填写目标端口",
+                "max_length": "目标端口长度不能超过100字符",
+            },
+            "protocol": {
+                "required": "必须填写网络协议",
+                "max_length": "网络协议长度不能超过100字符",
+            },
+            "comment": {
+                "required": "必须填写备注",
+                "max_length": "备注信息长度不能超过1000字符",
+            },
+            "app_name": {
+                "max_length": "app_name长度不能超过50字符",
+            },
+            "applicant": {
+                "max_length": "applicant长度不能超过50字符",
+            },
+            "expiry_date": {
+                "max_length": "expiry_date长度不能超过50字符",
+            },
+            "action": {
+                "max_length": "action长度不能超过50字符",
+            },
+        }
+
+    def clean(self):
+        cleaned_data = self.cleaned_data
+        if self.is_valid():
+            d_ports_list = cleaned_data.get("d_port").split("、")
+            for port in d_ports_list:
+                try:
+                    FirewallRulesModel.objects.get(s_ip__exact=cleaned_data.get("s_ip"),
+                                                   d_ip__exact=cleaned_data.get("d_ip"),
+                                                   d_port__icontains=port,
+                                                   protocol__exact=cleaned_data.get("protocol")
+                                                   )
+                except FirewallRulesModel.DoesNotExist:
+                    continue
+                except Exception as e:
+                    raise forms.ValidationError("验证s_ip&d_ip&d_port_protocol的唯一性失败，原因: %s" %(e.args))
+                else:
+                    raise forms.ValidationError("该规则 %s-->%s:%s 已经存在" %(cleaned_data.get("s_ip"),cleaned_data.get("d_ip"),cleaned_data.get("d_port")))
+            return cleaned_data
+
+class FirewallRulesChangeForm(forms.Form):
+    s_hostname = forms.CharField(required=False,max_length=100,error_messages={"max_length":"主机名不能超过100个字符"})
+    s_ip = forms.CharField(required=True,max_length=15,error_messages={"required":"源IP不能为空","max_length":"源IP长度不能超过15个字符"})
+    d_hostname = forms.CharField(required=False,max_length=100,error_messages={"max_length":"主机名不能超过100个字符"})
+    d_ip = forms.CharField(required=True,max_length=15,error_messages={"required":"目标IP不能为空","max_length":"目标IP长度不能超过15个字符"})
+    d_port = forms.CharField(required=True,max_length=100,error_messages={"required":"目标端口不能为空","max_length":"目标端口长度不能超过100个字符"})
+    protocol = forms.CharField(required=True,max_length=100,error_messages={"required":"网络协议不能为空","max_length":"网络协议长度不能超过100个字符"})
+    comment = forms.CharField(required=True,max_length=1000,error_messages={"required":"备注不能为空","max_length":"备注长度不能超过1000个字符"})

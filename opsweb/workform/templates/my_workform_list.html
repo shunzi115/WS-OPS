@@ -87,7 +87,11 @@
                             <td class="text-center" style="vertical-align: middle">{{ pub | get_approver_result|safe }}</td>
                             <td class="text-center" style="vertical-align: middle">{{ pub.create_time|date:"Y-m-d H:i:s" }}</td>
                             <td class="text-center" style="vertical-align: middle">
-                                <button data-id="{{ pub.id }}" class="btn btn-sm btn-info workform_detail">详情</button>
+                                {% if pub.type.name == 'firewall_require' %}
+                                    <button class="btn btn-sm btn-info"><a target='_blank' href="{% url 'firewall_workform_detail' %}?id={{ pub.id }}" style="color: #f4f8fa">详情</a></button>
+                                {% else %}
+                                    <button data-id="{{ pub.id }}" class="btn btn-sm btn-info workform_detail">详情</button>
+                                {% endif %}
                                 <button data-id="{{ pub.id }}" class="btn btn-sm btn-primary process_trace">流程跟踪</button>
                                 {% if user in pub.approver_can.all and  pub.process_step.step_id != 60 %}
                                     <button data-id="{{ pub.id }}" process-id="{{ pub.process_step_id }}" class="btn btn-sm btn-warning process_approval">审批</button>
@@ -224,7 +228,11 @@
                             <td class="text-center" style="vertical-align: middle">{{ my_approvaled | get_approver_result|safe }}</td>
                             <td class="text-center" style="vertical-align: middle">{{ my_approvaled.create_time|date:"Y-m-d H:i:s" }}</td>
                             <td class="text-center" style="vertical-align: middle">
-                                <button data-id="{{ my_approvaled.id }}" class="btn btn-sm btn-info workform_detail">详情</button>
+                                {% if my_approvaled.type.name == 'firewall_require' %}
+                                    <button class="btn btn-sm btn-info"><a target='_blank' href="{% url 'firewall_workform_detail' %}?id={{ my_approvaled.id }}" style="color: #f4f8fa">详情</a></button>
+                                {% else %}
+                                    <button data-id="{{ my_approvaled.id }}" class="btn btn-sm btn-info workform_detail">详情</button>
+                                {% endif %}
                                 <button data-id="{{ my_approvaled.id }}" class="btn btn-sm btn-primary process_trace">流程跟踪</button>
                             </td>
                         </tr>
@@ -290,7 +298,7 @@
                             <div class="form-inline row">  
                                 <div class="form-group col-sm-12">
                                     <label for="detail" style="width:15%" class="control-label text-right">工单说明 <span class="red-fonts">*&nbsp</span></label>
-                                    <textarea id='detail' name="detail" style="width: 79%;" class="form-control" aria-required="true" rows="5"readonly>
+                                    <textarea id='detail' name="detail" style="width: 79%;" class="form-control" aria-required="true" rows="5" readonly>
                                     </textarea>
                                 </div>
                             </div>

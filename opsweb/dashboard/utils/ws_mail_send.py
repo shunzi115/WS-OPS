@@ -4,7 +4,6 @@ from dashboard.utils.wslog import wslog_error,wslog_info
 from opsweb.settings import EMAIL_HOST_USER
 
 def mail_send(subject,message,mail_to,html_content=None):
-    print("html_content:",html_content)
     try:
         send_mail(subject,message,EMAIL_HOST_USER,mail_to,fail_silently=False,html_message=html_content)
     except Exception as e:

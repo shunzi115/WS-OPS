@@ -77,7 +77,11 @@
                 <td class="text-center" style="vertical-align: middle">{{ pub | get_approver_result|safe }}</td>
                 <td class="text-center" style="vertical-align: middle">{{ pub.create_time|date:"Y-m-d H:i:s" }}</td>
                 <td class="text-center" style="vertical-align: middle">
-                    <button data-id="{{ pub.id }}" class="btn btn-sm btn-info workform_detail">详情</button>
+                    {% if pub.type.name == 'firewall_require' %}
+                        <button class="btn btn-sm btn-info"><a target='_blank' href="{% url 'firewall_workform_detail' %}?id={{ pub.id }}" style="color: #f4f8fa">详情</a></button>
+                    {% else %}
+                        <button data-id="{{ pub.id }}" class="btn btn-sm btn-info workform_detail">详情</button>
+                    {% endif %}
                     <button data-id="{{ pub.id }}" class="btn btn-sm btn-primary process_trace">流程跟踪</button>
                     {% if user.is_superuser == 1 %}
                         <button data-id="{{ pub.id }}" data-del="{{ pub.title }}" class="btn btn-sm btn-danger del-btn">删除</button>

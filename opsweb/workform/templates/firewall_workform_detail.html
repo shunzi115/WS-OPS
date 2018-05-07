@@ -1,0 +1,166 @@
+{% extends "public/layout.html" %}
+
+{% block myjs %}
+<script src="/static/plugin/js-xlsx-master/dist/xlsx.full.min.js"></script>
+<script src="/static/plugin/Blob.js-master/Blob.js-master/Blob.js"></script>
+<script src="/static/plugin/FileSaver.js-master/FileSaver.js-master/src/FileSaver.js"></script>
+{% endblock%}
+
+{% block breadcrumb %}
+工单系统 / <strong class="active">防火墙工单详情</strong>
+{% endblock %}
+
+{% block body %}
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h3>
+                        防火墙工单信息
+                        <span style="float:right;" onclick="downloadExl(json_data)">
+                            <i class="fa fa-share" aria-hidden="true" style="color:blue;"></i>
+                            <a href="#" style="color:blue;" >导出为xlsx</a>
+                        </span>
+                    </h3>
+                </div>
+                <div class="ibox-content">
+                    <form id="FirewallDetailForm" enctype="multipart/form-data" class="form-horizontal nice-validator n-yellow Formvalid" novalidate="novalidate">
+                        {% csrf_token %}
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="title" style="width:10%" class="control-label">主题 <span class="red-fonts ">*</span></label>
+                                <input name="title" type="text" style="width: 79%;" class="form-control" aria-required="true" value="{{ wf_obj.title }}" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="name" style="width:20%" class="control-label text-right ">工单类型<span class="red-fonts ">*</span></label>
+                                &nbsp<input id='type' name="type" type="text" style="width:65%" class="form-control" aria-required="true" value="{{ wf_obj.type.cn_name }}" readonly>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="level" style="width:15%" class="control-label text-right">紧急程度 <span class="red-fonts ">*</span></label>
+                                <input id='level' name="level" style="width:67%" type="text" class="form-control" aria-required="true" value="{{ wf_obj.get_level_display }}" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="applicant" style="width:20%" class="control-label text-right">申请人<span class="red-fonts ">*</span></label>
+                                &nbsp<input name="applicant" type="text" style="width:65%" class="form-control" aria-required="true" value="{{ wf_obj.applicant.userextend.cn_name }}" readonly>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="status" style="width:15%" class="control-label text-right">工单状态 <span class="red-fonts ">*</span></label>
+                                <input id="status" name="status" type="text" style="width:67%" class="form-control" aria-required="true" value="{{ wf_obj.process_step.step }}" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="detail" style="width:10%" class="control-label">工单说明 <span class="red-fonts">*</span></label>
+                                <textarea name='detail' id='detail' style="width: 79%;" class="form-control" rows="2" readonly>{{ wf_obj.detail }}</textarea>
+                            </div>
+                        </div>
+                    </form>
+                    <br><br>
+                    <h2 style="text-align: center"><b> 防火墙规则详情 </b></h2>
+                    <br>
+                    <table class="table table-striped table-bordered table-hover" id="firewall_rule_table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">源主机名</th>
+                                <th class="text-center">源 IP</th>
+                                <th class="text-center">目标主机名</th>
+                                <th class="text-center">目标 IP</th>
+                                <th class="text-center">目标端口</th>
+                                <th class="text-center">协议名称</th>
+                                <th class="text-center">创建人</th>
+                                <th class="text-center">创建时间</th>
+                                <th class="text-center">备注</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for rl in rules_list %}
+                            <tr class="gradeX">
+                                <td class="text-center" style="vertical-align: middle">{{ rl.s_hostname }}</td>
+                                <td class="text-center" style="vertical-align: middle">{{ rl.s_ip }}</td>
+                                <td class="text-center" style="vertical-align: middle">{{ rl.d_hostname }}</td>
+                                <td class="text-center" style="vertical-align: middle">{{ rl.d_ip }}</td>
+                                <td class="text-center" style="vertical-align: middle">{{ rl.d_port }}</td>
+                                <td class="text-center" style="vertical-align: middle">{{ rl.protocol }}</td>
+                                <td class="text-center" style="vertical-align: middle">{{ rl.commit_by }}</td>
+                                <td class="text-center" style="vertical-align: middle">{{ rl.create_time | date:"Y-m-d" }}</td>
+                                <td class="text-center" style="vertical-align: middle">{{ rl.comment}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script>
+$("#firewall_rule_table").dataTable({
+      "autoWidth":true,
+      "ordering": false,
+      "bDestroy":true,
+      "order": [[ 0, "asc" ]],
+      "bStateSave": true,
+      "sPaginationType": "full_numbers",
+      "language":{
+            "lengthMenu":"每页 _MENU_ 条记录",
+            "zeroRecords":"没有找到记录",
+            "sInfo": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 ),显示第 _START_ 至 _END_ 项(总共 _TOTAL_ 项)",
+            "infoEmpty": "无记录",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "sSearch": "搜索:",
+            "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "上一页",
+                    "sNext": "下一页",
+                    "sLast": "末页"
+            }
+      }
+});
+
+var json_data = {{ firewall_json_data | safe }}
+
+const wopts = { bookType: 'xlsx', bookSST: false, type: 'binary' };//这里的数据是用来定义导出的格式类型
+    // const wopts = { bookType: 'csv', bookSST: false, type: 'binary' };//ods格式
+    // const wopts = { bookType: 'ods', bookSST: false, type: 'binary' };//ods格式
+    // const wopts = { bookType: 'xlsb', bookSST: false, type: 'binary' };//xlsb格式
+    // const wopts = { bookType: 'fods', bookSST: false, type: 'binary' };//fods格式
+    // const wopts = { bookType: 'biff2', bookSST: false, type: 'binary' };//xls格式
+
+function downloadExl(data, type) {
+    const wb = { SheetNames: ['Sheet1'], Sheets: {}, Props: {} };
+    <!-- 通过json_to_sheet转成单页(Sheet)数据 -->
+    wb.Sheets['Sheet1'] = XLSX.utils.json_to_sheet(data);
+    saveAs(new Blob([s2ab(XLSX.write(wb, wopts))], { type: "application/octet-stream" }), "Firewall_Request" + '-' + new Date().getTime() + '.' + (wopts.bookType=="biff2"?"xls":wopts.bookType));
+};
+function s2ab(s) {
+    if (typeof ArrayBuffer !== 'undefined') {
+        var buf = new ArrayBuffer(s.length);
+        var view = new Uint8Array(buf);
+        for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
+        return buf;
+    } else {
+        var buf = new Array(s.length);
+        for (var i = 0; i != s.length; ++i) buf[i] = s.charCodeAt(i) & 0xFF;
+        return buf;
+    }
+};
+
+</script>
+
+{% endblock %}

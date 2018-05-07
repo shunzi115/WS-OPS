@@ -66,6 +66,8 @@
 <script src="/static/plugin/chosen/chosen.jquery.min.js"></script>
 <script src="/static/plugin/echarts-4.0.4/echarts.min.js"></script>
 
+{% block myjs %}
+{% endblock%}
 <!--官方 JS 部分结束-->
 
 <!--HTML 正文部分-->
@@ -143,6 +145,9 @@
             <li>
                 <a href="{% url 'idc_list' %}" class="menu-link">IDC管理</a>
             </li>
+            <li>
+                <a href="{% url 'firewall_rules_list' %}" class="menu-link">防火墙规则管理</a>
+            </li>
         </ul>
             
 </li> 
@@ -157,6 +162,9 @@
             </li>
             <li>
                 <a href="{% url 'sql_workform_add' %}" class="menu-link">数据库工单</a>
+            </li>
+            <li>
+                <a href="{% url 'firewall_workform_add' %}" class="menu-link">防火墙工单</a>
             </li>
             <li>
                 <a href="{% url 'others_workform_add' %}" class="menu-link">其他运维工单</a>

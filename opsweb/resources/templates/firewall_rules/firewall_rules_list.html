@@ -1,0 +1,317 @@
+{% extends "public/layout.html" %}
+
+{% block myjs %}
+<script src="/static/plugin/js-xlsx-master/dist/xlsx.full.min.js"></script>
+<script src="/static/plugin/Blob.js-master/Blob.js-master/Blob.js"></script>
+<script src="/static/plugin/FileSaver.js-master/FileSaver.js-master/src/FileSaver.js"></script>
+{% endblock %}
+
+{% block breadcrumb %}
+资产管理 / <strong class="active">防火墙规则管理</strong>
+{% endblock %}
+
+{% block body %}
+<!-- 防火墙规则列表 -->
+<table class="table table-striped table-bordered table-hover " id="firewall_list_table">
+<caption>
+    <div>
+        <form class="form-inline">
+            {% csrf_token %}
+            <a href="{% url 'firewall_rules_import' %}" class="btn btn-primary" style="text-align:light">从xlsx导入</a>
+            <a href="#" class="btn btn-primary" style="text-align:light" onclick="downloadExl(json_data)">导出为xlsx</a>
+            <span>仅支持<strong style="color:red">.xlsx</strong> 文件</span>
+            <button type="submit" class="btn btn-primary" style="float:right">搜索</button>
+            <div class="form-group" style="text-align:right;float: right;margin-right: 10px;">
+                <input type="text" id="search_id" class="form-control" name="search" value="{{ search }}" placeholder="源/目标IP | 申请人 | 备注">
+            </div>
+        </form>
+    </div>
+</caption>
+    <thead>
+        <tr>
+            <th class="text-center">源主机名</th>
+            <th class="text-center">源 IP</th>
+            <th class="text-center">目标主机名</th>
+            <th class="text-center">目标 IP</th>
+            <th class="text-center">目标端口</th>
+            <th class="text-center">协议名称</th>
+            <th class="text-center">创建人</th>
+            <th class="text-center">创建时间</th>
+            <th class="text-center">备注</th>
+            <th class="text-center" style="width: 12%">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for rl in object_list %}
+        <tr class="gradeX">
+            <td class="text-center" style="vertical-align: middle">{{ rl.s_hostname }}</td>
+            <td class="text-center" style="vertical-align: middle">{{ rl.s_ip }}</td>
+            <td class="text-center" style="vertical-align: middle">{{ rl.d_hostname }}</td>
+            <td class="text-center" style="vertical-align: middle">{{ rl.d_ip }}</td>
+            <td class="text-center" style="vertical-align: middle">{{ rl.d_port }}</td>
+            <td class="text-center" style="vertical-align: middle">{{ rl.protocol }}</td>
+            <td class="text-center" style="vertical-align: middle">{{ rl.commit_by }}</td>
+            <td class="text-center" style="vertical-align: middle">{{ rl.create_time | date:"Y-m-d" }}</td>
+            <td class="text-center" style="vertical-align: middle">{{ rl.comment}}</td>
+            <td class="text-center" style="vertical-align: middle">
+                <button data-id="{{ rl.id }}" class="btn btn-sm btn-info firewall_rule_update">编辑</button>
+                <button data-id="{{ rl.id }}" data-del="{{ rl.s_ip }}-->{{ rl.d_ip }}:{{ rl.d_port }}" class="btn btn-sm btn-danger del-btn">
+                    删除
+                </button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+ </table>
+<!-- IDC列表结束-->
+
+<!-- 列表分页 -->
+<div class="text-center">
+    <ul class="pagination">
+        <li class="disabled"><a href="#">总页数: {{ page_obj.paginator.num_pages }}</a></li>
+
+        {% if page_obj.number != 1 %}
+            <li><a href={% url "firewall_rules_list" %}?page=1>首页</a></li>
+        {% else %}
+            <li class="disabled"><a href="#">首页</a></li>
+        {% endif %}
+
+        {% if page_obj.has_previous %}
+            <li><a href={% url "firewall_rules_list" %}?page={{ page_obj.previous_page_number }}>上一页</a></li>
+        {% else %}
+            <li class="disabled"><a href="#">上一页</a></li>
+        {% endif %}
+
+        {% for page in page_range %}
+           {% if page == page_obj.number %}
+              <li class="active"><a href={% url "firewall_rules_list" %}?page={{ page }}>{{ page }}</a></li>
+           {% else %}
+              <li><a href={% url "firewall_rules_list" %}?page={{ page }}>{{ page }}</a></li>
+           {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li><a href={% url "firewall_rules_list" %}?page={{ page_obj.next_page_number }}>下一页</a></li>
+        {% else %}
+            <li class="disabled"><a href="#">下一页</a></li>
+        {% endif %}
+
+        {% if page_obj.number != page_obj.paginator.num_pages %}
+            <li><a href={% url "firewall_rules_list" %}?page={{ page_obj.paginator.num_pages }}>末页</a></li>
+        {% else %}
+            <li class="disabled"><a href="#">末页</a></li>
+        {% endif %}
+
+        <li class="disabled"><a href="#">总条数: {{ page_obj.paginator.count }}</a></li>
+    </ul>
+</div>
+<!-- 分页结束 -->
+
+<!-- 编辑模态框 -->
+<div class="modal fade"  id ="UpdateModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">更新防火墙规则信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="UpdateForm" class="Formvalid form-horizontal nice-validator n-yellow" novalidate="novalidate">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" id='id_update'>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="s_hostname" style="width:30%" class="control-label text-right">源主机名 &nbsp<span class="red-fonts ">*</span></label>
+                                &nbsp<input name="s_hostname" id="s_hostname_update" style="width:65%" type="text" class="form-control" aria-required="true">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="s_ip" style="width:30%" class="control-label text-right">源IP &nbsp</label>
+                                <input name="s_ip" id="s_ip_update" style="width:65%" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="d_hostname" style="width:30%" class="control-label text-right">目标主机名 &nbsp<span class="red-fonts ">*</span></label>
+                                &nbsp<input name="d_hostname" id="d_hostname_update" type="text" style="width:65%" class="form-control" aria-required="true">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="d_ip" style="width:30%" class="control-label text-right">目标IP &nbsp<span class="red-fonts ">*</span></label>
+                                <input name="d_ip" id="d_ip_update" style="width:65%" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="d_port" style="width:30%" class="control-label text-right">目标端口 &nbsp<span class="red-fonts">*</span></label>
+                                &nbsp<input name="d_port" id="d_port_update" style="width:65%" type="text" placeholder="多个端口用顿号、隔开" class="form-control" readonly>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="protocol" style="width:30%" class="control-label text-right">协议 &nbsp<span class="red-fonts ">*</span></label>
+                                <input name="protocol" id="protocol_update" style="width:65%" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="comment" style="width:15%" class="control-label text-right">备注 &nbsp</label>
+                                <input name="comment" id="comment_update" type="text" style="width: 79%;" class="form-control" aria-required="true">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn_sub"  id = "firewall_rules_update_btn" >更新</button>
+                    <button class="btn btn-warning exit-btn" data-dismiss="modal">退出</button>
+                    <button class="btn btn-info btn_reset" type="reset">重置</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+<!-- 删除模态框 -->
+<div class="modal fade" id='DeleteModal'>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">删除</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="data-del"></p>
+                    <p style="color:red"><b>你确认要删除吗?</b></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-warning del-sure" data-id=''>确认</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+{% endblock %}
+
+{% block js %}
+
+<script>
+
+<!-- 导出为 xlsx -->
+var json_data = {{ firewall_rules_json_data | safe }}
+
+const wopts = { bookType: 'xlsx', bookSST: false, type: 'binary' };//这里的数据是用来定义导出的格式类型
+
+function downloadExl(data, type) {
+    const wb = { SheetNames: ['Sheet1'], Sheets: {}, Props: {} };
+    <!-- 通过json_to_sheet转成单页(Sheet)数据 -->
+    wb.Sheets['Sheet1'] = XLSX.utils.json_to_sheet(data);
+    saveAs(new Blob([s2ab(XLSX.write(wb, wopts))], { type: "application/octet-stream" }), "Firewall_Request" + '-' + new Date().getTime() + '.' + (wopts.bookType=="biff2"?"xls":wopts.bookType));
+};
+function s2ab(s) {
+    if (typeof ArrayBuffer !== 'undefined') {
+        var buf = new ArrayBuffer(s.length);
+        var view = new Uint8Array(buf);
+        for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
+        return buf;
+    } else {
+        var buf = new Array(s.length);
+        for (var i = 0; i != s.length; ++i) buf[i] = s.charCodeAt(i) & 0xFF;
+        return buf;
+    }
+};
+
+{#$("#firewall_rule_export").click(function(){#}
+{#    var search_data = $("#search_id").val()#}
+{#    var url = "{% url 'firewall_rules_export' %}"#}
+{#    $.post(url,{"search_data":search_data},function(data){#}
+{#        if(data.result==0){#}
+{#            json_data = data.firewall_rules_json_data#}
+{#            console.log(json_data)#}
+{#            downloadExl(json_data)#}
+{#       }else{#}
+{#            swal("OH,My God",data.msg,"error")#}
+{#       };#}
+{#    });#}
+{#    return false;#}
+{#})#}
+<!-- 导出结束 -->
+
+<!-- 更新 -->
+$(document).on('click',".firewall_rule_update",function(){
+    var id = $(this).attr("data-id")
+    var url = "{% url 'firewall_rules_change' %}?id="+id
+    $.getJSON(url,function(data){
+        if(data.result==0){
+            data = data.fr_info
+            $("#id_update").val(data.id)
+            $("#s_hostname_update").val(data.s_hostname)
+            $("#s_ip_update").val(data.s_ip)
+            $("#d_hostname_update").val(data.d_hostname)
+            $("#d_ip_update").val(data.d_ip)
+            $("#d_port_update").val(data.d_port)
+            $("#protocol_update").val(data.protocol)
+            $("#comment_update").val(data.comment)
+            $("#UpdateModal").modal("show")
+        }else{
+            swal("OH,My God",data.msg,"error")
+        }
+    });
+});
+
+$("#firewall_rules_update_btn").click(function(){
+    var str = $("#UpdateForm").serialize()
+    var url = "{% url 'firewall_rules_change' %}"
+    $.post(url,str,function(data){
+        if(data.result==0){
+           $("#UpdateModal").modal("hide")
+           swal({
+             title:"Good",
+             text:data.msg,
+             type:'success',
+             confirmButtonText:"确定"
+             },
+             function(){
+                location.reload()
+           })
+       }else{
+            swal("OH,My God",data.msg,"error")
+       };
+    });
+    return false;
+});
+<!-- 更新结束 -->
+
+<!--删除-->
+$(".del-btn").click(function(){
+    var id = $(this).attr("data-id")
+    var data = $(this).attr("data-del")
+    $(".del-sure").attr('data-id',id)
+    $("#data-del").html(data)
+    $("#DeleteModal").modal("show")
+});
+
+$(".del-sure").click(function(){
+   var id = $(this).attr('data-id')
+   var url = "{% url 'firewall_rules_delete' %}"
+   $('#DeleteModal').modal('hide')
+   $.post(url,{"id": id},function(data){
+       if(data.result==0){
+           swal({
+             title:"Good",
+             text:data.msg,
+             type:'success',
+             confirmButtonText:"确定"
+             },
+             function(){
+                location.reload()
+           })
+       }else{
+            swal("OH,My God",data.msg,"error")
+       };
+   });
+   return false;
+});
+</script>
+
+{% endblock %}

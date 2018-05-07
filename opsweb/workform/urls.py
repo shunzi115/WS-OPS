@@ -14,6 +14,11 @@ urlpatterns = [
         url(r'^add/$',views.SqlWorkFormAddView.as_view(),name="sql_workform_add"),
     ])),
 
+    url(r'^firewall/',include([
+        url(r'^add/$',views.FirewallWorkFormAddView.as_view(),name="firewall_workform_add"),
+        url(r'^detail/$',views.FirewallWorkFormDetailView.as_view(),name="firewall_workform_detail"),
+    ])),
+
     url(r'^others/',include([
         url(r'^add/$',views.OthersWorkFormAddView.as_view(),name="others_workform_add"),
     ])),

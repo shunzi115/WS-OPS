@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import Group
+from workform.models import WorkFormModel
 
 # Create your models here.
 
@@ -177,3 +178,30 @@ class CmdbStatisticByDayModel(models.Model):
         verbose_name = "CMDB按天统计表"
         db_table = 'cmdb_statistic_by_day'
         ordering = ['myday']
+
+class FirewallRulesModel(models.Model):
+    workform_id = models.ForeignKey(WorkFormModel,verbose_name="关联工单记录",null=True)
+    s_hostname = models.CharField("原主机名",max_length=100,null=True,blank=True)
+    s_ip = models.CharField("源IP",max_length=15,null=False)
+    d_hostname = models.CharField("目标主机名", max_length=100, null=True,blank=True)
+    d_ip = models.CharField("目标IP", max_length=15, null=False)
+    d_port = models.CharField("目标端口", max_length=100, null=False)
+    protocol = models.CharField("网络协议", max_length=100, null=False)
+    app_name = models.CharField("app名称", max_length=50, null=True,blank=True)
+    applicant = models.CharField("审批人", max_length=50, null=False,blank=True,default='watson.wu')
+    create_time = models.DateField("创建时间",auto_now_add=True,null=True)
+    expiry_date = models.CharField("过期时间", max_length=50, null=False,blank=True,default='permanent')
+    commit_by = models.CharField("提交人", max_length=100, null=False)
+    action = models.CharField("执行的动作",max_length=50, null=False,blank=True,default='New Add')
+    comment = models.CharField("备注", max_length=1000, null=False)
+    update_user = models.CharField("修改人", max_length=100, null=True)
+    last_update_time = models.DateTimeField("最后一次更新时间",auto_now=True,null=True)
+
+    def __str__(self):
+        return "%s->%s:%s" %(self.s_ip,self.d_ip,self.d_port)
+
+    class Meta:
+        verbose_name = "防火墙规则表"
+        db_table = "firewall_rules"
+        ordering = ["-id"]
+        unique_together = ('s_ip', 'd_ip','d_port','protocol')
