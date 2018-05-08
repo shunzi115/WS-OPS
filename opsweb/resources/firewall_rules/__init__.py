@@ -11,7 +11,6 @@ from dashboard.utils.wslog import wslog_error, wslog_info
 from django.db.models import Q
 from django.core import serializers
 
-
 class FirewallRulesListView(LoginRequiredMixin, ListView):
     template_name = "firewall_rules/firewall_rules_list.html"
     model = FirewallRulesModel
@@ -75,13 +74,20 @@ class FirewallRulesListView(LoginRequiredMixin, ListView):
         return page_range
 
 class FirewallRulesImportView(LoginRequiredMixin,TemplateView):
+    permission_required = "resources.add_firewallrulesmodel"
     template_name = 'firewall_rules/firewall_rules_import.html'
 
     def post(self,request):
         ret = {"result":0}
-        user_obj = request.user
 
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
+
+        user_obj = request.user
         firewall_rules_pre = request.POST.get("firewall_rules",None)
+
         if not firewall_rules_pre :
             ret["result"] = 1
             ret["msg"] = "防火墙工单必须导入包含防火墙策略的xlsx表"

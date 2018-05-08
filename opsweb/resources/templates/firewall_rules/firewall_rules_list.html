@@ -29,6 +29,7 @@
 </caption>
     <thead>
         <tr>
+            <th class="text-center">序号</th>
             <th class="text-center">源主机名</th>
             <th class="text-center">源 IP</th>
             <th class="text-center">目标主机名</th>
@@ -44,6 +45,7 @@
     <tbody>
         {% for rl in object_list %}
         <tr class="gradeX">
+            <td class="text-center" style="vertical-align: middle">{{ forloop.counter }}</td>
             <td class="text-center" style="vertical-align: middle">{{ rl.s_hostname }}</td>
             <td class="text-center" style="vertical-align: middle">{{ rl.s_ip }}</td>
             <td class="text-center" style="vertical-align: middle">{{ rl.d_hostname }}</td>

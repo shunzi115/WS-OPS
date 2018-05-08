@@ -224,13 +224,9 @@ class OthersWorkFormAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateV
         return context
 
 ''' 添加 防火墙工单 '''
-class FirewallWorkFormAddView(LoginRequiredMixin,TemplateView):
-    # permission_required = ("workform.add_workformmodel","workform.add_others_workform")
-    # permission_redirect_url = "workform_list"
-
-    # ''' 以逻辑 '或' 的关系判断上面的权限要求 '''
-    # def has_permission(self):
-    #     return [perm for perm in self.permission_required if self.request.user.has_perm(perm)]
+class FirewallWorkFormAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
+    permission_required = ("workform.add_workformmodel","resources.add_firewallrulesmodel")
+    permission_redirect_url = "workform_list"
 
     template_name = "firewall_workform_add.html"
 
@@ -242,9 +238,14 @@ class FirewallWorkFormAddView(LoginRequiredMixin,TemplateView):
     def post(self,request):
         ret = {"result":0}
         user_obj = request.user
-
         workform_type = request.POST.get("type", "firewall_require")
         firewall_rules_pre = request.POST.get("firewall_rules",None)
+
+        if not [perms for perms in self.permission_required if request.user.has_perm(perms)]:
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
+
         if not firewall_rules_pre :
             ret["result"] = 1
             ret["msg"] = "防火墙工单必须导入包含防火墙策略的xlsx表"
