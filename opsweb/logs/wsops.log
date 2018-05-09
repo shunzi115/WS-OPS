@@ -4,3 +4,5 @@
 2018-05-08 10:02:22,165-[INFO]-/ops-data/zp/haha/dev-mysite/opsweb/workform/views.py-[line:354]-工单: hhaha 提交花费时间: 323 ms
 2018-05-08 10:15:55,765-[INFO]-/ops-data/zp/haha/dev-mysite/opsweb/workform/views.py-[line:291]-用户: 秦航 发布工单: 'fgwgewg' 创建成功
 2018-05-08 10:15:57,109-[INFO]-/ops-data/zp/haha/dev-mysite/opsweb/dashboard/utils/ws_mail_send.py-[line:12]-邮件: '[防火墙申请]:fgwgewg' 发送成功
+2018-05-08 14:20:07,186-[INFO]-/ops-data/zp/haha/dev-mysite/opsweb/resources/cmdb/__init__.py-[line:324]-获取 CmdbModel 对象 orderpush 信息成功
+2018-05-08 15:56:37,701-[WARNING]-/ops-data/zp/haha/dev-mysite/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /favicon.ico

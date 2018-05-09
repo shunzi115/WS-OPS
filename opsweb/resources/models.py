@@ -205,3 +205,4 @@ class FirewallRulesModel(models.Model):
         db_table = "firewall_rules"
         ordering = ["-id"]
         unique_together = ('s_ip', 'd_ip','d_port','protocol')
+
