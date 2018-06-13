@@ -135,23 +135,45 @@
 <!--资产管理-->
 <li>
     <a href="#" ><i class="fa fa-database fa-fw"></i><span class="nav-label">资源管理</span><span class="fa arrow"></span></a>
-        <ul class="nav nav-second-level collapse" >
-            <li>
-                <a href="{% url 'cmdb_list' %}" class="menu-link">CMDB管理</a>
-            </li>
-            <li>
-                <a href="{% url 'server_aliyun_list' %}" class="menu-link">服务器管理</a>
-            </li>
-            <li>
-                <a href="{% url 'idc_list' %}" class="menu-link">IDC管理</a>
-            </li>
-            <li>
-                <a href="{% url 'firewall_rules_list' %}" class="menu-link">防火墙规则管理</a>
-            </li>
-        </ul>
-            
+    <ul class="nav nav-second-level collapse" >
+        <li>
+            <a href="{% url 'cmdb_list' %}" class="menu-link">CMDB管理</a>
+        </li>
+        <li>
+            <a href="{% url 'server_aliyun_list' %}" class="menu-link">服务器管理</a>
+        </li>
+        <li>
+            <a href="{% url 'idc_list' %}" class="menu-link">IDC管理</a>
+        </li>
+        <li>
+            <a href="{% url 'firewall_rules_list' %}" class="menu-link">防火墙规则管理</a>
+        </li>
+    </ul>
 </li> 
 <!--资产管理结束-->
+
+<!--数据库管理-->
+<li>
+    <a href="#"><i class="fa fa-database"></i> <span class="nav-label">数据库管理</span><span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level collapse">
+        <li>
+            <a href="{% url 'mysql_cluster_list' %}" class="menu-link">Mysql 集群</a>
+        </li>
+        <li>
+            <a href="{% url 'mysql_instance_list' %}" class="menu-link">Mysql 实例</a>
+        </li>
+        <li>
+            <a href="{% url 'mysql_list' %}" class="menu-link">Mysql 库</a>
+        </li>
+        <li>
+            <a href="{% url 'inception_sql_noexec_list' %}" class="menu-link">待执行 SQL</a>
+        </li>
+        <li>
+            <a href="{% url 'inception_sql_history_list' %}" class="menu-link">SQL 执行历史</a>
+        </li>
+    </ul>
+</li>
+<!--数据库管理结束-->
 
 <!--工单管理-->
 <li>
@@ -233,17 +255,6 @@
     </ul>
 </li>
 <!--监控管理结束-->
-
-<!--数据库管理-->
-<li>
-    <a href="#"><i class="fa fa-database"></i> <span class="nav-label">数据库管理</span><span class="fa arrow"></span></a>
-    <ul class="nav nav-second-level collapse">
-        <li> 
-	        <a href="#">数据库操作</a>
-        </li>
-    </ul>
-</li>
-<!--数据库管理结束-->
 
 <!--小工具-->
 <li>

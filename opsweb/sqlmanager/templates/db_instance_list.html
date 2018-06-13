@@ -1,0 +1,600 @@
+{% extends "public/layout.html" %}
+
+{% block breadcrumb %}
+<i class="fa fa-database"></i> 数据库管理 / <strong class="active">Mysql 实例</strong>
+{% endblock %}
+
+{% block body %} 
+
+<div class="col-sm-12">
+    <table class="table table-striped table-bordered table-hover">
+        <caption>
+            <div>
+                <form class="form-inline">
+                    {% csrf_token %}
+                    <a href="#" class="btn btn-primary" id="db_instance_add">添加实例</a>
+                    <button type="submit" class="btn btn-primary" style="float:right">搜索</button>
+                    <div class="form-group" style="text-align:right;float: right;margin-right: 10px;">
+                        <input type="text" class="form-control" name="search" value="{{ search }}" placeholder="名称 | 实例 IP">
+                    </div>
+                </form> 
+            </div>
+        </caption>  
+        <thead>
+            <tr>
+                <th class="text-center">实例名称</th>
+                <th class="text-center">所属环境</th>
+                <th class="text-center">实例 IP</th>
+                <th class="text-center">端口号</th>
+                <th class="text-center">主从标识</th>
+                <th class="text-center">备份标识</th>
+                <th class="text-center">所属集群</th>
+                <th class="text-center">创建时间</th>
+                <th class="text-center">最近修改时间</th>
+                <th class="text-center">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dbi in object_list %}
+            <tr class="gradeX">
+                <td class="text-center" style="vertical-align: middle;width: 10%"><strong>{{ dbi.name}}</strong></td>
+                <td class="text-center" style="vertical-align: middle">{{ dbi.get_env_display }}</td>
+                <td class="text-center" style="vertical-align: middle">{{ dbi.ins_ip.private_ip }}</td>
+                <td class="text-center" style="vertical-align: middle">{{ dbi.port }}</td>
+                {% if dbi.role == 'master' %}
+                    <td class="text-center" style="vertical-align: middle">
+                        <span class="badge label-primary" style="padding-bottom: 7px;">
+                            {{ dbi.get_role_display }}
+                        </span>
+                    </td>
+                {% else %}
+                    <td class="text-center" style="vertical-align: middle">
+                        <span class="badge label-default" style="padding-bottom: 7px;">
+                            {{ dbi.get_role_display }}
+                        </span>
+                    </td>
+                {% endif %}
+                {% if dbi.backup == 'yes' %}
+                    <td class="text-center" style="vertical-align: middle">
+                        <span class="badge label-primary" style="padding-bottom: 7px;">
+                            {{ dbi.get_backup_display }}
+                        </span>
+                    </td>
+                {% else %}
+                    <td class="text-center" style="vertical-align: middle">
+                        <span class="badge label-default" style="padding-bottom: 7px;">
+                            {{ dbi.get_backup_display }}
+                        </span>
+                    </td>
+                {% endif %}
+                <td class="text-center" style="vertical-align: middle">{{ dbi.ins_cluster.name }}</td>
+                <td class="text-center" style="vertical-align: middle">{{ dbi.create_time|date:"Y-m-d H:i:s" }}</td>
+                <td class="text-center" style="vertical-align: middle">{{ dbi.last_update_time|date:"Y-m-d H:i:s" }}</td>
+                <td class="text-center" style="vertical-align: middle">
+                    <button data-id="{{ dbi.id }}" class="btn btn-sm btn-info instance_more_info_btn">更多信息</button>
+                    <button data-id="{{ dbi.id }}" class="btn btn-sm btn-primary instance_change_btn">编辑</button>
+                    {% if user.is_superuser == 1 %}
+                        <button data-id="{{ dbi.id }}" data-del="{{ dbi.name }}" class="btn btn-sm btn-danger del-btn">删除</button>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- 列表分页 -->
+    <div class="text-center">
+        <ul class="pagination">
+            <li class="disabled"><a href="#">总页数: {{ page_obj.paginator.num_pages }}</a></li>
+
+            {% if page_obj.number != 1 %}
+                <li><a href={% url "mysql_instance_list" %}?page=1{{ search_uri }}>首页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">首页</a></li>
+            {% endif %}
+
+            {% if page_obj.has_previous %}
+                <li><a href={% url "mysql_instance_list" %}?page={{ page_obj.previous_page_number }}{{ search_uri }}>上一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">上一页</a></li>
+            {% endif %}
+
+            {% for page in page_range %}
+               {% if page == page_obj.number %}
+                  <li class="active"><a href={% url "mysql_instance_list" %}?page={{ page }}{{ search_uri }}>{{ page }}</a></li>
+               {% else %}
+                  <li><a href={% url "mysql_instance_list" %}?page={{ page }}{{ search_uri }}>{{ page }}</a></li>
+               {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li><a href={% url "mysql_instance_list" %}?page={{ page_obj.next_page_number }}{{ search_uri }}>下一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">下一页</a></li>
+            {% endif %}
+            
+            {% if page_obj.number != page_obj.paginator.num_pages %}
+                <li><a href={% url "mysql_instance_list" %}?page={{ page_obj.paginator.num_pages }}{{ search_uri }}>末页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">末页</a></li>
+            {% endif %}
+
+            <li class="disabled"><a href="#">总条数: {{ page_obj.paginator.count }}</a></li>
+        </ul>
+    </div>
+    <!-- 分页结束 -->
+
+    <!--添加模态框-->
+    <div id="InstanceAddModal"  class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span ariaa-hidden="true">&times;</span></button>
+                    <h3 class="modal-title">添加 Mysql 实例</h3>
+                </div> <!--modal-header end-->
+                <div class="modal-body">
+                    <form class="form-horizontal" id="InstanceAddForm">
+                        {% csrf_token %}
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="name" class="control-label text-right" style="width: 15%;">实例名称 <span class="red-fonts">*</span></label>
+                                &nbsp<input name="name" placeholder="name" type="text" class="form-control" aria-required="true" style="width: 80%;">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="env" class="col-sm-4 control-label text-right">所属环境 <span class="red-fonts">*</span></label>
+                                <select name="env" id="env" class="form-control mychoice myenv" style="width: 65%;">
+                                    <option value="">请选择...</option>
+                                    {% for k,v in env_list.items %}
+                                        <option value="{{ k }}">{{ v }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="cluster" class="col-sm-4 control-label text-right">所属集群 <span class="red-fonts">*</span></label>
+                                &nbsp<select name="ins_cluster" id="ins_cluster" class="form-control mychoice mycluster" style="width: 65%;">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="ins_ip" class="col-sm-4 control-label text-right">实例 IP <span class="red-fonts">*</span></label>
+                                <select name="ins_ip" class="form-control mychoice" style="width: 65%;">
+                                    <option value="">请选择...</option>
+                                    {% for ip in server_list %}
+                                        <option value="{{ ip.id }}">{{ ip.private_ip }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="port" class="col-sm-4 control-label text-right">mysql 端口 <span class="red-fonts">*</span></label>
+                                &nbsp<input name="port" placeholder="port" type="text" class="form-control" aria-required="true" style="width: 65%;">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="role" class="col-sm-4 control-label text-right">主从标识 <span class="red-fonts">*</span></label>
+                                <select name="role" class="form-control mychoice" style="width: 65%;">
+                                    <option value="">请选择...</option>
+                                    {% for k,v in role_list.items %}
+                                        <option value="{{ k }}">{{ v }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="backup" class="col-sm-4 control-label text-right">备份标识</label>
+                                &nbsp<select name="backup" class="form-control mychoice" style="width: 65%;">
+                                    <option value="">请选择...</option>
+                                    {% for k,v in backup_list.items %}
+                                        <option value="{{ k }}">{{ v }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="scripts" class="control-label text-right" style="width: 15%;">启动脚本 <span class="red-fonts">*</span></label>
+                                &nbsp<input name="scripts" placeholder="scripts" type="text" class="form-control" aria-required="true" style="width: 80%;">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="data_dir" class="control-label text-right" style="width: 15%;">数据目录 <span class="red-fonts">*</span></label>
+                                &nbsp<input name="data_dir" placeholder="data_dir" type="text" class="form-control" aria-required="true" style="width: 80%;">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="backup_dir" class="control-label text-right" style="width: 15%;">备份目录 </label>
+                                &nbsp<input name="backup_dir" placeholder="backup_dir" type="text" class="form-control" aria-required="true" style="width: 80%;">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="instance_add_submit" >提交</button>
+                    <button class="btn btn-warning exit-btn" data-dismiss="modal">退出</button>
+                    <button class="btn btn-info" type="reset">重置</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--添加结束-->
+
+    <!--更多信息模态框-->
+    <div id="InstanceMoreInfoModal"  class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span ariaa-hidden="true">&times;</span></button>
+                    <h3 class="modal-title">更多 Mysql 实例信息</h3>
+                </div> <!--modal-header end-->
+                <div class="modal-body">
+                    <form class="form-horizontal" id="InstanceMoreInfoForm">
+                        {% csrf_token %}
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="name" class="control-label text-right" style="width: 15%;">实例名称 <span class="red-fonts">*</span></label>
+                                <input name="name" id="name_info" type="text" class="form-control" aria-required="true" style="width: 80%;" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="scripts" class="control-label text-right" style="width: 15%;">启动脚本 <span class="red-fonts">*</span></label>
+                                &nbsp<input name="scripts" id="scripts_info" type="text" class="form-control" aria-required="true" style="width: 80%;" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="data_dir" class="control-label text-right" style="width: 15%;">数据目录 <span class="red-fonts">*</span></label>
+                                &nbsp<input name="data_dir" id="data_dir_info" type="text" class="form-control" aria-required="true" style="width: 80%;" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="backup_dir" class="control-label text-right" style="width: 15%;">备份目录 </label>
+                                &nbsp<input name="backup_dir" id="backup_dir_info" type="text" class="form-control" aria-required="true" style="width: 80%;" readonly>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary exit-btn" data-dismiss="modal">退出</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--添加结束-->
+
+    <!--编辑模态框-->
+    <div id="InstanceChangeModal"  class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span ariaa-hidden="true">&times;</span></button>
+                    <h3 class="modal-title">添加 Mysql 实例</h3>
+                </div> <!--modal-header end-->
+                <div class="modal-body">
+                    <form class="form-horizontal" id="InstanceChangeForm">
+                        {% csrf_token %}
+                        <input name="id" type="hidden" id="id_change">
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="name" class="control-label text-right" style="width: 15%;">实例名称 <span class="red-fonts">*</span></label>
+                                &nbsp<input name="name" id="name_change" type="text" class="form-control" aria-required="true" style="width: 80%;" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="env" class="col-sm-4 control-label text-right">所属环境 <span class="red-fonts">*</span></label>
+                                <select name="env" id="env_change" class="form-control mychoice myenv" style="width: 65%;">
+                                    <option value="">请选择...</option>
+                                    {% for k,v in env_list.items %}
+                                        <option value="{{ k }}">{{ v }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="cluster" class="col-sm-4 control-label text-right">所属集群 <span class="red-fonts">*</span></label>
+                                &nbsp<select name="ins_cluster" id="ins_cluster_change" class="form-control mychoice mycluster" style="width: 65%;">
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="ins_ip" class="col-sm-4 control-label text-right">实例 IP <span class="red-fonts">*</span></label>
+                                <select name="ins_ip" id="ins_ip_change" class="form-control mychoice" style="width: 65%;">
+                                    <option value="">请选择...</option>
+                                    {% for ip in server_list %}
+                                        <option value="{{ ip.id }}">{{ ip.private_ip }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="port" class="col-sm-4 control-label text-right">mysql 端口 <span class="red-fonts">*</span></label>
+                                &nbsp<input name="port" id="port_change" type="text" class="form-control" aria-required="true" style="width: 65%;">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="role" class="col-sm-4 control-label text-right">主从标识 <span class="red-fonts">*</span></label>
+                                <select name="role" id="role_change" class="form-control mychoice" style="width: 65%;">
+                                    <option value="">请选择...</option>
+                                    {% for k,v in role_list.items %}
+                                        <option value="{{ k }}">{{ v }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="backup" class="col-sm-4 control-label text-right">备份标识</label>
+                                &nbsp<select name="backup" id="backup_change" class="form-control mychoice" style="width: 65%;">
+                                    <option value="">请选择...</option>
+                                    {% for k,v in backup_list.items %}
+                                        <option value="{{ k }}">{{ v }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="scripts" class="control-label text-right" style="width: 15%;">启动脚本 <span class="red-fonts">*</span></label>
+                                &nbsp<input name="scripts" id="scripts_change" type="text" class="form-control" aria-required="true" style="width: 80%;">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="data_dir" class="control-label text-right" style="width: 15%;">数据目录 <span class="red-fonts">*</span></label>
+                                &nbsp<input name="data_dir" id="data_dir_change" type="text" class="form-control" aria-required="true" style="width: 80%;">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="backup_dir" class="control-label text-right" style="width: 15%;">备份目录 </label>
+                                &nbsp<input name="backup_dir" id="backup_dir_change" type="text" class="form-control" aria-required="true" style="width: 80%;">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="instance_change_submit" >提交</button>
+                    <button class="btn btn-warning exit-btn" data-dismiss="modal">退出</button>
+                    <button class="btn btn-info" type="reset">重置</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--编辑结束-->
+
+    <!-- 删除模态框 -->
+    <div class="modal fade" id='DeleteModal'>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">删除</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="data-del"></p>
+                    <p style="color:red"><b>你确认要删除吗?</b></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-warning del-sure" data-id=''>确认</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script>
+
+var cluster_online_list = {{ cluster_online_list | safe }}
+var cluster_gray_list = {{ cluster_gray_list | safe }}
+
+
+
+$(".myenv").change(function(){
+    $(".mycluster option").remove()
+    env_str = $(this).val()
+    var dbs_str = '<option value="">请选择...</option>'
+    if(env_str=='online'){
+        $.each(cluster_online_list,function(k,v){
+            dbs_str += '<option value='+v.id+'>'+v.name+'</option>'
+        });
+    }else if(env_str=='gray'){
+        $.each(cluster_gray_list,function(k,v){
+            dbs_str += '<option value='+v.id+'>'+v.name+'</option>'
+        });
+    }
+    $(".mycluster").html(dbs_str)
+    $(".mycluster").multiselect('rebuild')
+});
+
+<!-- 添加实例 -->
+$("#db_instance_add").click(function(){
+    $("#InstanceAddModal").modal("show")
+});
+$("#instance_add_submit").click(function(){
+    var str = $("#InstanceAddForm").serialize()
+    var url = "{% url 'mysql_instance_add' %}"
+    $.post(url,str,function(data){
+        if (data.result==0){
+            swal({
+                title:"Good",
+                text:data.msg,
+                type:'success',
+                confirmButtonText:"确定"
+                },
+                function(){
+                    location.reload()
+                });
+        }else{
+            swal("Oh,My God",data.msg,"error")
+        }
+    });
+    return false;
+});
+<!--添加结束-->
+
+<!--更多信息-->
+$(".instance_more_info_btn").click(function(){
+    var id = $(this).attr("data-id")
+    var url = "{% url 'mysql_instance_more_info' %}?id="+id
+    $.getJSON(url,function(data){
+         if(data.result==0){
+            data = data.dbi_more_info
+            $("#name_info").val(data.name)
+            $("#scripts_info").val(data.scripts)
+            $("#data_dir_info").val(data.data_dir)
+            $("#backup_dir_info").val(data.backup_dir)
+            $("#InstanceMoreInfoModal").modal("show")
+       }else{
+            swal("OH,My God",data.msg,"error")
+       };
+    })
+});
+<!--更多信息结束-->
+
+<!--编辑-->
+$(".instance_change_btn").click(function(){
+    $(".mychoice option").prop("selected",false)
+    $(".mycluster option").remove()
+    var id = $(this).attr("data-id")
+    var url = "{% url 'mysql_instance_change' %}?id=" + id
+    var dbs_change_str = '<option value="">请选择...</option>'
+    $.getJSON(url,function(data){
+        if(data.result==0){
+            data = data.dbi_info
+            $("#id_change").val(data.id)
+            $("#name_change").val(data.name)
+            $("#env_change option[value='"+ data.env +"']").prop("selected",true)
+            if(data.env=='online'){
+                $.each(cluster_online_list,function(k,v){
+                dbs_change_str += '<option value='+v.id+'>'+v.name+'</option>'
+                });
+            }else if(data.env=='gray') {
+                $.each(cluster_gray_list, function (k, v) {
+                    dbs_change_str += '<option value=' + v.id + '>' + v.name + '</option>'
+                });
+            }
+            $("#ins_cluster_change").html(dbs_change_str)
+            $("#port_change").val(data.port)
+            $("#data_dir_change").val(data.data_dir)
+            $("#backup_dir_change").val(data.backup_dir)
+            $("#scripts_change").val(data.scripts)
+            $("#ins_cluster_change option[value='"+ data.ins_cluster +"']").prop("selected",true)
+            $("#ins_ip_change option[value='"+ data.ins_ip +"']").prop("selected",true)
+            $("#role_change option[value='"+ data.role +"']").prop("selected",true)
+            $("#backup_change option[value='"+ data.backup +"']").prop("selected",true)
+            $(".mychoice").multiselect("rebuild")
+            $("#InstanceChangeModal").modal("show")
+       }else{
+            swal("OH,My God",data.msg,"error")
+       };
+    })
+});
+$("#instance_change_submit").click(function(){
+    var str = $("#InstanceChangeForm").serialize()
+    var url = "{% url 'mysql_instance_change' %}"
+    $.post(url,str,function(data){
+        if (data.result==0){
+            $("#InstanceChangeModal").modal("hide")
+            swal({
+                title:"Good",
+                text:data.msg,
+                type:'success',
+                confirmButtonText:"确定"
+                },
+                function(){
+                    location.reload()
+                });
+        }else{
+            swal("Oh,My God",data.msg,"error")
+        }
+    });
+    return false;
+});
+<!--编辑结束-->
+
+
+<!--删除-->
+$(".del-btn").click(function(){
+    var id = $(this).attr("data-id")
+    var data = $(this).attr("data-del")
+    $(".del-sure").attr('data-id',id)
+    $("#data-del").html(data)
+    $("#DeleteModal").modal("show")
+});
+$(".del-sure").click(function(){
+   var id = $(this).attr('data-id')
+   var url = "{% url 'mysql_instance_delete' %}"
+   $('#DeleteModal').modal('hide')
+   $.post(url,{"id": id},function(data){
+       if(data.result==0){
+           swal({
+             title:"Good",
+             text:data.msg,
+             type:'success',
+             confirmButtonText:"确定"
+             },
+             function(){
+                location.reload()
+           })
+       }else{
+            swal("OH,My God",data.msg,"error")
+       };
+   });
+   return false;
+});
+<!--删除结束-->
+
+$(".mychoice").multiselect({
+    enableFiltering: true,
+    maxHeight: 200,
+    buttonWidth: '65%',
+    nonSelectedText: '请选择管理组...',
+    delimiterText: ' ; ',
+    selectedClass: 'multiselect-selected',
+    enableCaseInsensitiveFiltering: true,
+    disableIfEmpty: true,
+    numberDisplayed: 6,
+});
+</script>
+
+{% endblock %}

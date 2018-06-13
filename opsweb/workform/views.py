@@ -19,12 +19,16 @@ from dashboard.utils.ws_mail_send import mail_send
 from workform.tasks import workform_mail_send
 import time
 from django.core import serializers
+from sqlmanager.models import DBModel,SQLDetailModel,SQLCheckTmpModel
+from sqlmanager.inception_relate import sql_check_func
+from sqlmanager.tasks import SQLCheckAndSplit
 
 #0418 add
 from dbmanager.models import OnlineDdlJob, SqlProduct, Cluster, Instance
 from dbmanager.tasks import sync_workform_sql
 import sqlparse
 from dbmanager.tasks import execute_onlineddl_job
+
 
 oneday = timedelta(days=30)
 days_30_ago = datetime.now() - oneday
@@ -200,11 +204,77 @@ class SqlWorkFormAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView
 
     template_name = "sql_workform_add.html"
 
-    def get_context_data(self,**kwargs):
-        context = super(SqlWorkFormAddView,self).get_context_data(**kwargs)
+    def get_context_data(self, **kwargs):
+        context = super(SqlWorkFormAddView, self).get_context_data(**kwargs)
         context["level"] = dict(WorkFormModel.LEVEL_CHOICES)
         context["reason"] = dict(WorkFormModel.REASON_CHOICES)
+        context["db_online_list"] = list(DBModel.objects.filter(cluster_name__env__exact='online').values("id", "name").distinct())
+        context["db_gray_list"] = list(DBModel.objects.filter(cluster_name__env__exact='gray').values("id", "name").distinct())
         return context
+
+    def post(self,request):
+        time_begin = int(round(time.time() * 1000))
+        ret = {"result":0}
+        user_obj = request.user
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'添加 workform 模型对象'的权限,请联系运维!"
+            return JsonResponse(ret)
+
+        sql_obj_id = request.POST.get("sql_obj_list")
+        if not sql_obj_id:
+            ret["result"] = 1
+            ret["msg"] = "未获取到前端传过来的 sql 对象列表，请检查前端'提交SQL'逻辑..."
+            return JsonResponse(ret)
+
+        try:
+            sql_obj_id_list = sql_obj_id.split(";")
+            sql_obj_list = [ SQLDetailModel.objects.get(id__exact=sql_id) for sql_id in sql_obj_id_list ]
+        except Exception as e:
+            ret["result"] = 1
+            ret["msg"] = "根据sql_id获取到 sql_obj 对象失败，错误信息: %s" %(e.args)
+            return JsonResponse(ret)
+
+        workform_type = request.POST.get("type","sql_exec")
+
+        workform_add_form = SqlWorkFormAddForm(request.POST)
+
+        ret = create_workform_obj(workform_type, workform_add_form, user_obj, ret)
+        if ret["result"] == 1:
+            return  JsonResponse(ret)
+
+        workform_obj = ret["workform_obj"]
+        del ret["workform_obj"]
+
+        try:
+            workform_obj.sqldetailmodel_set.set(sql_obj_list)
+        except Exception as e:
+            workform_obj.delete()
+            ret["result"] = 1
+            ret["msg"] = "sql_obj 对象关联 workform_obj 失败，错误信息: %s" % (e.args)
+            return JsonResponse(ret)
+
+        ret["msg"] = "SQL 工单: '%s' 创建成功" % (workform_obj.title)
+        wslog_info().info("用户: %s 发布 SQL 工单: '%s' 成功" % (user_obj.userextend.cn_name, workform_obj.title))
+
+        try:
+            # 语法检查并拆分SQL
+            SQLCheckAndSplit.delay(list(workform_obj.sqldetailmodel_set.all()))
+            url_link = request.get_host() + reverse("my_workform_list")
+            workform_email_send(workform_obj, url_link)
+        except Exception as e:
+            pass
+
+        try:
+            time_end = int(round(time.time() * 1000))
+            time_spend = time_end - time_begin
+        except:
+            pass
+        else:
+            wslog_info().info("工单: %s 提交花费时间: %s ms" %(workform_obj.title,time_spend))
+
+        return JsonResponse(ret)
 
 ''' 添加 其他运维工单 '''
 class OthersWorkFormAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
@@ -322,8 +392,6 @@ class WorkFormAddBaseView(LoginRequiredMixin,View):
         ''' 根据工单类型选择相应的 验证form '''
         if workform_type in ["publish","rollback"]:
             workform_add_form = PubWorkFormAddForm(request.POST)
-        elif workform_type == "sql_exec":
-            workform_add_form = SqlWorkFormAddForm(request.POST)
         else:
             workform_add_form = OthersWorkFormAddForm(request.POST)
 
@@ -338,8 +406,6 @@ class WorkFormAddBaseView(LoginRequiredMixin,View):
         wslog_info().info("用户: %s 发布工单: '%s' 创建成功" % (user_obj.userextend.cn_name, workform_obj.title))
 
         try:
-            # 拆分SQL
-            #sync_workform_sql.delay(workform_obj.id)
             url_link = request.get_host() + reverse("my_workform_list")
             workform_email_send(workform_obj, url_link)
         except Exception as e:
@@ -441,33 +507,34 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
 
     def get(self,request):
         ret = {"result":0}
-
-        ## ajax 请求的权限验证
         if not request.user.has_perm(self.permission_required):
             ret["result"] = 1
             ret["msg"] = "Sorry,你没有'审批工单'的权限,请联系运维!"
             return JsonResponse(ret) 
 
         wf_id = request.GET.get("id")
-        process_step_id = request.GET.get("process_id")
+        process_step_id_id = request.GET.get("process_id")
 
         try:
             wf_obj = WorkFormModel.objects.get(id__exact=wf_id)
-        except WorkFormModel.DoesNotExist:
+            pm_obj = ProcessModel.objects.get(id__exact=process_step_id_id)
+        except Exception as e:
             ret["result"] = 1
-            ret["msg"] = "WorkFormModel 模型不存在 id: %s 的对象,请刷新重试..." %(wf_id)
-            wslog_error().error("WorkFormModel 模型不存在 id: %s 的对象" %(wf_id))
+            ret["msg"] = "获取模型对象失败，错误信息: %s" %(e.args)
+            wslog_error().error("获取模型对象失败，错误信息: %s" %(e.args))
             return JsonResponse(ret)
 
         try:
-            wf_info = WorkFormModel.objects.filter(id__exact=wf_id).values("id","title","detail","applicant","module_name","sql","sql_detail","sql_file_url")[0]
-            wf_info["level"] = wf_obj.get_level_display()
-            wf_info["process"] = wf_obj.process_step.step
-            wf_info["type_id"] = wf_obj.type.cn_name
-            wf_info["type"] = wf_obj.type.name
-            wf_info["applicant"] = wf_obj.applicant.userextend.cn_name
-            wf_info["status"] = wf_obj.get_status_display()
-            wf_info["process_step_id"] = process_step_id
+            wf_info = WorkFormModel.objects.filter(id__exact=wf_id).values("id","title","detail","module_name","sql")[0]
+            wf_info["process_step_id_id"] = process_step_id_id
+            wf_info["process_step_id"] = pm_obj.step_id
+            if wf_obj.sql == 'yes':
+                ''' 根据sql 执行结果 判断SQL是否未执行'''
+                sql_exec_if = list(wf_obj.sqldetailmodel_set.filter(Q(status__exact='0')|Q(status__exact='3')))
+                if sql_exec_if:
+                    wf_info["sql_exec_if"] = 1
+                else:
+                    wf_info["sql_exec_if"] = 0
         except Exception as e:
             ret["result"] = 1
             ret["msg"] = "WorkFormModel 模型 id: %s 的对象转 dict 失败,请查看日志..." %(wf_id)
@@ -480,7 +547,6 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
     def post(self,request):
         ret = {"result":0}
 
-        ## ajax 请求的权限验证
         if not request.user.has_perm(self.permission_required):
             ret["result"] = 1
             ret["msg"] = "Sorry,你没有'审批工单'的权限,请联系运维!"
@@ -533,7 +599,7 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
             af_obj.approval_time = datetime.now().strftime("%Y-%m-%d %X")
             af_obj.save(update_fields=["approver","result","approve_note","approval_time"])   
             #执行SQL
-            if wf_obj.process_step_id == 3 and wf_obj.sql == 'yes'  and sql_auto_execute == 1:
+            if wf_obj.process_step_id == 3 and wf_obj.sql == 'yes'  and sql_auto_execute == "1":
                 execute_onlineddl_job.delay(wf_obj.id)
         except Exception as e:
             ret["result"] = 1
@@ -590,6 +656,11 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
             ''' 如果工单当前流程step的审核结果是'暂停'或'有异常', 则更新工单的状态为'暂停',同时工单的流程step不变,可审核人变成当前审核的人 '''
             wf_obj.status = "3"
             wf_obj.approver_can.set([request.user])
+
+            ''' 如果工单存在SQL，且SQL未执行的情况下，也要同时更改SQL的状态为'暂停' '''
+            if wf_obj.sql == 'yes' and wf_obj.sqldetailmodel_set.filter(status__exact='0'):
+                wf_obj.sqldetailmodel_set.filter(status__exact='0').update(status='3',exec_user=request.user)
+
             approver_can_email_list = [wf_obj.applicant.email]
             email_content = '''<p>有工单需要你<strong style="color:red"> 审批/验证/执行</strong>，请前往运维平台操作</p>
                             <p>工单主题: <strong style="color:blue">%s</strong></p>
@@ -604,6 +675,11 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
             wf_obj.status = "2"
             wf_obj.complete_time = datetime.now().strftime("%Y-%m-%d %X")
             wf_obj.approver_can.clear()
+
+            ''' 如果工单存在SQL，且SQL未执行的情况下，也要同时更改SQL的状态为'暂停' '''
+            if wf_obj.sql == 'yes' and wf_obj.sqldetailmodel_set.filter(status__exact='0'):
+                wf_obj.sqldetailmodel_set.filter(status__exact='0').update(status='4',exec_user=request.user)
+
             approver_can_email_list = [wf_obj.applicant.email]
             email_content = '''<p>有工单需要你<strong style="color:red"> 审批/验证/执行</strong>，请前往运维平台操作</p>
                             <p>工单主题: <strong style="color:blue">%s</strong></p>
@@ -614,9 +690,19 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
                                                                                             request.user.userextend.cn_name,
                                                                                             request.get_host() + reverse("my_workform_list"))
         else:
+            ''' 如果工单存在SQL，同时SQL是未执行且已暂停的情况下，更改SQL的状态为'未执行' '''
+            if wf_obj.sql == 'yes' and wf_obj.sqldetailmodel_set.filter(status__exact='3'):
+                wf_obj.sqldetailmodel_set.filter(status__exact='3').update(status='0', exec_user=request.user)
+
+            if wf_obj.sql == 'yes' and wf_obj.sqldetailmodel_set.filter(Q(status__exact='3')|Q(status__exact='0')) and wf_obj.process_step.step_id == 30:
+                ret["result"] = 1
+                ret["msg"] = "有部分SQL未执行，请先执行完SQL再回复工单"
+                return JsonResponse(ret)
+
             wf_obj.status = "1"
             wf_obj.process_step_id = process_next_id
             wf_obj.approver_can.set(ApprovalFormModel.objects.get(workform_id__exact=wf_id,process_id=process_next_id).approver_can.all())
+
             approver_can_email_list = [i["email"] for i in wf_obj.approver_can.values("email")]
             email_content = '''<p>有工单需要你<strong style="color:red"> 审批/验证/执行</strong>，请前往运维平台操作</p>
                             <p>工单主题: <strong style="color:blue">%s</strong></p>
@@ -642,11 +728,73 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
             pass
         return JsonResponse(ret)
 
-''' 工单信息查询 '''
+''' 含有SQL的工单，审批时查看SQL语法检查结果 '''
+class WorkFormSqlCheckView(LoginRequiredMixin,TemplateView):
+    # permission_required = "workform.add_workformmodel"
+    # permission_redirect_url = "workform_list"
+
+    template_name = "workform_sql_check_result.html"
+
+    def get_context_data(self, **kwargs):
+        ret = {"result": 0}
+        context = super(WorkFormSqlCheckView, self).get_context_data(**kwargs)
+        wf_id = self.request.GET.get('id')
+        wf_obj = WorkFormModel.objects.get(id__exact=wf_id)
+        sql_check_list = list(wf_obj.sqldetailmodel_set.all().order_by("id"))
+        sql_check_result_list = []
+        for sc in sql_check_list:
+            sql_check_result = list(sc.sqlexecdetailmodel_set.values("id","sql", "check_affected_rows", "errormessage"))
+            if sc.sql_file_url:
+                sql_check_result_list.append({"sql_file":sc.sql_file_url,"result":sql_check_result,"db_name":sc.db_name.name,"db_master_ip":sc.db_name.cluster_name.get(env__exact=sc.env).w_vip})
+            else:
+                sql_check_result_list.append({"sql_file":"sql_block","result": sql_check_result, "db_name": sc.db_name.name, "db_master_ip": sc.db_name.cluster_name.get(env__exact=sc.env).w_vip})
+
+        if sql_check_result_list:
+            context["mysql_check_result_list"] = sql_check_result_list
+
+        return context
+
+''' 含有SQL的工单，审批时查看SQL执行结果 '''
+class WorkFormSqlExecResultView(LoginRequiredMixin,TemplateView):
+    # permission_required = "workform.add_workformmodel"
+    # permission_redirect_url = "workform_list"
+
+    template_name = "workform_sql_exec_result.html"
+
+    def get_context_data(self, **kwargs):
+        ret = {"result": 0}
+        context = super(WorkFormSqlExecResultView, self).get_context_data(**kwargs)
+        wf_id = self.request.GET.get('id')
+        wf_obj = WorkFormModel.objects.get(id__exact=wf_id)
+        sql_exec_list = list(wf_obj.sqldetailmodel_set.all().order_by("id"))
+        sql_exec_result_list = []
+        for sc in sql_exec_list:
+            sql_exec_result = list(sc.sqlexecdetailmodel_set.values("id","sql", "affected_rows", "errormessage"))
+            '''判断如果SQL已经被 '拒绝执行'了，那么SQL执行结果应该明确的展示'被拒绝执行' '''
+            sql_status = 0 if sc.status == '4' else 1
+            if sc.sql_file_url:
+                sql_exec_result_list.append({"sql_file":sc.sql_file_url,
+                                             "result":sql_exec_result,
+                                             "db_name":sc.db_name.name,
+                                             "db_master_ip":sc.db_name.cluster_name.get(env__exact=sc.env).w_vip,
+                                             "sql_status":sql_status
+                                             })
+            else:
+                sql_exec_result_list.append({"sql_file":"sql_block",
+                                             "result": sql_exec_result,
+                                             "db_name": sc.db_name.name,
+                                             "db_master_ip": sc.db_name.cluster_name.get(env__exact=sc.env).w_vip,
+                                             "sql_status": sql_status
+                                             })
+
+        if sql_exec_result_list:
+            context["mysql_exec_result_list"] = sql_exec_result_list
+
+        return context
+
+''' 更多信息查询 '''
 class WorkFormInfoView(LoginRequiredMixin,View):
-
     def get(self,request):
-
         ret = {"result":0}
         wf_id = request.GET.get("id")
 
@@ -659,16 +807,19 @@ class WorkFormInfoView(LoginRequiredMixin,View):
             return JsonResponse(ret)
 
         try:
-            wf_info = WorkFormModel.objects.filter(id__exact=wf_id).values()[0]
-            wf_info["level"] = wf_obj.get_level_display()
-            wf_info["status"] = wf_obj.get_status_display()
-            wf_info["type_id"] = wf_obj.type.cn_name
-            wf_info["type"] = wf_obj.type.name
-            wf_info["applicant"] = wf_obj.applicant.userextend.cn_name
+            wf_info = WorkFormModel.objects.filter(id__exact=wf_id).values("id","title","detail","create_time","complete_time","sql")[0]
             if wf_info.get("create_time"):
                 wf_info["create_time"] = wf_obj.create_time
             if wf_info.get("complete_time"):
                 wf_info["complete_time"] = wf_obj.complete_time
+            if wf_obj.sql == 'yes':
+                ''' 根据sql 执行结果 判断SQL是否未执行'''
+                sql_exec_if = list(wf_obj.sqldetailmodel_set.filter(Q(status__exact='0')|Q(status__exact='3')))
+                if sql_exec_if:
+                    wf_info["sql_exec_if"] = 1
+                else:
+                    wf_info["sql_exec_if"] = 0
+
         except Exception as e:
             ret["result"] = 1
             ret["msg"] = "WorkFormModel 模型 id: %s 的对象转 dict 失败,请查看日志..." %(wf_id)
@@ -787,25 +938,6 @@ class WorkFormDeleteView(LoginRequiredMixin,View):
 
         return JsonResponse(ret)
 
-''' 工单详情 '''
-class WorkFormDetailView(LoginRequiredMixin,DetailView):
-    template_name = "workform_detail.html"
-    model = WorkFormModel
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['sql_detail'] = list(OnlineDdlJob.objects.values('id','sql','result','status','ddl_type').filter(workform_id=self.kwargs.get('pk')))
-        context['approval_result'] = dict(ApprovalFormModel.RESULT_CHOICES)
-        database_name = OnlineDdlJob.objects.values('database').filter(workform_id=self.kwargs.get('pk'))[:1]
-
-        if len(database_name) > 0:
-            cluster = Cluster.objects.get(database__name='%s' % database_name[0]['database'])
-            instance = Instance.objects.filter(Q(cluster__id=cluster.id))
-            context['db_info'] = instance
-            context['dbname'] = database_name[0]['database']
-        print(context)
-        return context
-
 ''' 防火墙工单详情查询 '''
 class FirewallWorkFormDetailView(LoginRequiredMixin, TemplateView):
     template_name = "firewall_workform_detail.html"
@@ -835,8 +967,8 @@ class FirewallWorkFormDetailView(LoginRequiredMixin, TemplateView):
 
 ''' 工单中 SQL附件的上传 '''
 class WorkFormUploadView(LoginRequiredMixin,View):
-    allow_file_type=set(['txt','sql','xlsx'])
-    upload_dir = MEDIA_ROOT + 'pub/'
+    allow_file_type=set(['txt','sql'])
+    upload_dir = MEDIA_ROOT + 'sqlfile/'
     max_file_size = 10 * 1024 * 1024
 
     def post(self,request):

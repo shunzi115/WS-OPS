@@ -209,12 +209,15 @@ class FirewallRulesForm(ModelForm):
                 "max_length": "app_name长度不能超过50字符",
             },
             "applicant": {
+                "required": "必须填写applicant,可以填写watson.wu",
                 "max_length": "applicant长度不能超过50字符",
             },
             "expiry_date": {
+                "required": "必须填写expiry_date,可以是permanent",
                 "max_length": "expiry_date长度不能超过50字符",
             },
             "action": {
+                "required": "必须填写action，可以是New Add",
                 "max_length": "action长度不能超过50字符",
             },
         }

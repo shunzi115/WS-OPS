@@ -1,0 +1,92 @@
+{% extends "public/layout.html" %}
+
+{% block breadcrumb %}
+数据库管理 / <strong class="active">SQL语法检查</strong>
+{% endblock %}
+
+{% block css %}
+<style>
+    pre {color: #23c6c8;}
+</style>
+{% endblock %}
+
+{% block body %} 
+
+<div class="col-sm-12">
+    <h2 class="text-center">SQL 语法检查</h2>
+    <h3 class="text-center" style="color: red">错误语句后面的SQL不再检查</h3>
+    </br>
+    <table class="table table-striped table-bordered table-hover " id="MyTable">
+        <thead>
+            <tr>
+                <th class="text-center col-sm-1">序号</th>
+                <th class="text-center col-sm-6">SQL 语句</th>
+                <th class="text-center col-sm-1">预计影响行数</th>
+                <th class="text-center col-sm-4">错误信息</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for scr in object_list %}
+            <tr class="gradeX">
+                <td class="text-center" style="vertical-align: middle">{{ forloop.counter }}</td>
+                <td style="vertical-align: middle">{{ scr.sql_detail }}</td>
+                <td class="text-center" style="vertical-align: middle">{{ scr.affected_rows }}</td>
+                {% if scr.errmsg == 'None' %}
+                    <td style="vertical-align: middle">{{ scr.errmsg }}</td>
+                {% else %}
+                    <td style="vertical-align: middle;background-color: red;">{{ scr.errmsg }}</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="text-center">
+        <ul class="pagination">
+            <li class="disabled"><a href="#">总页数: {{ page_obj.paginator.num_pages }}</a></li>
+
+            {% if page_obj.number != 1 %}
+                <li><a href={% url "inception_sql_check_result" %}?sql_check_uuid={{ sql_check_uuid }}&page=1{{ search_uri }}>首页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">首页</a></li>
+            {% endif %}
+
+            {% if page_obj.has_previous %}
+                <li><a href={% url "inception_sql_check_result" %}?sql_check_uuid={{ sql_check_uuid }}&page={{ page_obj.previous_page_number }}{{ search_uri }}>上一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">上一页</a></li>
+            {% endif %}
+
+            {% for page in page_range %}
+               {% if page == page_obj.number %}
+                  <li class="active"><a href={% url "inception_sql_check_result" %}?sql_check_uuid={{ sql_check_uuid }}&page={{ page }}{{ search_uri }}>{{ page }}</a></li>
+               {% else %}
+                  <li><a href={% url "inception_sql_check_result" %}?sql_check_uuid={{ sql_check_uuid }}&page={{ page }}{{ search_uri }}>{{ page }}</a></li>
+               {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li><a href={% url "inception_sql_check_result" %}?sql_check_uuid={{ sql_check_uuid }}&page={{ page_obj.next_page_number }}{{ search_uri }}>下一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">下一页</a></li>
+            {% endif %}
+
+            {% if page_obj.number != page_obj.paginator.num_pages %}
+                <li><a href={% url "inception_sql_check_result" %}?sql_check_uuid={{ sql_check_uuid }}&page={{ page_obj.paginator.num_pages }}{{ search_uri }}>末页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">末页</a></li>
+            {% endif %}
+
+            <li class="disabled"><a href="#">总条数: {{ page_obj.paginator.count }}</a></li>
+        </ul>
+    </div>
+    <!-- 分页结束 -->
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script>
+</script>
+
+{% endblock %}

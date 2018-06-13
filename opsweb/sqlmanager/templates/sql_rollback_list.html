@@ -1,0 +1,164 @@
+{% extends "public/layout.html" %}
+
+{% block breadcrumb %}
+数据库管理 / <strong class="active">SQL回滚</strong>
+{% endblock %}
+
+{% block css %}
+<style type="text/css">
+    .dataTables_wrapper {padding-bottom: 10px;}
+</style>
+{% endblock %}
+
+{% block body %} 
+
+<div class="col-sm-12">
+    <h2 class="text-center">SQL 回滚前信息</h2>
+    <h4 class="text-center" style="color:red">不包含已经回滚过的SQL，如原SQL执行时未能生成回滚SQL，则无法实现回滚...</h4>
+    <table class="table table-striped table-bordered table-hover " id="MyTable">
+        <thead>
+            <tr>
+                <th class="text-center">原SQL序号</th>
+                <th class="text-center col-sm-5">原SQL语句</th>
+                <th class="text-center">原SQL影响行数</th>
+                <th class="text-center col-sm-4">回滚SQL语句</th>
+                <th class="text-center">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for s_exec_obj in sql_rollback_list %}
+            <tr class="gradeX">
+                <td class="text-center" style="vertical-align: middle">{{ s_exec_obj.id }}</td>
+                <td style="vertical-align: middle">{{ s_exec_obj.sql }}</td>
+                <td class="text-center" style="vertical-align: middle">{{ s_exec_obj.affected_rows }}</td>
+                {% if s_exec_obj.backup_result == 'success' %}
+                    <td class="text-center" style="vertical-align: middle">{{ s_exec_obj.sqlrollbackmodel.sql_rollback }}</td>
+                {% elif s_exec_obj.backup_result == 'failed' %}
+                    <td class="text-center" style="vertical-align: middle;color: red">备份失败或无需备份,所以没有回滚语句</td>
+                {% else %}
+                    <td class="text-center" style="vertical-align: middle;color: #a94442">无需备份,所以没有回滚语句</td>
+                {% endif %}
+                <td class="text-center" style="vertical-align: middle">
+                    {% if s_exec_obj.backup_result == 'success' %}
+                        <button data-id="{{ s_exec_obj.id }}" data-tips="回滚模型 SQLExecDetailModel 中 id: {{ s_exec_obj.id }} 的SQL ？" class="btn btn-sm btn-danger sql_backup_one">回滚单条</button>
+                    {% else %}
+                        <button data-id="{{ s_exec_obj.id }}" class="btn btn-sm btn-danger" disabled="disabled">回滚</button>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="col-sm-2 col-sm-offset-6">
+        {% if sql_rollback_list %}
+            <button data-id="{{ s_id }}" data-tips="回滚模型 SQLDetailModel 中 id: {{ s_exec_obj.id }} 的全部SQL ？" class="btn btn-danger sql_backup_all">回滚全部</button>
+        {% else %}
+            <button class="btn btn-danger" disabled="disabled">回滚全部</button>
+        {% endif %}
+    </div>
+
+    <!-- 回滚确认模态框 -->
+    <div class="modal fade" id="RollbackModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">回滚</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="data-rollback"></p>
+                    <p style="color:red"><b>你确认要回滚吗?</b></p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal">取消</button>
+                    <button id="rollback-sure" class="btn btn-warning">确认回滚</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script>
+datatable_list()
+
+<!-- 回滚单条SQL -->
+$(".sql_backup_one").click(function(){
+    var id = $(this).attr("data-id")
+    var data = $(this).attr("data-tips")
+    $("#rollback-sure").attr('sql-one-id',id)
+    $("#data-rollback").html(data)
+    $("#RollbackModal").modal("show")
+});
+
+<!-- 回滚全部SQL -->
+$(".sql_backup_all").click(function(){
+    var id = $(this).attr("data-id")
+    var data = $(this).attr("data-tips")
+    $("#rollback-sure").attr('sql-all-id',id)
+    $("#data-rollback").html(data)
+    $("#RollbackModal").modal("show")
+});
+
+<!-- 实际回滚操作 -->
+$("#rollback-sure").click(function(){
+    var url = "{% url 'inception_sql_rollback' %}"
+    if ($(this).attr("sql-all-id")){
+        <!-- 回滚全部SQL标识-->
+        var s_id = $(this).attr("sql-all-id")
+        var data_post = {"s_id":s_id}
+        var rollback_result_check_url = "{% url 'inception_sql_rollback_result' %}?s_id=" + s_id
+    }else{
+        <!-- 回滚单条SQL标识-->
+        var s_exec_id = $(this).attr("sql-one-id")
+        var data_post = {"s_exec_id":s_exec_id}
+        var rollback_result_check_url = "{% url 'inception_sql_rollback_result' %}?s_exec_id=" + s_exec_id
+    };
+    $.post(url,data_post,function(data){
+        if(data.result==0){
+            swal({
+                title:"Good",
+                text:data.msg,
+                type:'success',
+                confirmButtonText:"确定"
+                },
+                function(){
+                    location.href = rollback_result_check_url
+                }
+            )
+        }else{
+            swal("OH,My God",data.msg,"error")
+        };
+    });
+    return false;
+});
+
+function datatable_list(){
+  $("#MyTable").dataTable({
+      "autoWidth":true,
+      "ordering": false,
+      "destroy": true,
+      "order": [[ 0, "asc" ]],
+      "bStateSave": true,
+      "sPaginationType": "full_numbers",
+      "language":{
+            "lengthMenu":"每页 _MENU_ 条记录",
+            "zeroRecords":"没有找到记录",
+            "sInfo": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 ),显示第 _START_ 至 _END_ 项(总共 _TOTAL_ 项)",
+            "infoEmpty": "无记录",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "sSearch": "搜索:",
+            "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "上一页",
+                    "sNext": "下一页",
+                    "sLast": "末页"
+            }
+      }
+  })
+};
+</script>
+
+{% endblock %}

@@ -18,6 +18,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # 导入自定义工具包
 sys.path.insert(0, os.path.join(BASE_DIR, 'utils'))
 
+# 设置数据上传的占用内存的最大值为 5M，默认是2.5M，否则post数据会报错：Request body exceeded settings.DATA_UPLOAD_MAX_MEMORY_SIZE
+DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
@@ -51,6 +54,7 @@ INSTALLED_APPS = (
     'workform',
     'publish',
     'taskschedule',
+    'sqlmanager',
 )
 
 MIDDLEWARE_CLASSES = (

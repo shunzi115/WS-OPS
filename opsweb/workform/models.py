@@ -27,9 +27,14 @@ class WorkFormBaseModel(models.Model):
         ("3","其他"),
     )
 
+    IT_CHECK_CHOICES = (
+        ("yes","需要"),
+        ("no", "不需要"),
+    )
     title = models.CharField("工单标题",null=False,max_length=100,unique=True)
     level = models.PositiveSmallIntegerField("紧急程度",choices=LEVEL_CHOICES,null=False)
     reason = models.CharField("上线原因",choices=REASON_CHOICES,max_length=10,null=True)
+    it_check = models.CharField("是否需要IT审计", choices=IT_CHECK_CHOICES, max_length=10, default='no', null=False)
     detail = models.CharField("详情",max_length=800,null=True)
     status = models.CharField("工单状态",choices=STATUS_CHOICES,max_length=10,null=False,default="0")
     applicant = models.ForeignKey(User,related_name='+',null=True,verbose_name="申请人,与用户表多对一关联")
@@ -73,7 +78,7 @@ class ProcessModel(models.Model):
 
 class WorkFormTypeModel(models.Model):
 
-    name = models.CharField("工单类型名称",null=False,max_length=50,unique=True)
+    name = models.CharField("工单类型名称",null=False,max_length=100,unique=True)
     cn_name = models.CharField("工单类型中文名称",null=False,max_length=200,unique=True)
     process_step_id = models.CharField("需要执行的工单流程",null=True,max_length=500)
     
@@ -94,9 +99,6 @@ class WorkFormModel(WorkFormBaseModel):
     type = models.ForeignKey(WorkFormTypeModel,verbose_name="工单类型,与工单类型表多对一关联",null=False)
     module_name = models.CharField("模块名称",max_length=500,null=True)
     sql = models.CharField("是否存在SQL",choices=SQL_CHOICES,max_length=10,null=False,default="no")
-    database_name = models.CharField("数据库名称",max_length=200,null=True,blank=True)
-    sql_detail = models.CharField("SQL语句",max_length=1000,null=True)
-    sql_file_url = models.CharField("SQL附件的URL",max_length=1000,null=True)
     process_step = models.ForeignKey(ProcessModel,verbose_name="与流程步骤多对一关联",null=True)
     approver_can = models.ManyToManyField(User,related_name='+',verbose_name="与User表建立多对多关联,声明该流程步骤能审批/执行的用户集合,具体的用户集合从ApprovalFormModel的approver_can字段同步")
 

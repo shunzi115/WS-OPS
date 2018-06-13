@@ -32,6 +32,7 @@
                 <th class="text-center">紧急程度</th>
                 <th class="text-center">类型</th>
                 <th class="text-center">上线原因</th>
+                <th class="text-center">IT 审计</th>
                 <th class="text-center">模块名称</th>
                 <th class="text-center">是否有SQL</th>
                 <th class="text-center">工单状态</th>
@@ -44,7 +45,7 @@
         <tbody>
             {% for pub in object_list %}
             <tr class="gradeX">
-                <td class="text-center" style="vertical-align: middle"><a href="{% url 'pub_workform_detail' pub.id %}"><strong>{{ pub.title|truncatechars:15 }}</strong></a></td>
+                <td class="text-center" style="vertical-align: middle"><strong>{{ pub.title|truncatechars:15 }}</strong></td>
                 <td class="text-center" style="vertical-align: middle">{{ pub.applicant.userextend.cn_name }}</td>
                 <td class="text-center" style="vertical-align: middle">
                     {% for i in level_range %}
@@ -55,6 +56,7 @@
                 </td>
                 <td class="text-center" style="vertical-align: middle">{{ pub.type.cn_name }}</td>
                 <td class="text-center" style="vertical-align: middle">{{ pub.get_reason_display }}</td>
+                <td class="text-center" style="vertical-align: middle">{{ pub.get_it_check_display }}</td>
                 <td class="text-center" style="vertical-align: middle">{{ pub.module_name |default_if_none:"" }}</td>
 
                 {% if pub.sql == 'yes' %}

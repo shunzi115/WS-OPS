@@ -1,0 +1,338 @@
+{% extends "public/layout.html" %}
+
+{% load myfilter_sqlmanager %}
+
+{% block breadcrumb %}
+<i class="fa fa-database"></i> 数据库管理 / <strong class="active">Mysql 库</strong>
+{% endblock %}
+
+{% block body %} 
+
+<div class="col-sm-12">
+    <table class="table table-striped table-bordered table-hover">
+        <caption>
+            <div>
+                <form class="form-inline">
+                    {% csrf_token %}
+                    <a href="#" class="btn btn-primary" id="mysql_add">添加 Mysql 库</a>
+                    <button type="submit" class="btn btn-primary" style="float:right">搜索</button>
+                    <div class="form-group" style="text-align:right;float: right;margin-right: 10px;">
+                        <input type="text" class="form-control" name="search" value="{{ search }}" placeholder="名称">
+                    </div>
+                </form> 
+            </div>
+        </caption>  
+        <thead>
+            <tr>
+                <th class="text-center">名称</th>
+                <th class="text-center">所属集群</th>
+                <th class="text-center">所属组</th>
+                <th class="text-center">创建时间</th>
+                <th class="text-center">最近修改时间</th>
+                <th class="text-center">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for db in object_list %}
+            <tr class="gradeX">
+                <td class="text-center" style="vertical-align: middle"><strong>{{ db.name}}</strong></td>
+                <td class="text-center" style="vertical-align: middle">{{ db | get_cluster | safe }}</td>
+                <td class="text-center" style="vertical-align: middle">{{ db | get_manager_group | safe }}</td>
+                <td class="text-center" style="vertical-align: middle">{{ db.create_time|date:"Y-m-d H:i:s" }}</td>
+                <td class="text-center" style="vertical-align: middle">{{ db.last_update_time|date:"Y-m-d H:i:s" }}</td>
+                <td class="text-center" style="vertical-align: middle">
+                    <button data-id="{{ db.id }}" class="btn btn-sm btn-primary mysql_change_btn">编辑</button>
+                    {% if user.is_superuser == 1 %}
+                        <button data-id="{{ db.id }}" data-del="{{ db.name }}" class="btn btn-sm btn-danger del-btn">删除</button>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- 列表分页 -->
+    <div class="text-center">
+        <ul class="pagination">
+            <li class="disabled"><a href="#">总页数: {{ page_obj.paginator.num_pages }}</a></li>
+            {% if page_obj.number != 1 %}
+                <li><a href={% url "mysql_list" %}?page=1{{ search_uri }}>首页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">首页</a></li>
+            {% endif %}
+
+            {% if page_obj.has_previous %}
+                <li><a href={% url "mysql_list" %}?page={{ page_obj.previous_page_number }}{{ search_uri }}>上一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">上一页</a></li>
+            {% endif %}
+
+            {% for page in page_range %}
+               {% if page == page_obj.number %}
+                  <li class="active"><a href={% url "mysql_list" %}?page={{ page }}{{ search_uri }}>{{ page }}</a></li>
+               {% else %}
+                  <li><a href={% url "mysql_list" %}?page={{ page }}{{ search_uri }}>{{ page }}</a></li>
+               {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li><a href={% url "mysql_list" %}?page={{ page_obj.next_page_number }}{{ search_uri }}>下一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">下一页</a></li>
+            {% endif %}
+            
+            {% if page_obj.number != page_obj.paginator.num_pages %}
+                <li><a href={% url "mysql_list" %}?page={{ page_obj.paginator.num_pages }}{{ search_uri }}>末页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">末页</a></li>
+            {% endif %}
+
+            <li class="disabled"><a href="#">总条数: {{ page_obj.paginator.count }}</a></li>
+        </ul>
+    </div>
+    <!-- 分页结束 -->
+
+    <!--添加模态框-->
+    <div id="MysqlAddModal"  class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span ariaa-hidden="true">&times;</span></button>
+                    <h3 class="modal-title">添加 Mysql 库</h3>
+                </div> <!--modal-header end-->
+                <div class="modal-body">
+                    <form class="form-horizontal" id="MysqlAddForm">
+                        {% csrf_token %}
+                         <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="name" class="control-label text-right" style="width: 15%;">Mysql 库名 <span class="red-fonts">*</span></label>
+                                &nbsp<input name="name" placeholder="name" type="text" class="form-control" aria-required="true" style="width: 80%;">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="db_manage_group" class="col-sm-4 control-label text-right">管理组 <span class="red-fonts">*</span></label>
+                                <select name="db_manage_group" class="form-control mychoice" multiple="multiple" style="width: 65%;">
+                                    {% for group in group_list %}
+                                        <option value="{{ group.id }}">{{ group.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="cluster_name" class="col-sm-4 control-label text-right">所属集群 <span class="red-fonts">*</span></label>
+                                &nbsp<select name="cluster_name" class="form-control mychoice" multiple="multiple" style="width: 65%;">
+                                    {% for cluster in cluster_list %}
+                                        <option value="{{ cluster.id }}">{{ cluster.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="mysql_add_submit" >提交</button>
+                    <button class="btn btn-warning exit-btn" data-dismiss="modal">退出</button>
+                    <button class="btn btn-info" type="reset">重置</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--添加结束-->
+
+    <!--更新模态框-->
+    <div id="MysqlChangeModal"  class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span ariaa-hidden="true">&times;</span></button>
+                    <h3 class="modal-title">更新 Mysql 库信息</h3>
+                </div> <!--modal-header end-->
+                <div class="modal-body">
+                    <form class="form-horizontal" id="MysqlChangeForm">
+                        {% csrf_token %}
+                        <input name="id" id="id_change" type="hidden" readonly>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="name" class="control-label text-right" style="width: 15%;">Mysql 库名 <span class="red-fonts">*</span></label>
+                                &nbsp<input name="name" id="name_change" type="text" class="form-control" aria-required="true" style="width: 80%;" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="db_manage_group" class="col-sm-4 control-label text-right">管理组 <span class="red-fonts">*</span></label>
+                                <select name="db_manage_group" id="db_manage_group_change" class="form-control mychoice" multiple="multiple" style="width: 65%;">
+                                    {% for group in group_list %}
+                                        <option value="{{ group.id }}">{{ group.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="cluster_name" class="col-sm-4 control-label text-right">所属集群 <span class="red-fonts">*</span></label>
+                                &nbsp<select name="cluster_name" id="cluster_name_change" class="form-control mychoice" multiple="multiple" style="width: 65%;">
+                                    {% for cluster in cluster_list %}
+                                        <option value="{{ cluster.id }}">{{ cluster.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="mysql_change_submit" >提交</button>
+                    <button class="btn btn-warning exit-btn" data-dismiss="modal">退出</button>
+                    <button class="btn btn-info" type="reset">重置</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--更新结束-->
+
+    <!-- 删除模态框 -->
+    <div class="modal fade" id='DeleteModal'>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">删除</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="data-del"></p>
+                    <p style="color:red"><b>你确认要删除吗?</b></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-warning del-sure" data-id=''>确认</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script>
+
+<!--添加-->
+$("#mysql_add").click(function(){
+    $("#MysqlAddModal").modal("show")
+});
+$("#mysql_add_submit").click(function(){
+    var str = $("#MysqlAddForm").serialize()
+    var url = "{% url 'mysql_add' %}"
+    $.post(url,str,function(data){
+        if (data.result==0){
+            swal({
+                title:"Good",
+                text:data.msg,
+                type:'success',
+                confirmButtonText:"确定"
+                },
+                function(){
+                    location.reload()
+                });
+        }else{
+            swal("Oh,My God",data.msg,"error")
+        }
+    });
+    return false;
+});
+<!--添加结束-->
+
+<!--编辑-->
+$(".mysql_change_btn").click(function(){
+    $(".mychoice option").prop("selected",false)
+    var id = $(this).attr("data-id")
+    var url = "{% url 'mysql_change' %}?id=" + id
+    $.getJSON(url,function(data){
+        if(data.result==0){
+            data = data.db_info
+            $("#id_change").val(data.id)
+            $("#name_change").val(data.name)
+            $.each(data.cluster_name,function(k,v){
+                $("#cluster_name_change option[value='"+v+"']").prop("selected",true)
+            });
+            $.each(data.db_manage_group,function(k,v){
+                $("#db_manage_group_change option[value='"+v+"']").prop("selected",true)
+            });
+            $(".mychoice").multiselect("rebuild")
+            $("#MysqlChangeModal").modal("show")
+       }else{
+            swal("OH,My God",data.msg,"error")
+       };
+    })
+});
+$("#mysql_change_submit").click(function(){
+    var str = $("#MysqlChangeForm").serialize()
+    var url = "{% url 'mysql_change' %}"
+    $.post(url,str,function(data){
+        if (data.result==0){
+            $("#MysqlChangeModal").modal("hide")
+            swal({
+                title:"Good",
+                text:data.msg,
+                type:'success',
+                confirmButtonText:"确定"
+                },
+                function(){
+                    location.reload()
+                });
+        }else{
+            swal("Oh,My God",data.msg,"error")
+        }
+    });
+    return false;
+});
+<!--编辑结束-->
+
+<!--删除-->
+$(".del-btn").click(function(){
+    var id = $(this).attr("data-id")
+    var data = $(this).attr("data-del")
+    $(".del-sure").attr('data-id',id)
+    $("#data-del").html(data)
+    $("#DeleteModal").modal("show")
+});
+$(".del-sure").click(function(){
+   var id = $(this).attr('data-id')
+   var url = "{% url 'mysql_delete' %}"
+   $('#DeleteModal').modal('hide')
+   $.post(url,{"id": id},function(data){
+       if(data.result==0){
+           swal({
+             title:"Good",
+             text:data.msg,
+             type:'success',
+             confirmButtonText:"确定"
+             },
+             function(){
+                location.reload()
+           })
+       }else{
+            swal("OH,My God",data.msg,"error")
+       };
+   });
+   return false;
+});
+<!--删除结束-->
+
+$(".mychoice").multiselect({
+    enableFiltering: true,
+    maxHeight: 200,
+    buttonWidth: '65%',
+    nonSelectedText: '请选择管理组...',
+    delimiterText: ' ; ',
+    selectedClass: 'multiselect-selected',
+    enableCaseInsensitiveFiltering: true,
+    disableIfEmpty: true,
+    numberDisplayed: 6,
+});
+
+</script>
+
+{% endblock %}

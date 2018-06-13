@@ -103,6 +103,8 @@ class FirewallRulesImportView(LoginRequiredMixin,TemplateView):
                 fr_error = "%s -> %s:%s" %(fr.get("s_ip",None),fr.get("d_ip",None),fr.get("d_port",None))
                 ret["msg"] = '\n'.join([i["message"] for v in error_msg.values() for i in v]) + '\n' + fr_error
                 return JsonResponse(ret)
+
+            print("firewall_rule_form.cleaned_data: ",firewall_rule_form.cleaned_data)
             try:
                 fr_obj = FirewallRulesModel(**firewall_rule_form.cleaned_data)
                 fr_obj.commit_by = user_obj.username

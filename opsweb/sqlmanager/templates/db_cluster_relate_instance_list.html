@@ -1,0 +1,169 @@
+{% extends "public/layout.html" %}
+
+{% block breadcrumb %}
+    <i class="fa fa-database"></i> 数据库管理 /
+    <a href="{% url 'mysql_cluster_list' %}">Mysql 集群 </a> /
+    <strong class="active">集群关联的 Mysql 实例</strong>
+{% endblock %}
+
+{% block body %} 
+
+<div class="col-sm-12">
+    <h2 style="text-align: center"><b>{{ cluster_name }}</b></h2>
+    <table class="table table-striped table-bordered table-hover" id="cluster_relate_instance_table">
+        <thead>
+            <tr>
+                <th class="text-center">实例名称</th>
+                <th class="text-center">实例 IP</th>
+                <th class="text-center">端口号</th>
+                <th class="text-center">主从标识</th>
+                <th class="text-center">备份标识</th>
+                <th class="text-center">创建时间</th>
+                <th class="text-center">最近修改时间</th>
+                <th class="text-center">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dbi in cluster_relate_instance_list %}
+            <tr class="gradeX">
+                <td class="text-center" style="vertical-align: middle;width: 10%"><strong>{{ dbi.name}}</strong></td>
+                <td class="text-center" style="vertical-align: middle">{{ dbi.ins_ip.private_ip }}</td>
+                <td class="text-center" style="vertical-align: middle">{{ dbi.port }}</td>
+                {% if dbi.role == 'master' %}
+                    <td class="text-center" style="vertical-align: middle">
+                        <span class="badge label-primary" style="padding-bottom: 7px;">
+                            {{ dbi.get_role_display }}
+                        </span>
+                    </td>
+                {% else %}
+                    <td class="text-center" style="vertical-align: middle">
+                        <span class="badge label-default" style="padding-bottom: 7px;">
+                            {{ dbi.get_role_display }}
+                        </span>
+                    </td>
+                {% endif %}
+                {% if dbi.backup == 'yes' %}
+                    <td class="text-center" style="vertical-align: middle">
+                        <span class="badge label-primary" style="padding-bottom: 7px;">
+                            {{ dbi.get_backup_display }}
+                        </span>
+                    </td>
+                {% else %}
+                    <td class="text-center" style="vertical-align: middle">
+                        <span class="badge label-default" style="padding-bottom: 7px;">
+                            {{ dbi.get_backup_display }}
+                        </span>
+                    </td>
+                {% endif %}
+                <td class="text-center" style="vertical-align: middle">{{ dbi.create_time|date:"Y-m-d H:i:s" }}</td>
+                <td class="text-center" style="vertical-align: middle">{{ dbi.last_update_time|date:"Y-m-d H:i:s" }}</td>
+                <td class="text-center" style="vertical-align: middle">
+                    <button data-id="{{ dbi.id }}" class="btn btn-sm btn-info instance_more_info_btn">更多信息</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!--更多信息模态框-->
+    <div id="InstanceMoreInfoModal"  class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span ariaa-hidden="true">&times;</span></button>
+                    <h3 class="modal-title">更多 Mysql 实例信息</h3>
+                </div> <!--modal-header end-->
+                <div class="modal-body">
+                    <form class="form-horizontal" id="InstanceMoreInfoForm">
+                        {% csrf_token %}
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="name" class="control-label text-right" style="width: 15%;">实例名称 <span class="red-fonts">*</span></label>
+                                <input name="name" id="name_info" type="text" class="form-control" aria-required="true" style="width: 80%;" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="scripts" class="control-label text-right" style="width: 15%;">启动脚本 <span class="red-fonts">*</span></label>
+                                &nbsp<input name="scripts" id="scripts_info" type="text" class="form-control" aria-required="true" style="width: 80%;" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="data_dir" class="control-label text-right" style="width: 15%;">数据目录 <span class="red-fonts">*</span></label>
+                                &nbsp<input name="data_dir" id="data_dir_info" type="text" class="form-control" aria-required="true" style="width: 80%;" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="backup_dir" class="control-label text-right" style="width: 15%;">备份目录 </label>
+                                &nbsp<input name="backup_dir" id="backup_dir_info" type="text" class="form-control" aria-required="true" style="width: 80%;" readonly>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary exit-btn" data-dismiss="modal">退出</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--更多信息结束-->
+
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script>
+
+<!--更多信息-->
+$(".instance_more_info_btn").click(function(){
+    var id = $(this).attr("data-id")
+    var url = "{% url 'mysql_instance_more_info' %}?id="+id
+    $.getJSON(url,function(data){
+         if(data.result==0){
+            data = data.dbi_more_info
+            $("#name_info").val(data.name)
+            $("#scripts_info").val(data.scripts)
+            $("#data_dir_info").val(data.data_dir)
+            $("#backup_dir_info").val(data.backup_dir)
+            $("#InstanceMoreInfoModal").modal("show")
+       }else{
+            swal("OH,My God",data.msg,"error")
+       };
+    })
+});
+<!--更多信息结束-->
+
+$("#cluster_relate_instance_table").dataTable({
+      "autoWidth":true,
+      "bDestroy":true,
+      "order": [[ 0, "asc" ]],
+      "bStateSave": true,
+      "sPaginationType": "full_numbers",
+      "language":{
+            "lengthMenu":"每页 _MENU_ 条记录",
+            "zeroRecords":"没有找到记录",
+            "sInfo": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 ),显示第 _START_ 至 _END_ 项(总共 _TOTAL_ 项)",
+            "infoEmpty": "无记录",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "sSearch": "搜索:",
+            "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "上一页",
+                    "sNext": "下一页",
+                    "sLast": "末页"
+            }
+      }
+  })
+
+</script>
+
+{% endblock %}

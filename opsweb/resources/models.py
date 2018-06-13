@@ -188,11 +188,11 @@ class FirewallRulesModel(models.Model):
     d_port = models.CharField("目标端口", max_length=100, null=False)
     protocol = models.CharField("网络协议", max_length=100, null=False)
     app_name = models.CharField("app名称", max_length=50, null=True,blank=True)
-    applicant = models.CharField("审批人", max_length=50, null=False,blank=True,default='watson.wu')
+    applicant = models.CharField("审批人", max_length=50, null=False)
     create_time = models.DateField("创建时间",auto_now_add=True,null=True)
-    expiry_date = models.CharField("过期时间", max_length=50, null=False,blank=True,default='permanent')
+    expiry_date = models.CharField("过期时间", max_length=50, null=False)
     commit_by = models.CharField("提交人", max_length=100, null=False)
-    action = models.CharField("执行的动作",max_length=50, null=False,blank=True,default='New Add')
+    action = models.CharField("执行的动作",max_length=50, null=False)
     comment = models.CharField("备注", max_length=1000, null=False)
     update_user = models.CharField("修改人", max_length=100, null=True)
     last_update_time = models.DateTimeField("最后一次更新时间",auto_now=True,null=True)
@@ -205,4 +205,3 @@ class FirewallRulesModel(models.Model):
         db_table = "firewall_rules"
         ordering = ["-id"]
         unique_together = ('s_ip', 'd_ip','d_port','protocol')
-
