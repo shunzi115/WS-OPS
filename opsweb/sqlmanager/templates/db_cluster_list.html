@@ -46,23 +46,7 @@
                 <td class="text-center" style="vertical-align: middle">{{ dbc.last_update_time|date:"Y-m-d H:i:s" }}</td>
                 <td class="text-center" sdata-idtyle="vertical-align: middle">
                     <button data-id="{{ dbc.id }}" class="btn btn-sm btn-primary db_cluster_change_btn">编辑</button>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1">
-                            关联信息<span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                            <li>
-                                <a href="{% url 'mysql_cluster_relate_instance' %}?id={{ dbc.id }}">
-                                    关联实例
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{% url 'mysql_cluster_relate_dbs' %}?id={{ dbc.id }}">
-                                    关联库
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                    <a href="{% url 'mysql_cluster_relate' %}?id={{ dbc.id }}" class="btn btn-sm btn-info" >关联信息</a>
                     {% if user.is_superuser == 1 %}
                         <button data-id="{{ dbc.id }}" data-del="{{ dbc.name }}" class="btn btn-sm btn-danger del-btn">删除</button>
                     {% endif %}

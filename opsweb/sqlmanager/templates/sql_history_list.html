@@ -79,12 +79,10 @@
 datatable_list()
 
 function datatable_list(){
-  $("#my_sql_already_exec").dataTable().destroy();
   $("#my_sql_already_exec").dataTable({
       "autoWidth":true,
       "ordering": false,
       "bDestroy":true,
-      "order": [[ 0, "desc" ]],
       "bStateSave": true,
       "sPaginationType": "full_numbers",
       "language":{

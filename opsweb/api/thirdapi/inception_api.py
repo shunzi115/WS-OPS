@@ -1,7 +1,7 @@
 
 import pymysql
 import time
-from sqlmanager.models import SQLCheckTmpModel,SQLExecDetailModel
+from sqlmanager.models import SQLCheckTmpModel,SQLExecDetailModel,InceptionBackgroundModel
 from dashboard.utils.wslog import wslog_error,wslog_info
 
 class InceptionApi(object):
@@ -13,12 +13,34 @@ class InceptionApi(object):
         self.port = port
         self.sql_str = sql_str
 
+    def get_inc_server_obj(self):
+        ret = {"result": 0, "sql_err": 0}
+
+        try:
+            inc_server_obj = InceptionBackgroundModel.objects.get(inc_status__exact='active')
+        except Exception as e:
+            ret["result"] = 1
+            ret["msg"] = "获取 Inception 服务器信息失败，错误信息: %s" % (e.args)
+            wslog_error().error("获取 Inception 服务器信息失败，错误信息: %s" % (e.args))
+        else:
+            ret["inc_server_obj"] = inc_server_obj
+
+        return ret
+
     ''' 连接 inception 服务端 '''
     def inception_server(self,sql):
-        ret = {"result":0,"sql_err":0}
+        ret = self.get_inc_server_obj()
+
+        if ret["result"] == 1:
+            wslog_error().error(ret["msg"])
+            return ret
+
+        inc_server_obj = ret["inc_server_obj"]
+        del ret["inc_server_obj"]
+
         try:
             ''' 连接 inception 服务端 '''
-            conn = pymysql.connect(host='172.17.134.34',user='',passwd='',db='',port=6669,charset='utf8')
+            conn = pymysql.connect(host=inc_server_obj.inc_ip,user='',passwd='',db='',port=int(inc_server_obj.inc_port),charset='utf8')
             cur = conn.cursor()
             cur.execute(sql)
             inc_result = cur.fetchall()
@@ -40,9 +62,23 @@ class InceptionApi(object):
 
     ''' 连接 inception 备份服务器 '''
     def inception_backup_server(self,sql):
-        ret = {"result":0}
+        ret = self.get_inc_server_obj()
+
+        if ret["result"] == 1:
+            wslog_error().error(ret["msg"])
+            return ret
+
+        inc_server_obj = ret["inc_server_obj"]
+
+        del ret["inc_server_obj"]
+
         try:
-            conn = pymysql.connect(host=self.host,user=self.user,passwd=self.password,db=self.db_name,port=self.port,charset='utf8')
+            conn = pymysql.connect(host=inc_server_obj.inc_backup_ip,\
+                                   user=inc_server_obj.inc_backup_username,\
+                                   passwd=inc_server_obj.inc_backup_password,\
+                                   db=self.db_name,\
+                                   port=int(inc_server_obj.inc_backup_port),\
+                                   charset='utf8')
             cur = conn.cursor()
             cur.execute(sql)
             backup_select_result = cur.fetchall()
@@ -70,6 +106,7 @@ class InceptionApi(object):
         if ret["result"] == 1:
             wslog_error().error(ret["msg"])
             return ret
+
         inc_check_result = ret["inc_result"]
         sql_check_uuid = round(time.time() * 1000000)
 
@@ -81,8 +118,8 @@ class InceptionApi(object):
                     sct_obj.save()
                 except Exception as e:
                     ret["result"] = 1
-                    ret["msg"] = "SQLCheckTmpModel 保存对象失败,错误信息: %s" %(e.args)
-                    wslog_error().error("SQLCheckTmpModel 保存对象失败,错误信息: %s" %(e.args))
+                    ret["msg"] = "SQLCheckTmpModel 保存对象失败,错误信息: %s" %(e)
+                    wslog_error().error("SQLCheckTmpModel 保存对象失败,错误信息: %s" %(e))
                     break
             else:
                 sql = s[5].split(";")[0]
@@ -115,12 +152,13 @@ class InceptionApi(object):
         if ret["result"] == 1:
             wslog_error().error(ret["msg"])
             return ret
+
         inc_check_result = ret["inc_result"]
         del ret["inc_result"]
 
         for s in inc_check_result[1:]:
             try:
-                se_obj = SQLExecDetailModel(**{"sql":s[5]+';',"sql_block":sql_obj,"check_affected_rows": s[6]})
+                se_obj = SQLExecDetailModel(**{"sql":s[5]+';',"sql_block":sql_obj,"check_affected_rows": s[6],"sql_sha1": s[10]})
                 se_obj.save()
             except Exception as e:
                 ret["result"] = 1
@@ -136,6 +174,18 @@ class InceptionApi(object):
                 use %s;
                 %s
                 inception_magic_commit;''' % (self.user, self.password, self.host, self.port, self.db_name, self.sql_str)
+
+        return self.inception_server(sql)
+
+    ''' 通过sql_sha1 获取使用osc执行 alter 的执行进度 '''
+    def inception_get_osc_process(self,sql_sha1):
+        sql = "inception get osc_percent '%s';" %(sql_sha1)
+
+        return self.inception_server(sql)
+
+    ''' 通过sql_sha1 停止正在使用osc执行的 alter 语句 '''
+    def inception_stop_osc(self, sql_sha1):
+        sql = "inception stop alter '%s';" % (sql_sha1)
 
         return self.inception_server(sql)
 

@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from sqlmanager.models import DBInstanceModel,DBClusterModel,DBModel,SQLExecDetailModel,SQLDetailModel
+from sqlmanager.models import DBInstanceModel,DBClusterModel,DBModel,SQLExecDetailModel,SQLDetailModel,InceptionBackgroundModel,InceptionDangerSQLModel
 import os
 
 class DBClusterAddForm(ModelForm):
@@ -175,3 +175,29 @@ class SQLDetailAddForm(ModelForm):
                 return cleaned_data
             else:
                 raise forms.ValidationError("必须在左侧 '填写SQL' 或 '上传SQL附件'...")
+
+class InceptionBackgroundAddForm(ModelForm):
+    class Meta:
+        model = InceptionBackgroundModel
+        fields = ["inc_ip","inc_port","inc_backup_ip","inc_backup_port","inc_backup_username","inc_backup_password","inc_status"]
+
+    def clean_inc_port(self):
+        inc_port = self.cleaned_data.get("inc_port")
+        if int(inc_port) >= 65535 or int(inc_port) < 1:
+            raise forms.ValidationError("端口必须在 1-65535 之间")
+        return inc_port
+
+    def clean_inc_status(self):
+        inc_status = self.cleaned_data.get("inc_status")
+        if inc_status == 'active' and InceptionBackgroundModel.objects.get(inc_status__exact="active"):
+            raise forms.ValidationError("Inception 只能存在一个处于 '激活' 状态的服务器")
+        return inc_status
+
+class InceptionBackgroundChangeForm(InceptionBackgroundAddForm):
+    class Meta(InceptionBackgroundAddForm.Meta):
+        exclude = ["inc_port","inc_status"]
+
+class InceptionDangerSQLAddForm(ModelForm):
+    class Meta:
+        model = InceptionDangerSQLModel
+        fields = ["sql_keyword","status"]

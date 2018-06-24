@@ -1,5 +1,7 @@
 {% extends "public/layout.html" %}
 
+{% load myfilter_sqlmanager %}
+
 {% block breadcrumb %}
 数据库管理 / <strong class="active">SQL执行结果</strong>
 {% endblock %}
@@ -19,6 +21,7 @@
                 <th class="text-center">备份状态</th>
                 <th class="text-center">执行花费时间(s)</th>
                 <th class="text-center col-sm-2">错误信息</th>
+                <th class="text-center col-sm-2">OSC执行进度</th>
             </tr>
         </thead>
         <tbody>
@@ -42,11 +45,26 @@
                     <td class="text-center" style="vertical-align: middle"><span class="badge label-warning">{{ s.backup_result }}</span></td>
                 {% endif %}
                 <td class="text-center" style="vertical-align: middle">{{ s.execute_time }}</td>
-                {% if s.errormessage != 'None' %}
+                {% if s.errormessage and s.errormessage != 'None' %}
                     <td class="text-center" style="vertical-align: middle;color: red;">{{ s.errormessage }}</td>
                 {% else %}
                     <td class="text-center" style="vertical-align: middle"></td>
                 {% endif %}
+                {% if s.sql_sha1 %}
+                    <td class="text-center" style="vertical-align: middle">
+                        <div class="progress" style="margin-bottom: 5px;">
+                            <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ s|get_osc_process }}%;">
+                                {{ s|get_osc_process }}%
+                            </div>
+                        </div>
+{#                        {% if s.exec_result == 'noexec' %}#}
+                            <button class="btn btn-sm btn-danger osc_stop_btn" data-id="{{ s.id }}">中止OSC</button>
+{#                        {% endif %}#}
+                    </td>
+                {% else %}
+                    <td class="text-center" style="vertical-align: middle"></td>
+                {% endif %}
+
             </tr>
             {% endfor %}
         </tbody>
@@ -106,16 +124,40 @@
 
 {% block js %}
 <script>
+
+<!-- 继续执行 -->
 $("#sql_exec_continue").click(function(){
     var s_id = $(this).attr("s-id")
     var s_exec_failed_id = $(this).attr("s-exec-id")
     var url = "{% url 'inception_sql_exec' %}"
     $.post(url,{"id":s_id,"s_exec_failed_id":s_exec_failed_id},function(data){
         if(data.result==0){
+            location.reload()
+        }else{
             swal({
-                title:"Good",
+                title:"OH,My God",
                 text:data.msg,
-                type:'success',
+                type:'error',
+                confirmButtonText:"确定"
+                },
+                function(){
+                    location.reload()
+                }
+            )
+        }
+    });
+    return false;
+});
+
+$(".osc_stop_btn").click(function(){
+    var id = $(this).attr("data-id")
+    var url = "{% url 'inception_stop_osc' %}"
+    $.post(url,{"id":id },function(data){
+        if(data.result==0){
+            swal({
+                title:"OH,My God",
+                text:data.msg,
+                type:'error',
                 confirmButtonText:"确定"
                 },
                 function(){

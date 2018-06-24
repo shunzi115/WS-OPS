@@ -109,27 +109,9 @@ $(".sql_exec").click(function(){
     var url = "{% url 'inception_sql_exec' %}"
     $.post(url,{"id":s_id},function(data){
         if(data.result==0){
-            swal({
-                title:"Good",
-                text:data.msg,
-                type:'success',
-                confirmButtonText:"确定"
-                },
-                function(){
-                    location.href = "{% url 'inception_sql_exec_result' %}?id=" + s_id
-                }
-            )
+            location.href = "{% url 'inception_sql_exec_result' %}?id=" + s_id
         }else{
-            swal({
-                title:"OH,My God",
-                text:data.msg,
-                type:'error',
-                confirmButtonText:"确定"
-                },
-                function(){
-                    location.href = "{% url 'inception_sql_exec_result' %}?id=" + s_id
-                }
-            )
+            swal("OH,My God",data.msg,"error")
         }
     });
     return false;

@@ -23,13 +23,6 @@ from sqlmanager.models import DBModel,SQLDetailModel,SQLCheckTmpModel
 from sqlmanager.inception_relate import sql_check_func
 from sqlmanager.tasks import SQLCheckAndSplit
 
-#0418 add
-from dbmanager.models import OnlineDdlJob, SqlProduct, Cluster, Instance
-from dbmanager.tasks import sync_workform_sql
-import sqlparse
-from dbmanager.tasks import execute_onlineddl_job
-
-
 oneday = timedelta(days=30)
 days_30_ago = datetime.now() - oneday
 
@@ -597,10 +590,7 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
             af_obj.result = workform_approval_form.cleaned_data.get("result")
             af_obj.approve_note = workform_approval_form.cleaned_data.get("approve_note")
             af_obj.approval_time = datetime.now().strftime("%Y-%m-%d %X")
-            af_obj.save(update_fields=["approver","result","approve_note","approval_time"])   
-            #执行SQL
-            if wf_obj.process_step_id == 3 and wf_obj.sql == 'yes'  and sql_auto_execute == "1":
-                execute_onlineddl_job.delay(wf_obj.id)
+            af_obj.save(update_fields=["approver","result","approve_note","approval_time"])
         except Exception as e:
             ret["result"] = 1
             ret["msg"] = "审批失败，更新 ApprovalFormModel 模型对象 workform_id: %s 流程进度: %s 的工单 审批信息失败,请联系运维同事" %(wf_id,process_step_id)

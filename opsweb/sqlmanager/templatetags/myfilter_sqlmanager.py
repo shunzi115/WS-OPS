@@ -1,5 +1,7 @@
 from django import template
 from django.contrib.auth.models import Group
+from api.thirdapi.inception_api import InceptionApi
+import json
 
 register = template.Library()
 
@@ -28,3 +30,23 @@ def get_master_ip(value):
         db_master_ip = ''
 
     return db_master_ip
+
+@register.filter(name="get_osc_process")
+def get_osc_process(value):
+    s_exec_obj = value
+    if not s_exec_obj.sql_sha1 or s_exec_obj.sql_block.sqlexecdetailmodel_set.filter(id__lt=s_exec_obj.id, exec_result__exact='noexec'):
+        return 0
+    inc_obj = InceptionApi("","","","",sql_str="")
+    ret = inc_obj.inception_get_osc_process(s_exec_obj.sql_sha1)
+
+    if ret["result"] == 1:
+        return 0
+
+    if ret["inc_result"]:
+        inc_osc_result = ret["inc_result"][0]
+        osc_percent = inc_osc_result[3]
+        # osc_remain_time = inc_osc_result["REMAINTIME"]
+        return osc_percent
+    else:
+        return 100
+

@@ -16,10 +16,7 @@ urlpatterns = [
         url(r'^add/$',views.DBClusterAddView.as_view(),name="mysql_cluster_add"),
         url(r'^change/$',views.DBClusterChangeView.as_view(),name="mysql_cluster_change"),
         url(r'^delete/$',views.DBClusterDeleteView.as_view(),name="mysql_cluster_delete"),
-        url(r'^relate/',include([
-            url(r'^instance/$',views.DBClusterRelateInstanceListView.as_view(),name="mysql_cluster_relate_instance"),
-            url(r'^dbs/$',views.DBClusterRelateDBsListView.as_view(),name="mysql_cluster_relate_dbs"),
-        ])),
+        url(r'^relate/',views.DBClusterRelateView.as_view(),name="mysql_cluster_relate"),
     ])),
 
     url(r'^mysql/instance/',include([
@@ -43,5 +40,17 @@ urlpatterns = [
         url(r'^exec/result/$',inception_relate.InceptionSqlExecResultView.as_view(),name="inception_sql_exec_result"),
         url(r'^rollback/$',inception_relate.InceptionSqlRollBackupView.as_view(),name="inception_sql_rollback"),
         url(r'^rollback/result/$',inception_relate.InceptionSqlRollbackResultView.as_view(),name="inception_sql_rollback_result"),
+        url(r'^stop/osc/$',inception_relate.InceptionStopOscView.as_view(),name="inception_stop_osc"),
+    ])),
+
+    url(r'^background/',include([
+        url(r'^list/$',inception_relate.InceptionBackgroundManageView.as_view(),name="inc_background_manage"),
+        url(r'^change/$',inception_relate.InceptionBackgroundManageChangeView.as_view(),name="inc_background_manage_change"),
+    ])),
+
+    url(r'^danger/sql',include([
+        url(r'^add/$',inception_relate.InceptionDangerSQLAddView.as_view(),name="inception_danger_sql_add"),
+        url(r'^change/$',inception_relate.InceptionDangerSQLChangeView.as_view(),name="inception_danger_sql_change"),
+        url(r'^delete/$',inception_relate.InceptionDangerSQLDeleteView.as_view(),name="inception_danger_sql_delete"),
     ])),
 ]

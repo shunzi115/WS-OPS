@@ -166,26 +166,15 @@ class DBClusterDeleteView(LoginRequiredMixin,View):
         return JsonResponse(ret)
 
 '''集群关联Mysql实例列表'''
-class DBClusterRelateInstanceListView(LoginRequiredMixin,TemplateView):
-    template_name = "db_cluster_relate_instance_list.html"
+class DBClusterRelateView(LoginRequiredMixin,TemplateView):
+    template_name = "db_cluster_relate.html"
 
     def get_context_data(self, **kwargs):
-        context = super(DBClusterRelateInstanceListView, self).get_context_data(**kwargs)
+        context = super(DBClusterRelateView, self).get_context_data(**kwargs)
         dbc_id = self.request.GET.get("id")
         dbc_obj = DBClusterModel.objects.get(id__exact=dbc_id)
         context["cluster_name"] = dbc_obj.name
         context["cluster_relate_instance_list"] = dbc_obj.dbinstancemodel_set.all()
-        return context
-
-'''集群关联Mysql库列表'''
-class DBClusterRelateDBsListView(LoginRequiredMixin,TemplateView):
-    template_name = "db_cluster_relate_dbs_list.html"
-
-    def get_context_data(self, **kwargs):
-        context = super(DBClusterRelateDBsListView, self).get_context_data(**kwargs)
-        dbc_id = self.request.GET.get("id")
-        dbc_obj = DBClusterModel.objects.get(id__exact=dbc_id)
-        context["cluster_name"] = dbc_obj.name
         context["cluster_relate_dbs_list"] = dbc_obj.dbmodel_set.all()
         return context
 
