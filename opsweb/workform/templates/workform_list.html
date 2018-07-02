@@ -82,7 +82,7 @@
                     {% if pub.type.name == 'firewall_require' %}
                         <button class="btn btn-sm btn-info"><a target='_blank' href="{% url 'firewall_workform_detail' %}?id={{ pub.id }}" style="color: #f4f8fa">详情</a></button>
                     {% else %}
-                        <button data-id="{{ pub.id }}" class="btn btn-sm btn-info workform_detail">详情</button>
+                        <button data-id="{{ pub.id }}" class="btn btn-sm btn-info workform_detail">更过信息</button>
                     {% endif %}
                     <button data-id="{{ pub.id }}" class="btn btn-sm btn-primary process_trace">流程跟踪</button>
                     {% if user.is_superuser == 1 %}
@@ -137,105 +137,61 @@
     <!-- 分页结束 -->    
 
 
-    <!-- 详情模态框 -->
-    <div class="modal fade"  id ="WorkFormDetailModal">   
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">工单信息</h4>
-                </div>
-                <div class="modal-body">
-                    <form id="WorkFormDetailForm" class="Formvalid form-horizontal nice-validator n-yellow" novalidate="novalidate">
-                        {% csrf_token %}
-                        <input type="hidden" name="id" id='id'>
+    <!-- 更多信息模态框 -->
+    <div class="modal fade"  id ="MyWorkFormDetailModal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">工单更多信息</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="MyWorkFormDetailForm" class="Formvalid form-horizontal nice-validator n-yellow" novalidate="novalidate">
+                            {% csrf_token %}
+                            <input type="hidden" name="id" id='id'>
 
-                        <div class="form-inline row">  
-                            <div class="form-group col-sm-12">
-                                <label for="title" style="width:15%" class="control-label text-right">工单标题 <span class="red-fonts">*&nbsp</span></label>
-                                <input id='title' name="title" style="width: 79%;" type="text" class="form-control" aria-required="true" readonly>
-                            </div>
-                        </div>
-
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-inline row">
-                            <div class="form-group col-sm-6">
-                                <label for="name" style="width:30%" class="control-label text-right ">工单类型 <span class="red-fonts ">*&nbsp</span></label>
-                                &nbsp<input id='type' name="type" style="width:65%" type="text" class="form-control" aria-required="true" readonly>
-                            </div>
-                            <div class="form-group col-sm-6">
-                                <label for="level" style="width:30%" class="control-label text-right">紧急程度 &nbsp</label>
-                                <input id='level' name="level" style="width:65%" type="text" class="form-control" aria-required="true" readonly>
-                            </div>
-                        </div>
-
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-inline row">
-                            <div class="form-group col-sm-6">
-                                <label for="applicant" style="width:30%" class="control-label text-right">申请人 <span class="red-fonts">*&nbsp</span></label>
-                                &nbsp<input id="applicant" name="applicant" style="width:65%" type="text" class="form-control" aria-required="true" readonly>
-                            </div>
-                            <div class="form-group col-sm-6">
-                                <label for="status" style="width:30%" class="control-label text-right">工单状态 &nbsp</label>
-                                <input id="status" name="status" style="width:65%" type="text" class="form-control" aria-required="true" readonly>
-                            </div>
-                        </div>
-
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-inline row" id="module_name_div">  
-                            <div class="form-group col-sm-12">
-                                <label for="module_name" style="width:15%" class="control-label text-right">模块名称 <span class="red-fonts">*&nbsp</span></label>
-                                <input id='module_name' name="module_name" style="width: 79%;" type="text" class="form-control" aria-required="true" readonly>
-                            </div>
-                        </div>
-
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-inline row">  
-                            <div class="form-group col-sm-12">
-                                <label for="detail" style="width:15%" class="control-label text-right">工单说明 <span class="red-fonts">*&nbsp</span></label>
-                                <textarea id='detail' name="detail" style="width: 79%;" class="form-control" aria-required="true" rows="5"readonly>
-                                </textarea>
-                            </div>
-                        </div>
-                
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-inline row" id="sql_detail_div">
-                            <div class="form-group col-sm-12">
-                                <label for="sql_detail" style="width:15%" class="control-label text-right">SQL语句 &nbsp</label>
-                                <textarea id="sql_detail" name="sql_detail" style="width:79%" class="form-control" aria-required="true" rows="5" readonly>
-                                </textarea>
-                            </div>
-                        </div>
-
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-inline row" id="sql_file_url_div">
-                            <div class="form-group col-sm-12">
-                                <label for="sql_file_url" style="width:15%" class="control-label text-right">SQL附件 &nbsp</label>
-                                <div style="width:79%" id="sql_file_url">
+                            <div class="form-inline row">
+                                <div class="form-group col-sm-12">
+                                    <label for="title" style="width:15%" class="control-label text-right">工单标题 <span class="red-fonts">*&nbsp</span></label>
+                                    <input id='title' name="title" style="width: 79%;" type="text" class="form-control" aria-required="true" readonly>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-inline row">
-                            <div class="form-group col-sm-6">
-                                <label for="create_time" style="width:30%" class="control-label text-right">创建时间 &nbsp</label>
-                                &nbsp<input id='create_time' name="create_time" style="width:65%" type="text" class="form-control" aria-required="true" readonly>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-inline row">
+                                <div class="form-group col-sm-12">
+                                    <label for="detail" style="width:15%" class="control-label text-right">工单说明 <span class="red-fonts">*&nbsp</span></label>
+                                    <textarea id='detail' name="detail" style="width: 79%;" class="form-control" aria-required="true" rows="5" readonly>
+                                    </textarea>
+                                </div>
                             </div>
 
-                            <div class="form-group col-sm-6">
-                                <label for="complete_time" style="width:30%" class="control-label text-right">完成时间 &nbsp</label>
-                                <input id='complete_time' name="complete_time" style="width:65%" type="text" class="form-control" aria-required="true" readonly>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-inline row">
+                                <div class="form-group col-sm-6">
+                                    <label for="create_time" style="width:30%" class="control-label text-right">创建时间 &nbsp</label>
+                                    &nbsp<input id='create_time' name="create_time" style="width:65%" type="text" class="form-control" aria-required="true" readonly>
+                                </div>
+
+                                <div class="form-group col-sm-6">
+                                    <label for="complete_time" style="width:30%" class="control-label text-right">完成时间 &nbsp</label>
+                                    <input id='complete_time' name="complete_time" style="width:65%" type="text" class="form-control" aria-required="true" readonly>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary exit-btn" data-dismiss="modal">退出</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+                        </form>
+                    </div>
+                    <p style="font-size: 4px;text-align: center">
+                        <i class="fa fa-exclamation-circle"></i>
+                        对于包含<strong style="color:red">SQL</strong>的工单,如果SQL未执行则<strong style="color:red">SQL详情</strong>展示的是<strong><i> SQL检查 </i></strong>结果，否则是<strong><i> SQL执行后  </i></strong>的结果
+                    </p>
+                    <div class="modal-footer">
+                        <a href="#" target="_blank" id="mysql_info" class="btn btn-info">SQL 详情</a>
+                        <button class="btn btn-warning exit-btn" data-dismiss="modal">退出</button>
+                    </div>
+                </div><!-- .modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
 
     <!-- 流程跟踪模态框 -->
     <div class="modal fade" id='ProcessTraceModal'>
@@ -322,62 +278,35 @@
 <script>
 
 <!--详情-->
-$(".workform_detail").click(function(){
-    $("#sql_file_url_div").removeAttr('style')
-    $("#sql_detail_div").removeAttr('style')
-    $("#module_name_div").removeAttr('style')
-    $("#sql_file_url p").remove()
+$(document).on("click",".workform_detail",function(){
+    $("#mysql_info").attr('style','display:none')
     var id = $(this).attr("data-id")
     var url = "{% url 'workform_info' %}?id="+id
     $.getJSON(url,function(data){
         if(data.result==0){
             data = data.wf_info
+            console.log(data)
             $("#id").val(data.id)
             $("#title").val(data.title)
             $("#detail").val(data.detail)
-            $("#type").val(data.type_id)
-            if(data.type=='publish'){
-                $("#module_name").val(data.module_name)
-            }else if(data.type=='rollback'){
-                $("#module_name").val(data.module_name)
-            }else{
-                $("#module_name").val('')
-                $("#module_name_div").attr('style','display:none')
-            };
-            $("#level").val(data.level)
-            $("#status").val(data.status)
-            $("#applicant").val(data.applicant)
             $("#create_time").val(data.create_time)
             $("#complete_time").val(data.complete_time)
+            <!-- 如果 存在SQL,那么 sql执行前后，这个模态框下的 'sql 详情'按钮 展示的内容是不一样的 -->
             if(data.sql=='yes'){
-                if(data.sql_file_url){
-                    var files=data.sql_file_url.split(';')
-                    $.each(files,function(k,v){
-                        var file_name_list=v.split('/')
-                        $('#sql_file_url').append($("<p style='text-indent: 20%' />").html(file_name_list.pop() + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp").append($("<a target='_blank' />").attr("href",v).text("预览")));
-                    });
+                $("#mysql_info").removeAttr('style')
+                if(data.sql_exec_if==0){
+                    $("#mysql_info").attr("href","{% url 'workform_sql_exec_result' %}?id="+data.id)
                 }else{
-                    $("#sql_file_url_div").attr('style','display:none')
+                    $("#mysql_info").attr("href","{% url 'workform_sql_check' %}?id="+data.id)
                 };
-
-                if(data.sql_detail){
-                    $("#sql_detail").val(data.sql_detail)
-                }else{
-                    $("#sql_detail").val('')
-                    $("#sql_detail_div").attr('style','display:none')
-                };
-
-            }else if(data.sql=='no'){
-                $("#sql_detail").val('')
-                $("#sql_file_url_div").attr('style','display:none')
-                $("#sql_detail_div").attr('style','display:none')
             };
-            $("#WorkFormDetailModal").modal("show")
+            $("#MyWorkFormDetailModal").modal("show")
         }else{
             swal("OH,My God",data.msg,"error")
         }
     });
 });
+<!-- 结束 -->
 
 <!--流程跟踪-->
 $(document).on("click",".process_trace",function(){
@@ -419,7 +348,6 @@ $(document).on("click",".process_trace",function(){
     return false;
 });
 
-
 $(document).on("click",".process_step_trace",function(){
     var id = $(this).attr("data-id")
     var url = "{% url 'process_step_approval' %}?id=" + id
@@ -436,6 +364,7 @@ $(document).on("click",".process_step_trace",function(){
         }
     });
 });
+<!-- 结束 -->
 
 <!--删除-->
 $(".del-btn").click(function(){
@@ -467,6 +396,7 @@ $(".del-sure").click(function(){
    });
    return false;
 });
+<!-- 结束 -->
 
 </script>
 

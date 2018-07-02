@@ -80,7 +80,6 @@ Dashboard / <strong class="active">概览</strong>
         </div>
     </div>
 </div>
-
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
@@ -102,12 +101,30 @@ Dashboard / <strong class="active">概览</strong>
     </div>
 </div>
 
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="font-size:18px">
+                <i class="fa fa-database"></i> 数据库操作周统计
+            </div>
+            <div class="panel-body">
+                <div id="sql_chart_by_db" style="height:600px;width:100%;margin: auto;"></div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
 
 {% block js %}
 
 <script>
+
+$('#wrapper').showLoading()
+$("#loading-indicator-wrapper").html("<p style='color:#00c0ef;font-size: 25px'>使劲加载中，请稍等 ......</p>")
+setTimeout(function() {
+    $('#wrapper').hideLoading()
+}, 3000)
 
 $.getJSON("{% url 'get_server_statistic' %}",function(data){
     $("#server_count").text(data.count)
@@ -146,7 +163,6 @@ var option = {
     ]
 };
 
-
 WorkFormChartByType.setOption(option);
 WorkFormChartByReason.setOption(option);
 WorkFormChartByModule.setOption(option);
@@ -162,7 +178,6 @@ WorkFormChartByType.setOption({
         },
     ]
 });
-
 WorkFormChartByReason.setOption({
     title:{
         text: '发布/SQL上线原因统计',
@@ -174,7 +189,6 @@ WorkFormChartByReason.setOption({
         },
     ]
 });
-
 WorkFormChartByModule.setOption({
     title:{
         text: '发布模块TOP10统计',
@@ -186,5 +200,67 @@ WorkFormChartByModule.setOption({
         },
     ]
 });
+
+var SQLChartByDB = echarts.init(document.getElementById('sql_chart_by_db'),'light');
+
+{#var sql_data={name:"数据库更新 TOP 10",children:[{name:"trade_db",children: [{name: "update", value: 3938},{name: "alter", value: 3812},{name: "delete", value: 6714},{name: "insert", value: 743}]},{name:"user_db",children: [{name: "update", value: 3938},{name: "alter", value: 3812},{name: "delete", value: 6714},{name: "insert", value: 743}]},{name:"coupon_db",children: [{name: "update", value: 3938},{name: "alter", value: 3812},{name: "delete", value: 6714},{name: "insert", value: 743}]},{name:"coupon_db",children: [{name: "update", value: 3938},{name: "alter", value: 3812},{name: "delete", value: 6714},{name: "insert", value: 743}]},{name:"coupon_db",children: [{name: "update", value: 3938},{name: "alter", value: 3812},{name: "delete", value: 6714},{name: "insert", value: 743}]},{name:"coupon_db",children: [{name: "update", value: 3938},{name: "alter", value: 3812},{name: "delete", value: 6714},{name: "insert", value: 743}]},{name:"coupon_db",children: [{name: "update", value: 3938},{name: "alter", value: 3812},{name: "delete", value: 6714},{name: "insert", value: 743}]},{name:"coupon_db",children: [{name: "update", value: 3938},{name: "alter", value: 3812},{name: "delete", value: 6714},{name: "insert", value: 743}]},{name:"coupon_db",children: [{name: "update", value: 3938},{name: "alter", value: 3812},{name: "delete", value: 6714},{name: "insert", value: 743}]},{name:"coupon_db",children: [{name: "update", value: 3938},{name: "alter", value: 3812},{name: "delete", value: 6714},{name: "insert", value: 743}]}]}#}
+
+
+var sql_option = {
+    {#backgroundColor: "#0c1b3e",#}
+    backgroundColor: "#f7f8f9",
+    tooltip: {
+        trigger: 'item',
+        triggerOn: 'mousemove'
+    },
+    series:[
+        {
+            type: 'tree',
+            data: [ {{ db_type_echart_data |safe }} ],
+            left: '2%',
+            right: '2%',
+            top: '25%',
+            bottom: '8%',
+            symbol: 'emptyCircle',
+            orient: 'BT',
+            expandAndCollapse: true,
+            label: {
+                    position: 'bottom',
+                    distance: 10,
+                    verticalAlign: 'middle',
+                    align: 'middle',
+                    {#color: "#ffffff",#}
+                    color: "blue",
+                    fontSize: "20",
+                    formatter: function(params){
+                            return params.value? params.value + ' - ' + params.name :params.name ;
+                        }
+            },
+            leaves: {
+                label: {
+                        position: 'top',
+                        distance: 10,
+                        verticalAlign: 'middle',
+                        rotate: 90,
+                        align: 'left',
+                        fontSize: "15",
+                        {#color: '#ff4343',#}
+                        color: '#1985f1',
+                }
+            },
+
+            lineStyle: {
+                color: "#99da69",
+            },
+
+            animationDurationUpdate: 750
+        }
+    ]
+};
+
+SQLChartByDB.setOption(sql_option)
+
+
+
 </script>
 {% endblock %}

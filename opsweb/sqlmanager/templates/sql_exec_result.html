@@ -57,9 +57,9 @@
                                 {{ s|get_osc_process }}%
                             </div>
                         </div>
-{#                        {% if s.exec_result == 'noexec' %}#}
+                        {% if s.exec_result == 'noexec' %}
                             <button class="btn btn-sm btn-danger osc_stop_btn" data-id="{{ s.id }}">中止OSC</button>
-{#                        {% endif %}#}
+                        {% endif %}
                     </td>
                 {% else %}
                     <td class="text-center" style="vertical-align: middle"></td>
@@ -149,6 +149,7 @@ $("#sql_exec_continue").click(function(){
     return false;
 });
 
+<!-- 中止 OSC -->
 $(".osc_stop_btn").click(function(){
     var id = $(this).attr("data-id")
     var url = "{% url 'inception_stop_osc' %}"

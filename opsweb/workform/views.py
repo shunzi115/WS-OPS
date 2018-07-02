@@ -188,7 +188,74 @@ class PubWorkFormAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView
         context["sql"] = dict(WorkFormModel.SQL_CHOICES)
         context["level"] = dict(WorkFormModel.LEVEL_CHOICES)
         context["reason"] = dict(WorkFormModel.REASON_CHOICES)
+        context["db_online_list"] = list(DBModel.objects.filter(cluster_name__env__exact='online').values("id", "name").distinct())
+        context["db_gray_list"] = list(DBModel.objects.filter(cluster_name__env__exact='gray').values("id", "name").distinct())
         return context
+
+    def post(self,request):
+        time_begin = int(round(time.time() * 1000))
+        ret = {"result":0}
+        user_obj = request.user
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'添加 workform 模型对象'的权限,请联系运维!"
+            return JsonResponse(ret)
+
+        workform_type = request.POST.get("type", None)
+
+        if not workform_type:
+            ret["result"] = 1
+            ret["msg"] = "工单必须选择一个类型"
+            return JsonResponse(ret)
+
+        workform_add_form = PubWorkFormAddForm(request.POST)
+        print("request_post: ",request.POST)
+
+        ret = create_workform_obj(workform_type, workform_add_form, user_obj, ret)
+        if ret["result"] == 1:
+            return  JsonResponse(ret)
+
+        workform_obj = ret["workform_obj"]
+        del ret["workform_obj"]
+
+        sql_obj_id = request.POST.get("sql_obj_list")
+
+        if sql_obj_id:
+            try:
+                sql_obj_id_list = sql_obj_id.split(";")
+                sql_obj_list = [SQLDetailModel.objects.get(id__exact=sql_id) for sql_id in sql_obj_id_list]
+            except Exception as e:
+                ret["result"] = 1
+                ret["msg"] = "根据sql_id获取到 sql_obj 对象失败，错误信息: %s" % (e.args)
+                return JsonResponse(ret)
+
+            try:
+                workform_obj.sqldetailmodel_set.set(sql_obj_list)
+            except Exception as e:
+                workform_obj.delete()
+                ret["result"] = 1
+                ret["msg"] = "sql_obj 对象关联 workform_obj 失败，错误信息: %s" % (e.args)
+                return JsonResponse(ret)
+
+        ret["msg"] = "工单: '%s' 创建成功" % (workform_obj.title)
+        wslog_info().info("用户: %s 发布 SQL 工单: '%s' 成功" % (user_obj.userextend.cn_name, workform_obj.title))
+
+        try:
+            url_link = request.get_host() + reverse("my_workform_list")
+            workform_email_send(workform_obj, url_link)
+        except Exception as e:
+            pass
+
+        try:
+            time_end = int(round(time.time() * 1000))
+            time_spend = time_end - time_begin
+        except:
+            pass
+        else:
+            wslog_info().info("工单: %s 提交花费时间: %s ms" %(workform_obj.title,time_spend))
+
+        return JsonResponse(ret)
 
 ''' 添加 SQL工单 '''
 class SqlWorkFormAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
@@ -253,7 +320,7 @@ class SqlWorkFormAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView
 
         try:
             # 语法检查并拆分SQL
-            SQLCheckAndSplit.delay(list(workform_obj.sqldetailmodel_set.all()))
+            # SQLCheckAndSplit.delay(list(workform_obj.sqldetailmodel_set.all()))
             url_link = request.get_host() + reverse("my_workform_list")
             workform_email_send(workform_obj, url_link)
         except Exception as e:
@@ -361,7 +428,7 @@ class FirewallWorkFormAddView(LoginRequiredMixin,PermissionRequiredMixin,Templat
 
         return JsonResponse(ret)
 
-''' 工单信息提交（除了防火墙工单外） '''
+''' 其他运维工单信息提交 '''
 class WorkFormAddBaseView(LoginRequiredMixin,View):
     permission_required = ("workform.add_workformmodel","workform.add_others_workform")
 
@@ -382,11 +449,7 @@ class WorkFormAddBaseView(LoginRequiredMixin,View):
             ret["msg"] = "工单必须选择一个类型"
             return JsonResponse(ret)
 
-        ''' 根据工单类型选择相应的 验证form '''
-        if workform_type in ["publish","rollback"]:
-            workform_add_form = PubWorkFormAddForm(request.POST)
-        else:
-            workform_add_form = OthersWorkFormAddForm(request.POST)
+        workform_add_form = OthersWorkFormAddForm(request.POST)
 
         ret = create_workform_obj(workform_type, workform_add_form, user_obj, ret)
         if ret["result"] == 1:
@@ -482,12 +545,15 @@ class MyWorkFormListView(WorkFormListView):
         ''' 我审核过的工单 '''
         context["approvaled_workform_list"] = WorkFormModel.objects.filter(create_time__gte=days_30_ago).filter(approvalformmodel__approver__username__exact=self.request.user.username).exclude(applicant__username__exact=self.request.user.username).distinct()
 
+        ''' 我可以审核的工单 '''
+        context["i_can_approval_workform_list"] = WorkFormModel.objects.filter(create_time__gte=days_30_ago).filter(approver_can__username__exact=self.request.user.username).distinct()
+
         return context
 
     def get_queryset(self):
         queryset = super(MyWorkFormListView,self).get_queryset()
-        ''' 我发出或我可以审核的工单 '''
-        queryset = WorkFormModel.objects.filter(create_time__gte=days_30_ago).filter(Q(applicant__username__exact=self.request.user.username)|Q(approver_can__username__exact=self.request.user.username)).distinct()
+        ''' 我发出的工单 '''
+        queryset = WorkFormModel.objects.filter(create_time__gte=days_30_ago).filter(applicant__username__exact=self.request.user.username).distinct()
 
         search_name = self.request.GET.get('search',None)
         if search_name:
@@ -519,6 +585,7 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
 
         try:
             wf_info = WorkFormModel.objects.filter(id__exact=wf_id).values("id","title","detail","module_name","sql")[0]
+            wf_info["type"] = wf_obj.type.name
             wf_info["process_step_id_id"] = process_step_id_id
             wf_info["process_step_id"] = pm_obj.step_id
             if wf_obj.sql == 'yes':

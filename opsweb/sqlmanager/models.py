@@ -105,6 +105,7 @@ class SQLDetailModel(models.Model):
     exec_status = models.CharField("执行状态", choices=EXEC_STATUS_CHOICES, max_length=10, default='2', null=False)
     db_name = models.ForeignKey(DBModel, verbose_name='数据库名')
     sql_workform = models.ForeignKey(WorkFormModel, null=True,verbose_name='关联的工单')
+    applicant_user = models.ForeignKey(User, null=True,related_name="sql_applicant_user",verbose_name='申请人')
     exec_user = models.ForeignKey(User, null=True,verbose_name='执行人')
     create_time = models.DateTimeField("创建时间", auto_now_add=True)
 
@@ -115,6 +116,10 @@ class SQLDetailModel(models.Model):
         verbose_name = "SQL记录表"
         db_table = "sqldetail"
         ordering = ["id"]
+        permissions = (
+            ("sql_exec", "能够执行/回滚 SQL"),
+            ("dba_add_sql", "DBA可以提交 SQL"),
+        )
 
 ''' SQL 语法检查临时表 '''
 class SQLCheckTmpModel(models.Model):
@@ -153,6 +158,7 @@ class SQLExecDetailModel(models.Model):
     execute_time = models.CharField("sql执行时间",max_length=50, null=True)
     seqnum = models.CharField("sql执行序列号",max_length=100, null=True)
     sql_sha1 = models.CharField("sql的sha1",max_length=100, null=True)
+    sql_type = models.CharField("sql的类型:insert,update,delete,alter...", max_length=50, null=True)
     create_time = models.DateTimeField("创建时间", auto_now_add=True)
     last_update_time = models.DateTimeField("最近修改时间", auto_now=True)
 
@@ -178,6 +184,7 @@ class SQLRollBackModel(models.Model):
     sql_already_exec = models.ForeignKey(SQLExecDetailModel, verbose_name='关联已执行的SQL语句')
     rollback_execute_time = models.CharField("sql执行时间",max_length=50, null=True)
     rollback_seqnum = models.CharField("sql执行序列号",max_length=100, null=True)
+    rollback_sql_sha1 = models.CharField("sql的sha1", max_length=100, null=True)
     sql_rollback_result = models.CharField("sql回滚结果",choices=RESULT_CHOICES,max_length=10, null=False,default="noexec")
     rollback_affected_rows = models.CharField("sql执行回滚影响的行数", max_length=100, null=True)
     rollback_errmsg = models.CharField("sql回滚错误信息", max_length=500, null=True)

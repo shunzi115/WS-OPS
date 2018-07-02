@@ -34,7 +34,8 @@ def get_master_ip(value):
 @register.filter(name="get_osc_process")
 def get_osc_process(value):
     s_exec_obj = value
-    if not s_exec_obj.sql_sha1 or s_exec_obj.sql_block.sqlexecdetailmodel_set.filter(id__lt=s_exec_obj.id, exec_result__exact='noexec'):
+    # if not s_exec_obj.sql_sha1 or s_exec_obj.sql_block.sqlexecdetailmodel_set.filter(id__lt=s_exec_obj.id, exec_result__exact='noexec'):
+    if not s_exec_obj.sql_sha1:
         return 0
     inc_obj = InceptionApi("","","","",sql_str="")
     ret = inc_obj.inception_get_osc_process(s_exec_obj.sql_sha1)
@@ -47,6 +48,29 @@ def get_osc_process(value):
         osc_percent = inc_osc_result[3]
         # osc_remain_time = inc_osc_result["REMAINTIME"]
         return osc_percent
-    else:
+    elif s_exec_obj.exec_result != 'noexec':
         return 100
+    else:
+        return 0
+
+@register.filter(name="get_rollback_osc_process")
+def get_rollback_osc_process(value):
+    sr_obj = value
+    if not sr_obj.rollback_sql_sha1:
+        return 0
+    inc_obj = InceptionApi("","","","",sql_str="")
+    ret = inc_obj.inception_get_osc_process(sr_obj.rollback_sql_sha1)
+
+    if ret["result"] == 1:
+        return 0
+
+    if ret["inc_result"]:
+        inc_osc_result = ret["inc_result"][0]
+        osc_percent = inc_osc_result[3]
+        # osc_remain_time = inc_osc_result["REMAINTIME"]
+        return osc_percent
+    elif sr_obj.sql_rollback_result != 'noexec':
+        return 100
+    else:
+        return 0
 

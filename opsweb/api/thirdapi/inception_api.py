@@ -3,6 +3,7 @@ import pymysql
 import time
 from sqlmanager.models import SQLCheckTmpModel,SQLExecDetailModel,InceptionBackgroundModel
 from dashboard.utils.wslog import wslog_error,wslog_info
+import re
 
 class InceptionApi(object):
     def __init__(self,user,password,host,db_name,sql_str='',port=3306):
@@ -109,7 +110,7 @@ class InceptionApi(object):
 
         inc_check_result = ret["inc_result"]
         sql_check_uuid = round(time.time() * 1000000)
-
+        print("sql_str: ", inc_check_result)
         for s in inc_check_result[1:]:
             if s[4] == 'None':
                 sql = s[5]
@@ -121,6 +122,21 @@ class InceptionApi(object):
                     ret["msg"] = "SQLCheckTmpModel 保存对象失败,错误信息: %s" %(e)
                     wslog_error().error("SQLCheckTmpModel 保存对象失败,错误信息: %s" %(e))
                     break
+            elif re.search("Update rows more then",s[4]):
+                ''' 处理update 影响行数超过了 inception 设置的阈值产生的报错 '''
+                sql = s[5]
+                ret["sql_err"] = 1
+                try:
+                    sct_obj = SQLCheckTmpModel(**{"sql_check_uuid": sql_check_uuid, \
+                                                  "errmsg": "由于 %s,涉及到到备份的问题，请私聊运维/DBA 手动执行该条 SQL...." % (s[4]), \
+                                                  "sql_detail": sql, \
+                                                  "affected_rows": s[6]})
+                    sct_obj.save()
+                except Exception as e:
+                    ret["result"] = 1
+                    ret["msg"] = "SQLCheckTmpModel 保存对象失败,错误信息: %s" % (e.args)
+                    wslog_error().error("SQLCheckTmpModel 保存对象失败,错误信息: %s" % (e.args))
+                break
             else:
                 sql = s[5].split(";")[0]
                 ret["sql_err"] = 1
@@ -165,6 +181,16 @@ class InceptionApi(object):
                 wslog_error().error("SQL 拆分时 SQLExecDetailModel 保存对象失败,错误信息: %s" %(e.args))
                 break
         return ret
+
+    ''' 通用 sql 检查 '''
+    def inception_general_check(self):
+        sql = '''/*--user=%s;--password=%s;--host=%s;--enable-check;--port=%s;*/
+                inception_magic_start;
+                use %s;
+                %s 
+                inception_magic_commit;''' %(self.user,self.password,self.host,self.port,self.db_name,self.sql_str)
+
+        return self.inception_server(sql)
 
     ''' 通过inception执行SQL(包含备份<回滚语句>)'''
     def inception_exec(self):

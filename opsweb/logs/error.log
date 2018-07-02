@@ -1,2 +1,16 @@
-2018-06-23 19:25:33,748-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/sqlmanager/tasks.py-[line:73]-SQLExecDetailModel 模型更新对象id: 100 执行有错误,错误信息: Execute has been abort in percent: 51, remain time: 00:04
-2018-06-23 19:25:33,880-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/sqlmanager/tasks.py-[line:120]-SQLExecDetailModel 对象 id: 100 备份失败或不需要备份,因此不需要查询备份语句
+2018-07-02 15:20:51,460-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
+2018-07-02 15:20:51,462-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:32]-模型 CmdbStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
+2018-07-02 17:16:05,883-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
+2018-07-02 17:16:05,888-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:32]-模型 CmdbStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
+2018-07-02 17:39:22,969-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
+2018-07-02 17:39:22,971-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:32]-模型 CmdbStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
+2018-07-02 17:49:24,262-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
+2018-07-02 17:49:24,269-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:32]-模型 CmdbStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
+2018-07-02 18:07:26,830-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
+2018-07-02 18:07:26,830-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:32]-模型 CmdbStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
+2018-07-02 18:07:39,446-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
+2018-07-02 18:07:39,446-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:32]-模型 CmdbStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
+2018-07-02 18:08:16,061-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
+2018-07-02 18:08:16,062-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:32]-模型 CmdbStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
+2018-07-02 18:09:03,229-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
+2018-07-02 18:09:03,234-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:32]-模型 CmdbStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象

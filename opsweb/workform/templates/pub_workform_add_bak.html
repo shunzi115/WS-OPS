@@ -1,0 +1,614 @@
+{% extends "public/layout.html" %}
+
+{% block breadcrumb %} 
+    工单系统 / <strong class="active">发布工单</strong>
+{% endblock %}
+
+{% block myjs %}
+<script src="/static/plugin/ace-builds-master/src/ace.js"></script>
+<script src="/static/plugin/ace-builds-master/src/ext-language_tools.js"></script>
+<script src="/static/plugin/twitter-bootstrap-wizard-master/jquery.bootstrap.wizard.min.js"></script>
+<script src="/static/plugin/twitter-bootstrap-wizard-master/prettify.js"></script>
+{% endblock %}
+
+{% block css %}
+<link href="/static/plugin/twitter-bootstrap-wizard-master/prettify.css" rel="stylesheet" type="text/css">
+<style>
+    pre {color: #23c6c8;}
+    #sql_detail {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        bottom: 20px;
+        left: 10px;
+    }
+    .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+        background-color: #19aa8d;
+    }
+    .mytab > li.active {
+        background: #19aa8d;
+    }
+
+    .mytab > li {
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .mytab > li a {
+        background: #e5eae9;
+    }
+
+    .mytab > li.line:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: #dedede;
+        transform: translateY(-50%);
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="col-sm-12" id="rootwizard">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="container" style="width: 100%">
+                        <ul class="nav nav-pills nav-justified mytab">
+                            <li><a href="#tab1" data-toggle="tab">第一步: 填写基础信息</a></li>
+                            <li class="line"></li>
+                            <li><a href="#tab2" data-toggle="tab">第二步: 填写 SQL 语句</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="ibox-tools">
+            </div>
+        </div>
+        <div class="ibox-content">
+            <div class="tab-content">
+                    <div class="tab-pane" id="tab1">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" style="font-size: 25px;">
+                                <i class="fa fa-fire"></i> 工单基础信息
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <form id="PubAddForm" enctype="multipart/form-data" class="form-horizontal nice-validator n-yellow Formvalid" novalidate="novalidate">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label for="title" class="col-sm-2 control-label">主题<span class="red-fonts ">*</span></label>
+                                            <div class="col-sm-8">
+                                                <input id="title" name="title" placeholder="工单主题" type="text" class="form-control" aria-required="true">
+                                            </div>
+                                        </div>
+
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">类型<span class="red-fonts">*</span></label>
+                                            <div class="col-sm-8 row">
+                                                <div class="col-sm-3">
+                                                    <div class="radio i-checks">
+                                                        <label><input type="radio" value="publish" name="type">发布</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="radio i-checks">
+                                                        <label><input type="radio" value="rollback" name="type">回滚</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">紧急程度<span class="red-fonts">*</span></label>
+                                            <div class="col-sm-8 row">
+                                                {% for k,v in level.items %}
+                                                <div class="col-sm-3">
+                                                    <div class="radio i-checks">
+                                                        <label><input type="radio" value="{{ k }}" name="level">{{ v }}</label>
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">上线原因<span class="red-fonts">*</span></label>
+                                            <div class="col-sm-8 row">
+                                                {% for k,v in reason.items %}
+                                                <div class="col-sm-3">
+                                                    <div class="radio i-checks">
+                                                        <label><input type="radio" value="{{ k }}" name="reason">{{ v }}</label>
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">IT 审计<span class="red-fonts">*</span></label>
+                                            <div class="col-sm-8 row">
+                                                <div class="col-sm-3">
+                                                    <div class="radio i-checks">
+                                                        <label><input type="radio" value="yes" name="it_check">需要</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="radio i-checks">
+                                                        <label><input type="radio" value="no" name="it_check" checked="checked">不需要</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label for="module_name_pre" class="col-sm-2 control-label">发布模块名<span class="red-fonts ">*</span></label>
+                                            <div class="col-sm-8">
+                                                <select name="module_name_pre" id="module_name_pre" multiple="multiple" class="form-control">
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label for="detail" class="col-sm-2 control-label">发布说明<span class="red-fonts">*</span></label>
+                                            <div class="col-sm-8">
+                                                <textarea name='detail' id='detail' class="form-control" rows="5"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">是否有SQL<span class="red-fonts">*</span></label>
+                                            <div class="col-sm-8">
+                                                {% for k,v in sql.items %}
+                                                <div class="col-sm-2">
+                                                    <div class="radio i-checks">
+                                                        <label><input type="radio" value="{{ k }}" name="sql">{{ v }}</label>
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="process-bar" class="col-sm-2 control-label"></label>
+                                            <div class="col-sm-8 progress" id="progress_file_upload">
+                                                <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <div class="col-sm-6 col-sm-offset-5">
+                                                <button id="pub_submit" class="btn btn-primary">提交</button>
+                                                <button class="btn btn-warning" type="reset">取消</button>
+                                                <button class="btn btn-info" type="reset">重置</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab2">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" style="font-size: 25px;">
+                                <i class="fa fa-fire"></i> SQL 审核与提交
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-9">
+                                        <legend><i class="fa fa-hand-rock-o"></i> 请填写 SQL 语句</legend>
+                                        <div style="bottom:10px;height:calc(100vh - 200px);resize:none;position: relative">
+                                            <div id="sql_detail" style="margin-left: 25px;margin-right: 20px;font-size: 14px">
+                                            </div>
+                                        </div>
+                                        <div style="margin-left: 30px;margin-bottom: 15px;">
+                                            <form id="SqlFileAddForm" enctype="multipart/form-data" class="form-horizontal nice-validator n-yellow">
+                                                {% csrf_token %}
+                                                <div class="form-group">
+                                                    <label for="sql_attach" class="control-label col-sm-2" style="text-align: left">SQL附件</label>
+                                                    <div class="col-sm-8">
+                                                        <span>仅支持<strong style="color:red">.txt</strong> 和 <strong style="color:red">.sql</strong> 文件</span>
+                                                        <span>每次上传要选择需要上传的<strong style="color:red">全部</strong>文件</span>
+                                                        <input id="fileupload" type="file" name="files[]" data-url="{% url 'workform_upload' %}" multiple="true">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="process-bar" class="col-sm-2 control-label"></label>
+                                                    <div class="col-sm-9 progress" id="progress_file_upload">
+                                                        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <legend><i class="fa fa-hand-o-down"></i> 数据库配置</legend>
+                                        <form id="SqlForm" class="form-horizontal nice-validator n-yellow Formvalid" novalidate="novalidate" style="margin-left: 0px;width:98%">
+                                            {% csrf_token %}
+                                            <div class="form-group" style="margin-left: 0px;">
+                                                <label>环境类型</label>
+                                                <select class="form-control" name="env" id="env">
+                                                    <option value="" id="env_noselect_id">请选择...</option>
+                                                    <option value="online">生产</option>
+                                                    <option value="gray">预发布</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group" style="margin-left: 0px;">
+                                                <label>Mysql 库</label>
+                                                <select class="form-control choices" name="db_name" id="db_name">
+                                                    <option id="dbs_noselect_id" value="">请选择...</option>
+                                                </select>
+                                            </div>
+
+                                            <input name="sql_block" id="sql_block" type="hidden" class="form-control">
+                                            <input id="sql_file_url" name="sql_file_url" type="hidden" class="form-control">
+                                            <input id="sql_check_uuid" name="sql_check_uuid" type="hidden" class="form-control">
+
+                                            <div class="form-group" style="margin-left: 0px;">
+                                                <div class="col-sm-offset-2">
+                                                    <div>
+                                                        <a href="#" id="sql_check_direct" class="btn btn-info">检查语法</a>
+                                                        <button id="sql_commit" class="btn btn-primary" disabled>提交SQL</button>
+                                                    </div>
+                                                    <div>
+                                                        <a href="#" id="sql_add_again" class="btn btn-warning" disabled>继续添加</a>
+                                                        <a href="#" id="sql_remove_already_add" class="btn btn-danger" disabled>重新添加</a>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    </br>
+                                                    <p style="font-size: 4px">
+                                                        <i class="fa fa-exclamation-circle"></i>
+                                                        请先进行<strong style="color:red">检查语法</strong>，检查<strong style="color:red">成功</strong>后，才允许<strong style="color:red">提交</strong>
+                                                    </p>
+                                                    </br>
+                                                    <p style="font-size: 4px">
+                                                        <i class="fa fa-exclamation-circle"></i>
+                                                        如果检查某个SQL<strong style="color:red">语法有错</strong>，则该条SQL后面的<strong style="color:red">所有SQL停止</strong>检查语法
+                                                    </p>
+                                                    </br>
+                                                    <p style="font-size: 4px">
+                                                        <i class="fa fa-exclamation-circle"></i>
+                                                        如果已经检查通过但还需要在左边的编辑器<strong style="color:red">修改</strong>，也需要再<strong style="color:red">检查语法</strong>，否则提交的是<strong style="color:red">旧SQL</strong>
+                                                    </p>
+                                                    </br>
+                                                    <p style="font-size: 4px">
+                                                        <i class="fa fa-exclamation-circle"></i>
+                                                        如果需要<strong style="color:red">添加多个库</strong>的SQL，请先按库拆分SQL，然后逐个库进行<strong style="color:red">添加SQL->检查语法->提交SQL->继续添加SQL</strong>
+                                                    </p>
+                                                    </br>
+                                                    <p style="font-size: 4px">
+                                                        <i class="fa fa-exclamation-circle"></i>
+                                                        <strong style="color:red">重新添加</strong>是清除已<strong>提交</strong>的所有SQL，以免由于误操作添加了一些无用SQL
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="pager wizard">
+                            <li class="previous">
+                                <a class="btn" style="color:white;background: #5bd18b;border-color: #5bd18b;float: inherit;" href="javascript:;">
+                                    上一步
+                                </a>
+                            </li>
+                            <li class="next">
+                                <a class="btn" style="color:white;background: #5bd18b;border-color: #5bd18b;float: inherit;" href="javascript:;">
+                                    下一步
+                                </a>
+                            </li>
+                            <li class="finish">
+                                <a class="btn" id="workform_commit" style="color:white;background: #57a3f1;border-color: #57a3f1;" href="javascript:;" disabled="true">
+                                    提交工单
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script>
+var online_db_list = {{ db_online_list | safe |default:'"test_db"' }};
+var gray_db_list = {{ db_gray_list | safe | default:'"test_db"'}};
+var sql_obj_id_list = new Array();
+var sql_file_url_list = new Array();
+var sql_check_uuid_list = new Array();
+<!-- 分步执行插件配置 -->
+$('#rootwizard').bootstrapWizard(
+    {
+        'nextSelector': '.next',
+        'previousSelector': '.previous',
+        'onTabClick': function(tab, navigation, index) {
+            return false;
+        },
+    }
+);
+<!--结束-->
+
+$(".choices").multiselect({
+    enableFiltering: true,
+    maxHeight: 200,
+    buttonWidth: '100%',
+    nonSelectedText: '请选择 IP 地址',
+    delimiterText: ',',
+    selectedClass: 'multiselect-selected',
+    enableCaseInsensitiveFiltering: true,
+    disableIfEmpty: true,
+});
+
+<!-- ACE 编辑器配置 -->
+function setAceEditMode(edit_id,model) {
+    var editor = ace.edit(edit_id);
+    require("ace/ext/old_ie");
+    var langTools = ace.require("ace/ext/language_tools");
+    editor.session.setValue('')
+    editor.setTheme("ace/theme/vibrant_ink");
+    editor.getSession().setMode("ace/mode/" + model);
+    editor.setShowPrintMargin(false);
+    editor.session.setTabSize(4);
+    editor.setHighlightActiveLine(true);
+    editor.setOptions({
+        enableBasicAutocompletion: true,
+        enableSnippets: true,
+        enableLiveAutocompletion: true
+    });
+};
+setAceEditMode("sql_detail","mysql");
+<!--结束-->
+
+<!-- 根据所选环境，筛选相应的 db-->
+$("#env").change(function(){
+    $("#db_name option[id!='dbs_noselect_id']").remove()
+    env_str = $(this).val()
+    var dbs_str = ''
+    if(env_str=='online'){
+        $.each(online_db_list,function(k,v){
+            dbs_str += '<option value='+v.id+'>'+v.name+'</option>'
+        });
+    }else if(env_str=='gray'){
+        $.each(gray_db_list,function(k,v){
+            dbs_str += '<option value='+v.id+'>'+v.name+'</option>'
+        });
+    }
+    $("#dbs_noselect_id").after(dbs_str)
+    $("#db_name").multiselect('rebuild')
+});
+<!--结束-->
+
+<!--上传文件进度条-->
+$('#fileupload').click(function(){
+    upload_sql_file_reload()
+});
+
+$('#fileupload').fileupload({
+    dataType: 'json',
+    done: function (e, data) {
+        if(data.result.result==0){
+            $.each(data.result.files, function (index, file) {
+                $('#fileupload').after($("<p class='file_already_upload'/>").html(file.name).append($("<button class='btn btn-info btn-xs sql_check_attach' style='margin-left: 50px;'/>").attr("file_name",file.name).text("检查语法")));
+            });
+        }else{
+            swal("OH,My God",data.result.msg,"error")
+        }
+    },
+    progressall: function (e, data) {
+        var progress = parseInt(data.loaded / data.total * 100, 10);
+        $('#progress_file_upload .progress-bar').css(
+            'width',
+            progress + '%'
+        );
+        $('#progress_file_upload .progress-bar').text(progress + '%');
+    }
+});
+
+<!-- sql 语法检查 -->
+$(document).on("click","#sql_check_direct",function(){
+    {#var sql_str = ace.edit("sql_detail").session.getValue().replace(/\r\n/g,'\n')#}
+    if($(this).attr("disabled")){
+        return false
+    };
+    $(this).attr("disabled",true)
+    var sql_str = ace.edit("sql_detail").session.getValue()
+    if (sql_str && $("#fileupload + p:first").text().replace("检查语法",'')){
+        $(this).attr("disabled",false)
+        swal("OH,My God","只能在左侧 '填写SQL' 或 '上传SQL附件',二者只能选其一","error")
+        return false;
+    };
+    var post_str = {"sql_block":sql_str,"db_name":$("#db_name").val(),"env":$("#env").val()}
+    var url = "{% url 'inception_sql_check' %}"
+    $.post(url,post_str,function(data){
+        if(data.result==0) {
+            if(data.sql_err==0){
+                sql_check_uuid_list.push(data.sql_check_uuid)
+                $("#sql_block").val(sql_str)
+                $("#sql_commit").prop("disabled", false)
+            }else{
+                $("#sql_commit").prop("disabled", true)
+                $("#sql_check_direct").attr("disabled",false)
+            };
+            window.open("{% url 'inception_sql_check_result' %}?sql_check_uuid=" + data.sql_check_uuid,'_blank')
+        }else{
+            $("#sql_check_direct").attr("disabled",false)
+            swal("OH,My God",data.msg,"error")
+        };
+    });
+    return false;
+});
+
+<!-- SQL附件 语法检查-->
+$(document).on("click","button.sql_check_attach",function(){
+    if($(this).attr("disabled")){
+        return false
+    };
+    $(this).attr("disabled",true)
+    var sql_file_name = $(this).attr("file_name")
+    var sql_str = ace.edit("sql_detail").session.getValue()
+    if (sql_str && sql_file_name){
+        $(this).attr("disabled",false)
+        swal("OH,My God","只能在左侧 '填写SQL' 或 '上传SQL附件',二者只能选其一","error")
+        return false;
+    };
+    var post_str = {"db_name":$("#db_name").val(),"env":$("#env").val(),"sql_file_url":sql_file_name}
+    var url = "{% url 'inception_sql_check' %}"
+    $.post(url,post_str,function(data){
+        if(data.result==0) {
+            if(data.sql_err==0){
+                sql_file_url_list.push(sql_file_name)
+                sql_check_uuid_list.push(data.sql_check_uuid)
+                $("#sql_commit").prop("disabled", false)
+            }else{
+                $("#sql_commit").prop("disabled", true)
+            };
+            window.open("{% url 'inception_sql_check_result' %}?sql_check_uuid=" + data.sql_check_uuid,'_blank')
+        }else{
+            $("button.sql_check_attach").attr("disabled",false)
+            swal("OH,My God",data.msg,"error")
+        };
+    });
+    return false;
+});
+
+<!-- sql 提交 -->
+$("#sql_commit").click(function(){
+    $("#sql_file_url").val(sql_file_url_list.join(";"))
+    $("#sql_check_uuid").val(sql_check_uuid_list.join(";"))
+    var my_str = $("#SqlForm").serialize()
+    var url = "{% url 'inception_sql_add' %}"
+    $.post(url,my_str,function(data){
+        if(data.result==0){
+            $.each(data.sd_obj_id_list,function(k,v){
+                sql_obj_id_list.push(v);
+            });
+            $("#workform_commit").attr("disabled",false);
+            $("#sql_add_again").attr("disabled",false);
+            $("#sql_remove_already_add").attr("disabled",false);
+            swal({
+                    title:"Good",
+                    text:data.msg,
+                    type:'success',
+                    confirmButtonText:"确定"
+                },
+                function(){
+                    mysql_add_again();
+                    return false;
+            })
+        }else{
+            swal("OH,My God",data.msg,"error")
+        };
+    });
+    return false;
+});
+<!-- 结束 -->
+
+<!-- 继续添加SQL -->
+$("#sql_add_again").click(function(){
+    if($(this).attr("disabled")){
+        return false
+    };
+    mysql_add_again()
+});
+
+<!-- 重新添加 -->
+$("#sql_remove_already_add").click(function(){
+    if($(this).attr("disabled")){
+        return false
+    };
+    $.each(sql_obj_id_list,function(k,v){
+        sql_obj_id_list.pop()
+    });
+    $("#workform_commit,#sql_add_again,#sql_remove_already_add").attr("disabled",true);
+    mysql_add_again();
+});
+<!-- 结束-->
+
+<!-- 提交工单 -->
+$("#workform_commit").click(function(){
+    if($(this).attr("disabled")){
+        return false
+    };
+    var workform_str = $.extend(queryParse($("#SqlAddForm").serialize()),{sql_obj_list:sql_obj_id_list.join(";")})
+    var url = "{% url 'sql_workform_add' %}"
+    $.post(url,workform_str,function(data){
+        if(data.result==0){
+            swal({
+                    title:"Good",
+                    text:data.msg,
+                    type:'success',
+                    confirmButtonText:"确定"
+                },
+                function(){
+                    location.href = "{% url 'my_workform_list' %}"
+            })
+        }else {
+            swal({
+                    title: "OH,My God",
+                    text: data.msg,
+                    type: 'error',
+                    confirmButtonText: "确定"
+                },
+                function () {
+                    return false;
+                });
+        };
+    });
+    return false;
+});
+
+function mysql_add_again(){
+    upload_sql_file_reload()
+    $("#sql_block").val('')
+    $.each(sql_check_uuid_list,function(k,v){
+        sql_check_uuid_list.pop()
+    });
+    $("#sql_check_direct").attr("disabled",false)
+    ace.edit("sql_detail").session.setValue('');
+    $("#sql_commit").prop("disabled",true);
+    $("#env option").prop("selected",false);
+    $("#db_name option[id!='dbs_noselect_id']").remove();
+    $("#db_name").multiselect('rebuild');
+};
+
+function upload_sql_file_reload(){
+    $.each(sql_file_url_list,function(k,v){
+        sql_file_url_list.pop()
+    });
+    $(".file_already_upload").remove()
+    $("#progress_file_upload .progress-bar").css('width',0).text('0%')
+    $(" #sql_file_url").val('')
+};
+<!-- 将查询字符串转为字典的格式：a=123&b=234 转为{a:123,b:234}-->
+function queryParse(str) {
+    var obj = {};
+    str.split('&').forEach(function (part) {
+        var pairs = part.split('=');
+        obj[pairs[0]] = pairs[1];
+    });
+    return obj;
+};
+
+</script>
+{% endblock %}

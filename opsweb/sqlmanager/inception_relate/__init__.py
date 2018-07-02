@@ -20,13 +20,13 @@ from sqlmanager.forms import SQLDetailAddForm,InceptionBackgroundAddForm,Incepti
 from opsweb.settings import MEDIA_ROOT
 from dashboard.utils.get_page_range import get_page_range
 from workform.models import WorkFormModel
-from sqlmanager.tasks import SQLExec
+from sqlmanager.tasks import SQLExec,SQLCheckAndSplit,SQLRollback
 
 upload_dir = MEDIA_ROOT + 'sqlfile/'
 oneday = timedelta(days=30)
 days_30_ago = datetime.now() - oneday
 
-''' 判断是不是高危 SQL;感觉很鸡肋，如果多打印几个空格就可屏蔽这个检测 '''
+''' 判断是不是高危 SQL '''
 def check_danger_sql(sql, ret):
     danger_sql_list = InceptionDangerSQLModel.objects.filter(status__exact='active')
     ds_str = ''
@@ -37,7 +37,9 @@ def check_danger_sql(sql, ret):
         return ret
 
     for sql_str in sql.rstrip(';').split(';'):
-        if re.search(r"%s" % (ds_str[0:-1]), sql_str.lower().replace("\n",'')):
+        ''' " ".join(sql_str.lower().replace("\n"," ").split()) 是替换掉换行符或多个空格为一个空格;
+        以免由于多个空格或者换行符导致关键字不能匹配 '''
+        if re.search(r"%s" % (ds_str[0:-1]), " ".join(sql_str.lower().replace("\n"," ").split())):
             ret["result"] = 1
             ret["msg"] = "存在高危SQL: %s" %(sql_str)
             break
@@ -109,6 +111,7 @@ def sql_rollback_func(s_exec_obj,ret,myuser):
         sr_obj.rollback_seqnum = eval(inc_rollback_result[7])
         sr_obj.rollback_execute_time = inc_rollback_result[9]
         sr_obj.rollback_backup_dbname = inc_rollback_result[8]
+        sr_obj.rollback_sql_sha1 = inc_rollback_result[10]
 
         if inc_rollback_result[4] != 'None':
             try:
@@ -176,7 +179,7 @@ class InceptionSqlCheckView(View):
         return JsonResponse(ret)
 
 ''' 基于uuid 查看SQL检查结果 '''
-class InceptionSqlCheckResultView(ListView):
+class InceptionSqlCheckResultView(LoginRequiredMixin,ListView):
     template_name = "sql_check_result.html"
     model = SQLCheckTmpModel
     paginate_by = 10
@@ -197,7 +200,7 @@ class InceptionSqlCheckResultView(ListView):
         return queryset
 
 ''' 获取SQL拆分结果 '''
-class InceptionSqlSplitResultView(ListView):
+class InceptionSqlSplitResultView(LoginRequiredMixin,ListView):
     template_name = "sql_split_result.html"
     model = SQLExecDetailModel
     paginate_by = 20
@@ -218,7 +221,7 @@ class InceptionSqlSplitResultView(ListView):
         return queryset
 
 ''' 获取SQL执行结果 '''
-class InceptionSqlExecResultView(ListView):
+class InceptionSqlExecResultView(LoginRequiredMixin,ListView):
     template_name = "sql_exec_result.html"
     model = SQLExecDetailModel
     paginate_by = 20
@@ -244,8 +247,8 @@ class InceptionSqlExecResultView(ListView):
         queryset = SQLDetailModel.objects.get(id__exact=id).sqlexecdetailmodel_set.all()
         return queryset
 
-''' SQL保存到数据库 '''
-class InceptionSqlAddView(View):
+''' SQL保存到数据库并拆分SQL '''
+class InceptionSqlAddView(LoginRequiredMixin,View):
     def post(self,request):
         ret = {"result":0}
 
@@ -266,12 +269,14 @@ class InceptionSqlAddView(View):
                     pass
 
         sd_obj_id_list = []
+        sd_obj_list = []
         if sql_add_form.cleaned_data.get("sql_file_url"):
             sql_file_url_list = sql_add_form.cleaned_data.get("sql_file_url").split(";")
             for sfu  in sql_file_url_list:
                 sql_add_form.cleaned_data["sql_file_url"] = sfu
                 try:
                     sd_obj = SQLDetailModel(**sql_add_form.cleaned_data)
+                    sd_obj.applicant_user = request.user
                     sd_obj.save()
                 except Exception as e:
                     ret["result"] = 1
@@ -279,9 +284,11 @@ class InceptionSqlAddView(View):
                     return JsonResponse(ret)
                 else:
                     sd_obj_id_list.append(sd_obj.id)
+                    sd_obj_list.append(sd_obj)
         else:
             try:
                 sd_obj = SQLDetailModel(**sql_add_form.cleaned_data)
+                sd_obj.applicant_user = request.user
                 sd_obj.save()
             except Exception as e:
                 ret["result"] = 1
@@ -289,14 +296,22 @@ class InceptionSqlAddView(View):
                 return JsonResponse(ret)
             else:
                 sd_obj_id_list.append(sd_obj.id)
+                sd_obj_list.append(sd_obj)
 
         ret["msg"] = "保存 SQLDetailModel 对象: %s 成功,可以继续添加SQL或提交工单..." % (sd_obj.id)
         ret["sd_obj_id_list"] = sd_obj_id_list
 
+        if sd_obj_list:
+            try:
+                # 语法检查并拆分SQL
+                SQLCheckAndSplit.delay(sd_obj_list)
+            except Exception as e:
+                pass
+
         return JsonResponse(ret,safe=False)
 
 ''' 未处理SQL列表 '''
-class InceptionSqlNoexecView(TemplateView):
+class InceptionSqlNoexecView(LoginRequiredMixin,TemplateView):
     template_name = "sql_noexec_list.html"
 
     def get_context_data(self, **kwargs):
@@ -312,7 +327,7 @@ class InceptionSqlNoexecView(TemplateView):
         return context
 
 ''' SQL处理历史列表 '''
-class InceptionSqlHistoryView(TemplateView):
+class InceptionSqlHistoryView(LoginRequiredMixin,TemplateView):
     template_name = "sql_history_list.html"
 
     def get_context_data(self, **kwargs):
@@ -321,9 +336,16 @@ class InceptionSqlHistoryView(TemplateView):
         return context
 
 ''' 暂停/恢复执行SQL '''
-class InceptionSqlPauseView(View):
+class InceptionSqlPauseView(LoginRequiredMixin,View):
+    permission_required = "sqlmanager.sql_exec"
+
     def get(self,request):
         ret = {"result":0}
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
 
         s_id = request.GET.get("id")
         try:
@@ -340,9 +362,16 @@ class InceptionSqlPauseView(View):
         return  JsonResponse(ret)
 
 ''' 拒绝执行SQL '''
-class InceptionSqlRefuseView(View):
+class InceptionSqlRefuseView(LoginRequiredMixin,View):
+    permission_required = "sqlmanager.sql_exec"
+
     def get(self,request):
         ret = {"result":0}
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
 
         s_id = request.GET.get("id")
         try:
@@ -360,9 +389,16 @@ class InceptionSqlRefuseView(View):
 
 ''' 执行SQL
     这里仅执行一个 sql_obj,即使sql工单包含多个sql_obj,考虑多个sql_obj可能会有依赖关系,因此要单独执行每个sql_obj更灵活些 '''
-class InceptionSqlExecView(View):
+class InceptionSqlExecView(LoginRequiredMixin,View):
+    permission_required = "sqlmanager.sql_exec"
+
     def post(self,request):
         ret = {"result":0}
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
 
         user_obj = request.user
         s_id = request.POST.get("id")
@@ -380,12 +416,14 @@ class InceptionSqlExecView(View):
             sql_exec_list = s_obj.sqlexecdetailmodel_set.all()
 
         ''' 后台执行SQL '''
-        SQLExec.delay(sql_exec_list,s_obj,user_obj,ret)
+        SQLExec.delay(sql_exec_list,s_obj,user_obj)
 
         return JsonResponse(ret)
 
 ''' 回滚SQL '''
-class InceptionSqlRollBackupView(TemplateView):
+class InceptionSqlRollBackupView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
+    permission_required = "sqlmanager.sql_exec"
+
     template_name = 'sql_rollback_list.html'
 
     def get_context_data(self, **kwargs):
@@ -400,6 +438,11 @@ class InceptionSqlRollBackupView(TemplateView):
     def post(self,request):
         ret = {"result": 0}
 
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
+
         ''' 回滚全部SQL '''
         if request.POST.get("s_id"):
             s_id = request.POST.get("s_id")
@@ -410,18 +453,26 @@ class InceptionSqlRollBackupView(TemplateView):
                 ret["msg"] = "SQLDetailModel 不存在 id: %s 的对象,请刷新..." %(s_id)
                 return JsonResponse(ret)
 
-            sql_obj.status = '2'
+            SQLDetailModel.objects.filter(id__exact=s_id).update(status = '2')
+
+            ''' 如果 sql_obj 中存在没有 回滚语句的SQL 则停止回滚 '''
+            if sql_obj.sqlexecdetailmodel_set.filter(sqlrollbackmodel__sql_rollback__isnull=True).distinct().order_by("-id"):
+                ret["result"] = 1
+                err_str = "SQLRollBackModel 中不存在 SQLDetailModel 对象 id: %s 的回滚语句，原SQL执行时可能无需备份或者备份失败(可能表没有主键)..." % (s_id)
+                ret["msg"] = err_str
+                wslog_error().error(err_str)
+                return JsonResponse(ret)
+
             ''' 过滤掉已经回滚的语句;回滚要倒序 '''
             for s_exec_obj in sql_obj.sqlexecdetailmodel_set.filter(sqlrollbackmodel__sql_rollback_result='noexec').distinct().order_by("-id"):
                 if not s_exec_obj.sqlrollbackmodel_set.all():
-                    wslog_error().error("SQLRollBackModel 中不存在 SQLDetailModel 对象 id: %s 的回滚语句，原SQL执行时可能无需备份或者备份失败...")
-                    continue
-                ret = sql_rollback_func(s_exec_obj, ret,request.user)
+                    ret["result"] = 1
+                    ret["msg"] = "SQLRollBackModel 中不存在 SQLDetailModel 对象 id: %s 的回滚语句，原SQL执行时可能无需备份或者备份失败(可能表没有主键)..." % (s_id)
+                    wslog_error().error("SQLRollBackModel 中不存在 SQLDetailModel 对象 id: %s 的回滚语句，原SQL执行时可能无需备份或者备份失败(可能表没有主键)..." % (s_id))
+                    break
 
-                if ret["result"] == 1:
-                    return JsonResponse(ret)
-
-            ret["msg"] = "SQL 回滚成功，请查看回滚结果..."
+                ''' 后台执行回滚 SQL '''
+                SQLRollback.delay(s_exec_obj,request.user)
 
             ''' 回滚单条SQL '''
         elif request.POST.get("s_exec_id"):
@@ -434,25 +485,16 @@ class InceptionSqlRollBackupView(TemplateView):
                 return JsonResponse(ret)
 
             s_exec_obj.sql_block.status = '5'
+            # SQLDetailModel.objects.filter(id__exact=s_exec_id).update(status='2')
 
             if not s_exec_obj.sqlrollbackmodel_set.all():
                 ret["result"] = 1
-                ret["msg"] = "SQLRollBackModel 中不存在 SQLDetailModel 对象 id: %s 的回滚语句，原SQL执行时可能无需备份或者备份失败..."
-                wslog_error().error("SQLRollBackModel 中不存在 SQLDetailModel 对象 id: %s 的回滚语句，原SQL执行时可能无需备份或者备份失败...")
+                ret["msg"] = "SQLRollBackModel 中不存在 SQLDetailModel 对象 id: %s 的回滚语句，原SQL执行时可能无需备份或者备份失败(可能表没有主键)..."
+                wslog_error().error("SQLRollBackModel 中不存在 SQLDetailModel 对象 id: %s 的回滚语句，原SQL执行时可能无需备份或者备份失败(可能表没有主键)...")
                 return JsonResponse(ret)
 
-            ret = sql_rollback_func(s_exec_obj, ret,request.user)
-
-            ''' 如果此条SQL是回滚的最后一条SQL,那么就需要更新整个SQL块的状态 '''
-            if not s_exec_obj.sql_block.sqlexecdetailmodel_set.filter(sqlrollbackmodel__sql_rollback_result='noexec'):
-                try:
-                    s_exec_obj.sql_block.status = '2'
-                    s_exec_obj.sql_block.save()
-                except:
-                    pass
-
-            if ret["result"] == 0:
-                ret["msg"] = "SQL 回滚成功，请查看回滚结果..."
+            ''' 后台执行回滚 SQL '''
+            SQLRollback.delay(s_exec_obj, request.user)
 
         else:
             ret["result"] = 1
@@ -461,7 +503,7 @@ class InceptionSqlRollBackupView(TemplateView):
         return JsonResponse(ret)
 
 ''' 获取SQL回滚结果 '''
-class InceptionSqlRollbackResultView(TemplateView):
+class InceptionSqlRollbackResultView(LoginRequiredMixin,TemplateView):
     template_name = "sql_rollback_result.html"
 
     def get_context_data(self, **kwargs):
@@ -469,13 +511,13 @@ class InceptionSqlRollbackResultView(TemplateView):
         s_id = self.request.GET.get("s_id")
         s_exec_id = self.request.GET.get("s_exec_id")
         if s_id:
-            context["sql_rollback_result_list"] = SQLDetailModel.objects.get(id__exact=s_id).sqlexecdetailmodel_set.exclude(sqlrollbackmodel__sql_rollback_result='noexec')
+            context["sql_rollback_result_list"] = SQLDetailModel.objects.get(id__exact=s_id).sqlexecdetailmodel_set.exclude(sqlrollbackmodel__sql_rollback__isnull=True).exclude(sqlrollbackmodel__sql_rollback_result='noexec')
         elif s_exec_id:
             context["sql_rollback_result_list"] = SQLExecDetailModel.objects.filter(id__exact=s_exec_id)
         return context
 
 ''' 取消正在使用 osc 执行的alter 语句 '''
-class InceptionStopOscView(View):
+class InceptionStopOscView(LoginRequiredMixin,View):
     def post(self,request):
         ret = {"result": 0}
         s_exec_id = request.POST.get("id")
@@ -492,8 +534,22 @@ class InceptionStopOscView(View):
 
         return JsonResponse(ret)
 
+''' 运维或者DBA提交SQL窗口,主要是考虑在开发不能提交SQL工单的情况下,运维/DBA 直接操作SQL时也能走 inception,方便备份... '''
+class InceptionDbaCommitView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
+    permission_required = "sqlmanager.dba_add_sql"
+
+    template_name = "ops_dba_add_sql.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(InceptionDbaCommitView,self).get_context_data(**kwargs)
+        context["db_online_list"] = list(DBModel.objects.filter(cluster_name__env__exact='online').values("id", "name").distinct())
+        context["db_gray_list"] = list(DBModel.objects.filter(cluster_name__env__exact='gray').values("id", "name").distinct())
+        return context
+
 ''' Inception 后台管理(inception 服务器配置;备份服务器配置) '''
-class InceptionBackgroundManageView(TemplateView):
+class InceptionBackgroundManageView(LoginRequiredMixin,TemplateView):
+    permission_required = "sqlmanager.add_inceptionbackgroundmodel"
+
     template_name = "inc_background_manage.html"
 
     def get_context_data(self, **kwargs):
@@ -505,6 +561,11 @@ class InceptionBackgroundManageView(TemplateView):
 
     def post(self,request):
         ret = {"result":0}
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
 
         inc_bg_form = InceptionBackgroundAddForm(request.POST)
         if not inc_bg_form.is_valid():
@@ -526,9 +587,17 @@ class InceptionBackgroundManageView(TemplateView):
         return JsonResponse(ret)
 
 '''更新 Inception 信息 '''
-class InceptionBackgroundManageChangeView(View):
+class InceptionBackgroundManageChangeView(LoginRequiredMixin,View):
+    permission_required = "sqlmanager.change_inceptionbackgroundmodel"
+
     def get(self,request):
         ret = {"result": 0}
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
+
         inc_bg_id = request.GET.get("id")
 
         try:
@@ -544,6 +613,12 @@ class InceptionBackgroundManageChangeView(View):
 
     def post(self,request):
         ret = {"result": 0}
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
+
         inc_bg_id = request.POST.get("id")
 
         inc_bg_form = InceptionBackgroundChangeForm(request.POST)
@@ -598,10 +673,16 @@ class InceptionBackgroundManageChangeView(View):
         return JsonResponse(ret)
 
 ''' 添加自定义高危SQL '''
-class InceptionDangerSQLAddView(View):
+class InceptionDangerSQLAddView(LoginRequiredMixin,View):
+    permission_required = "sqlmanager.add_inceptiondangersqlmodel"
 
     def post(self,request):
         ret = {"result":0}
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
 
         inc_ds_form = InceptionDangerSQLAddForm(request.POST)
         if not inc_ds_form.is_valid():
@@ -623,9 +704,17 @@ class InceptionDangerSQLAddView(View):
         return JsonResponse(ret)
 
 ''' 更新高危SQL信息 '''
-class InceptionDangerSQLChangeView(View):
+class InceptionDangerSQLChangeView(LoginRequiredMixin,View):
+    permission_required = "sqlmanager.change_inceptiondangersqlmodel"
+
     def get(self,request):
         ret = {"result": 0}
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
+
         inc_ds_id = request.GET.get("id")
 
         try:
@@ -640,6 +729,12 @@ class InceptionDangerSQLChangeView(View):
 
     def post(self,request):
         ret = {"result": 0}
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
+
         inc_ds_id = request.POST.get("id")
 
         inc_ds_form = InceptionDangerSQLAddForm(request.POST)
@@ -663,9 +758,17 @@ class InceptionDangerSQLChangeView(View):
         return JsonResponse(ret)
 
 ''' 删除高危SQL信息 '''
-class InceptionDangerSQLDeleteView(View):
+class InceptionDangerSQLDeleteView(LoginRequiredMixin,View):
+    permission_required = "sqlmanager.delete_inceptiondangersqlmodel"
+
     def post(self,request):
         ret = {"result": 0}
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
+
         inc_ds_id = request.POST.get("id")
 
         try:

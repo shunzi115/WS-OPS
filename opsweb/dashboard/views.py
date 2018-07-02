@@ -3,7 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin
-from  api.myapi.get_workform_info import GetWorkFormInfo
+from api.myapi.get_workform_info import GetWorkFormInfo
+from sqlmanager.api import get_db_type_count
 
 
 class IndexView(LoginRequiredMixin,TemplateView):
@@ -16,6 +17,7 @@ class IndexView(LoginRequiredMixin,TemplateView):
         context["workform_type_echart_data"] = self.wf_info.get_workform_count_by_type()
         context["workform_reason_echart_data"] = self.wf_info.get_workform_count_by_reason()
         context["workform_module_echart_data"] = self.wf_info.get_workform_count_by_module()
+        context["db_type_echart_data"] = get_db_type_count()
         return context
 
 class InnerPortalView(LoginRequiredMixin,TemplateView):

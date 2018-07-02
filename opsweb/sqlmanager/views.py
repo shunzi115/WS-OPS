@@ -58,8 +58,16 @@ class DBClusterListView(LoginRequiredMixin,ListView):
 
 '''添加Mysql集群'''
 class DBClusterAddView(LoginRequiredMixin,View):
+    permission_required = "sqlmanager.add_dbclustermodel"
+
     def post(self,request):
         ret = {"result":0}
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
+
         cluster_form = DBClusterAddForm(request.POST)
         if not cluster_form.is_valid():
             ret['result'] = 1
@@ -215,8 +223,14 @@ class DBListView(LoginRequiredMixin,ListView):
 
 '''添加Mysql库'''
 class DBAddView(LoginRequiredMixin,View):
+    permission_required = "sqlmanager.add_dbmodel"
     def post(self,request):
         ret = {"result":0}
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
 
         db_form = DBAddForm(request.POST)
         if not db_form.is_valid():
@@ -246,8 +260,16 @@ class DBAddView(LoginRequiredMixin,View):
 
 '''更新Mysql库'''
 class DBChangeView(View):
+    permission_required = "sqlmanager.change_dbmodel"
+
     def get(self,request):
         ret = {"result":0}
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
+
         db_id = request.GET.get("id")
         try:
             db_obj = DBModel.objects.get(id__exact=db_id)
@@ -265,6 +287,11 @@ class DBChangeView(View):
     def post(self,request):
         ret = {"result":0}
         db_id = request.POST.get("id")
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
 
         db_change_form = DBChangeForm(request.POST)
         if not db_change_form.is_valid():
@@ -358,8 +385,15 @@ class DBInstanceListView(LoginRequiredMixin,ListView):
 
 '''添加Mysql实例'''
 class DBInstanceAddView(LoginRequiredMixin,View):
+    permission_required = "sqlmanager.add_dbinstancemodel"
+
     def post(self,request):
         ret = {"result":0}
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
 
         dbi_form = DBInstanceAddForm(request.POST)
         if not dbi_form.is_valid():
@@ -404,8 +438,16 @@ class DBInstanceMoreInfoView(View):
 
 '''更新Mysql实例'''
 class DBInstanceChangeView(View):
+    permission_required = "sqlmanager.change_dbinstancemodel"
+
     def get(self,request):
         ret = {"result":0}
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
+
         dbi_id = request.GET.get("id")
         try:
             dbi_obj = DBInstanceModel.objects.get(id__exact=dbi_id)
@@ -420,6 +462,12 @@ class DBInstanceChangeView(View):
 
     def post(self,request):
         ret = {"result":0}
+
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
+
         dbi_id = request.POST.get("id")
 
         dbi_change_form = DBInstanceChangeForm(request.POST)

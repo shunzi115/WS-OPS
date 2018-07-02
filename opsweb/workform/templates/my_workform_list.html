@@ -14,13 +14,18 @@
 <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
     <ul id="myTabs" class="nav nav-tabs nav-justified" role="tablist">
         <li role="presentation" class="active">
-            <a href="#my_workform_list" id="my_workform_list_tab" role="tab" data-toggle="tab" aria-controls="my_workform" aria-expanded="true">我 "发出/待审核" 的工单</a>
+            <a href="#my_workform_list" id="my_workform_list_tab" role="tab" data-toggle="tab" aria-controls="my_workform" aria-expanded="true">我 "发出" 的工单</a>
+        </li>
+        <li role="presentation">
+            <a href="#i_can_approval_workform_list" role="tab" id="i_can_approval_workform_list_tab" data-toggle="tab" aria-controls="i_can_approval_workform_list" aria-expanded="false">我 "待审核" 的工单</a>
         </li>
         <li role="presentation">
             <a href="#my_audit_workform_list" role="tab" id="my_audit_workform_list_tab" data-toggle="tab" aria-controls="my_audit_workform" aria-expanded="false">我 "审核过" 的工单</a>
         </li>
     </ul>
     <div id="myTabContent" class="tab-content">
+
+        <!-- 我发出的工单 -->
         <div role="tabpanel" class="tab-pane fade active in" id="my_workform_list" aria-labelledby="home-tab">
             <div class="col-sm-12">
                 <table class="table table-striped table-bordered table-hover">
@@ -175,11 +180,104 @@
             </div>
         </div>
 
+        <!-- 我可以审核的工单 -->
+        <div role="tabpanel" class="tab-pane fade" id="i_can_approval_workform_list" aria-labelledby="profile-tab">
+            <div class="col-sm-12">
+                <table class="table table-striped table-bordered table-hover MyTable">
+                    <caption style="padding-top: 0px;padding-bottom: 10px;">
+                        <div>
+                            <form class="form-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary" style="float:right">搜索</button>
+                                <div class="form-group" style="text-align:right;float: right;margin-right: 10px;">
+                                    <input type="text" class="form-control" name="search" value="{{ search }}" placeholder="主题 | 模块名 | 详情">
+                                </div>
+                            </form>
+                        </div>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th class="text-center">主题</th>
+                            <th class="text-center">申请人</th>
+                            <th class="text-center">紧急程度</th>
+                            <th class="text-center">类型</th>
+                            <th class="text-center">上线原因</th>
+                            <th class="text-center">模块名称</th>
+                            <th class="text-center">是否有SQL</th>
+                            <th class="text-center">工单状态</th>
+                            <th class="text-center">待 审批/执行 流程</th>
+                            <th class="text-center">已 审批/执行 流程状态</th>
+                            <th class="text-center">创建时间</th>
+                            <th class="text-center">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ica in i_can_approval_workform_list %}
+                        <tr class="gradeX">
+                            <td class="text-center" style="vertical-align: middle"><strong>{{ ica.title|truncatechars:10 }}</strong></td>
+                            <td class="text-center" style="vertical-align: middle">{{ ica.applicant.userextend.cn_name }}</td>
+                            <td class="text-center" style="vertical-align: middle">
+                                {% for i in level_range %}
+                                    {% if i >= ica.level %}
+                                        <span class="fa fa-star fa-fw" style="color: #F00"></span>
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td class="text-center" style="vertical-align: middle">{{ ica.type.cn_name }}</td>
+                            <td class="text-center" style="vertical-align: middle">{{ ica.get_reason_display }}</td>
+                            <td class="text-center" style="vertical-align: middle">{{ ica.module_name | default_if_none:"" }}</td>
+
+                            {% if ica.sql == 'yes' %}
+                                <td class="text-center" style="vertical-align: middle"><span class="badge label-primary">{{ ica.get_sql_display }}</span></td>
+                            {% else %}
+                                <td class="text-center" style="vertical-align: middle"><span class="badge label-default">{{ ica.get_sql_display }}</span></td>
+                            {% endif %}
+
+                            {% if pub.status == '0' %}
+                                <td class="text-center"><span class="badge label-primary">{{ ica.get_status_display }}</span></td>
+                            {% elif pub.status == '1' %}
+                                <td class="text-center"><span class="badge label-success">{{ ica.get_status_display }}</span></td>
+                            {% elif pub.status == '2' %}
+                                <td class="text-center"><span class="badge label-warnning">{{ ica.get_status_display }}</span></td>
+                            {% else %}
+                                <td class="text-center"><span class="badge label-danger">{{ ica.get_status_display }}</span></td>
+                            {% endif %}
+
+                            <td class="text-center" style="vertical-align: middle">{{ ica.process_step.step }}</td>
+                            <td class="text-center" style="vertical-align: middle">{{ ica | get_approver_result|safe }}</td>
+                            <td class="text-center" style="vertical-align: middle">{{ ica.create_time|date:"Y-m-d H:i:s" }}</td>
+                            <td class="text-center" style="vertical-align: middle">
+                                {% if ica.type.name == 'firewall_require' %}
+                                    <button class="btn btn-sm btn-info"><a target='_blank' href="{% url 'firewall_workform_detail' %}?id={{ ica.id }}" style="color: #f4f8fa">详情</a></button>
+                                {% else %}
+                                    <button data-id="{{ ica.id }}" class="btn btn-sm btn-info workform_detail">更多信息</button>
+                                {% endif %}
+                                <button data-id="{{ ica.id }}" class="btn btn-sm btn-primary process_trace">流程跟踪</button>
+                                {% if user in ica.approver_can.all and  ica.process_step.step_id != 60 %}
+                                    <button data-id="{{ ica.id }}" process-id="{{ ica.process_step_id }}" class="btn btn-sm btn-warning process_approval">审批</button>
+                                {% endif %}
+                                <!-- 只有到 OPS审批 的环节才会展示去执行SQL的按钮-->
+                                {% if user in ica.approver_can.all and  ica.process_step.step_id == 30 and ica.sql == 'yes' %}
+                                    <a href="{% url 'inception_sql_noexec_list' %}?id={{ ica.id }}" class="btn btn-sm btn-danger">执行SQL</a>
+                                {% endif %}
+                                {% if ica.status == '0' and user == ica.applicant %}
+                                    <button data-id="{{ ica.id }}" data-del="{{ ica.title }}" class="btn btn-sm btn-danger del-btn">删除</button>
+                                {% elif ica.status != '0' and user == ica.applicant %}
+                                    <button data-id="{{ ica.id }}" data-del="{{ ica.title }}" class="btn btn-sm btn-danger del-btn" disabled="disabled">删除</button>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
         <!-- 我审核过的工单 -->
         <div role="tabpanel" class="tab-pane fade" id="my_audit_workform_list" aria-labelledby="profile-tab">
             <br>
             <div class="col-sm-12">
-                <table class="table table-striped table-bordered table-hover" id="my_audit_table">
+                <table class="table table-striped table-bordered table-hover MyTable" id="my_audit_table">
                     <thead>
                         <tr>
                             <th class="text-center">主题</th>
@@ -452,6 +550,7 @@ $(document).on("click","#approval_sql_check",function(){
 <!--审批-->
 $(document).on("click",".process_approval",function(){
     $("#approval_sql_check").attr('style','display:none')
+    $("#approval_submit").prop("disabled",false)
     $("#module_name_approval_div").removeAttr('style')
     var id = $(this).attr("data-id")
     var process_id = $(this).attr("process-id")
@@ -635,7 +734,7 @@ $(".del-sure").click(function(){
 <!-- 结束 -->
 
 function datatable_list(){
-  $("#my_audit_table").dataTable({
+  $(".MyTable").dataTable({
       "autoWidth":true,
       "ordering": false,
       "bDestroy":true,

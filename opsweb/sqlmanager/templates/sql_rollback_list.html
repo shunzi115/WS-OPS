@@ -123,16 +123,7 @@ $("#rollback-sure").click(function(){
     };
     $.post(url,data_post,function(data){
         if(data.result==0){
-            swal({
-                title:"Good",
-                text:data.msg,
-                type:'success',
-                confirmButtonText:"确定"
-                },
-                function(){
-                    location.href = rollback_result_check_url
-                }
-            )
+            location.href = rollback_result_check_url
         }else{
             swal("OH,My God",data.msg,"error")
         };

@@ -5,7 +5,7 @@ from workform.models import WorkFormModel,ApprovalFormModel,WorkFormTypeModel,Pr
 class PubWorkFormAddForm(ModelForm):
     class Meta:
         model = WorkFormModel
-        fields = ["title","level","reason","detail","module_name","sql",'it_check']
+        fields = ["title","level","reason","detail","module_name","sql"]
         error_messages = {
             "title" : {
                 "required": "'工单主题'不能为空",

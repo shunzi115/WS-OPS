@@ -36,6 +36,8 @@
                     <td class="text-center"><span class="badge label-danger">{{ sae.get_status_display }}</span></td>
                 {% elif sae.status == '3' %}
                     <td class="text-center"><span class="badge label-warning">{{ sae.get_status_display }}</span></td>
+                {% elif sae.status == '1' %}
+                    <td class="text-center"><span class="badge label-primary">{{ sae.get_status_display }}</span></td>
                 {% else %}
                     <td class="text-center"><span class="badge label-info">{{ sae.get_status_display }}</span></td>
                 {% endif %}
@@ -44,7 +46,7 @@
                 {% else %}
                     <td class="text-center"><span class="badge label-info">{{ sae.get_exec_status_display }}</span></td>
                 {% endif %}
-                <td class="text-center">{{ sae.sql_workform.applicant.userextend.cn_name }}</td>
+                <td class="text-center">{{ sae.applicant_user.userextend.cn_name }}</td>
                 <td class="text-center">{{ sae.exec_user.userextend.cn_name }}</td>
                 <td class="text-center" style="vertical-align: middle">{{ sae.create_time|date:"Y-m-d H:i:s" }}</td>
                 <td class="text-center" style="vertical-align: middle">

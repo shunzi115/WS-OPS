@@ -671,6 +671,8 @@ class ServerIdcRefreshView(View):
             server_idc_obj.server_model = server_info.get('server_model')
             server_idc_obj.cpu_count = server_info.get('cpu_count')
             server_idc_obj.swap = server_info.get('swap')
+            server_idc_obj.sn_code = server_info.get('sn_code')
+            server_idc_obj.idrac_ip = server_info.get('idrac_ip')
             server_idc_obj.mem = server_info.get('mem')
             server_idc_obj.disk = server_info.get('disk')
             server_idc_obj.disk_mount = server_info.get('disk_mount')

@@ -41,6 +41,8 @@ urlpatterns = [
         url(r'^rollback/$',inception_relate.InceptionSqlRollBackupView.as_view(),name="inception_sql_rollback"),
         url(r'^rollback/result/$',inception_relate.InceptionSqlRollbackResultView.as_view(),name="inception_sql_rollback_result"),
         url(r'^stop/osc/$',inception_relate.InceptionStopOscView.as_view(),name="inception_stop_osc"),
+        url(r'^ops/commit/$',inception_relate.InceptionDbaCommitView.as_view(),name="inception_ops_dba_commit"),
+
     ])),
 
     url(r'^background/',include([

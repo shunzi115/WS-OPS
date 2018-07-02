@@ -1,1 +1,5 @@
-2018-06-23 19:25:06,673-[INFO]-/ops-data/zp/haha/dev-mysite/opsweb/dashboard/utils/ws_mail_send.py-[line:12]-邮件: '[SQL执行]:test-24' 发送成功
+2018-07-02 17:39:03,980-[WARNING]-/ops-data/zp/haha/dev-mysite/lib/python3.6/site-packages/django/middleware/csrf.py-[line:160]-Forbidden (CSRF token missing or incorrect.): /accounts/login/
+2018-07-02 17:39:04,612-[WARNING]-/ops-data/zp/haha/dev-mysite/lib/python3.6/site-packages/django/middleware/csrf.py-[line:160]-Forbidden (CSRF token missing or incorrect.): /accounts/login/
+2018-07-02 17:39:04,767-[WARNING]-/ops-data/zp/haha/dev-mysite/lib/python3.6/site-packages/django/middleware/csrf.py-[line:160]-Forbidden (CSRF token missing or incorrect.): /accounts/login/
+2018-07-02 17:39:04,914-[WARNING]-/ops-data/zp/haha/dev-mysite/lib/python3.6/site-packages/django/middleware/csrf.py-[line:160]-Forbidden (CSRF token missing or incorrect.): /accounts/login/
+2018-07-02 17:39:05,066-[WARNING]-/ops-data/zp/haha/dev-mysite/lib/python3.6/site-packages/django/middleware/csrf.py-[line:160]-Forbidden (CSRF token missing or incorrect.): /accounts/login/
