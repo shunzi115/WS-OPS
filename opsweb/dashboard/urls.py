@@ -18,9 +18,12 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from . import views
+from django.views.decorators.cache import cache_page
 
 urlpatterns = [
     url(r'^$', views.IndexView.as_view(),name="index"),
     url(r'^portal/$',views.InnerPortalView.as_view(),name="inner_portal"),
     url(r'^nopermission/(?P<next_uri>[\s\S]*)/$', views.NoPermissionView.as_view(),name="no_permission"),
+    url(r'^justfortest/$',cache_page(20)(views.JustForTestRedis.as_view()),name="justfortest"),
+    # url(r'^justfortest/$',views.JustForTestRedis.as_view(),name="justfortest"),
 ]

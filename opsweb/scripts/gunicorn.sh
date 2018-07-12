@@ -2,13 +2,13 @@
 # 脚本功能: 用于管理 gunicorn 进程 - start/stop/restart/status
 
 NAME='wsops'
-DJANGODIR='/ops-data/zp/haha/mysite-11/opsweb'
+DJANGODIR='/data/mysite/opsweb'
 USER=root
 GROUP=root
-NUM_WORKERS=4
+NUM_WORKERS=2
 
 # reload the application server for each request
-MAX_REQUESTS=100000
+MAX_REQUESTS=1000
 
 # which settings file should Django use
 DJANGO_SETTINGS_MODULE=opsweb.settings
@@ -18,7 +18,7 @@ DJANGO_WSGI_MODULE=opsweb.wsgi
 
 # Activate the virtual environment
 cd $DJANGODIR
-source /ops-data/zp/haha/mysite-11/bin/activate
+source /data/mysite/bin/activate
 
 export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
 export PYTHONPATH=$DJANGODIR:$PYTHONPATH
@@ -55,16 +55,16 @@ function START {
         echo "gunicorn 进程已经存在，PID: ${PID}"
         echo
     else
-        /ops-data/zp/haha/mysite-11/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
+        /data/mysite/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
         -n ${NAME} \
         -w 4 \
         --reload \
         --max-requests ${MAX_REQUESTS} \
         --user ${USER} \
         --group ${GROUP} \
-        -b 127.0.0.1:10086 \
+        -b 127.0.0.1:10010 \
         --log-level=error \
-        --log-file=/ops-data/zp/haha/mysite-11/opsweb/logs/gunicorn.log \
+        --log-file=/data/mysite/opsweb/logs/gunicorn.log \
         -D
 
         sleep 2

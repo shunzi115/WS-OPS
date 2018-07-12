@@ -72,7 +72,7 @@ def inception_init_func(sql_block,sql_file_url,db_obj,env,ret):
     if ret["result"] == 1:
         return ret
 
-    inc_obj = InceptionApi("root", "123456", db_master_ip, db_obj.name, sql_str=sql_str)
+    inc_obj = InceptionApi("root", "Abcd1234!", db_master_ip, db_obj.name, sql_str=sql_str)
     ret["inc_obj"] = inc_obj
     ret["db_master_ip"] = db_master_ip
     return ret

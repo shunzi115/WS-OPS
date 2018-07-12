@@ -5,7 +5,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin
 from api.myapi.get_workform_info import GetWorkFormInfo
 from sqlmanager.api import get_db_type_count
-
+import time
 
 class IndexView(LoginRequiredMixin,TemplateView):
     template_name = "index.html"
@@ -34,4 +34,12 @@ class NoPermissionView(TemplateView):
         except:
             pass
         context['next_uri'] = next_uri
+        return context
+
+class JustForTestRedis(TemplateView):
+    template_name = 'test_2.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(JustForTestRedis,self).get_context_data(**kwargs)
+        context["mytime"] = time.time()
         return context

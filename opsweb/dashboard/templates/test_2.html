@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Just For Test</title>
+    </head>
+    <body>
+
+        {% load cache %}
+
+        <h2> 使用缓存 </h2>
+{#        {% cache 10 key %}#}
+        <p>{{ mytime }}</p>
+{#        {% endcache %}#}
+        <h2> 不使用缓存 </h2>
+        <p>{{ mytime }}</p>
+    </body>
+</html>

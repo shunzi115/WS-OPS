@@ -41,7 +41,7 @@ def SQLCheckAndSplit(self,sql_obj_list):
             break
 
         sql_str = sql_block if sql_block else sql_detail
-        inc_obj = InceptionApi("root", "123456", db_master_ip, db_obj.name, sql_str=sql_str)
+        inc_obj = InceptionApi("root", "Abcd1234!", db_master_ip, db_obj.name, sql_str=sql_str)
         inc_obj.inception_check_to_split(sql_obj)
 
 ''' 执行SQL '''
@@ -54,7 +54,7 @@ def SQLExec(self,sql_exec_list,s_obj,user_obj):
         return
 
     for s in sql_exec_list:
-        inc_obj = InceptionApi("root", "123456", db_master_ip, s_obj.db_name.name, sql_str=s.sql)
+        inc_obj = InceptionApi("root", "Abcd1234!", db_master_ip, s_obj.db_name.name, sql_str=s.sql)
         ret = inc_obj.inception_exec()
         ret["db_master_ip"] = db_master_ip
         if ret["result"] == 1:
@@ -118,7 +118,7 @@ def SQLRollback(self,s_exec_obj,myuser):
         return
 
     for sr_obj in s_exec_obj.sqlrollbackmodel_set.all():
-        inc_obj = InceptionApi("root", "123456", db_master_ip, s_exec_obj.sql_block.db_name.name, sql_str=sr_obj.sql_rollback)
+        inc_obj = InceptionApi("root", "Abcd1234!", db_master_ip, s_exec_obj.sql_block.db_name.name, sql_str=sr_obj.sql_rollback)
         ret = inc_obj.inception_exec()
         ret["db_master_ip"] = db_master_ip
         if ret["result"] == 1:
@@ -203,6 +203,7 @@ def SQLBackupSync(self,sql_obj):
         inc_back_obj = InceptionApi("", "", "", sql_exec_obj.backup_dbname,sql_str='')
 
         sql_select_table_name = "SELECT tablename,type from %s.$_$inception_backup_information$_$ WHERE opid_time = '%s'" %(sql_exec_obj.backup_dbname,sql_exec_obj.seqnum)
+        print("sql_select_table_name: ",sql_select_table_name)
 
         ret = inc_back_obj.inception_backup_server(sql_select_table_name)
         if ret['result'] == 1:
@@ -223,7 +224,7 @@ def SQLBackupSync(self,sql_obj):
         for backup_sql in backup_sql_list:
             try:
                 srb_obj = SQLRollBackModel(**{"sql_rollback":backup_sql[0]})
-                inc_obj = InceptionApi("root", "123456", db_master_ip, sql_obj.db_name.name, sql_str=backup_sql[0])
+                inc_obj = InceptionApi("root", "Abcd1234!", db_master_ip, sql_obj.db_name.name, sql_str=backup_sql[0])
                 ret = inc_obj.inception_general_check()
                 if ret["result"] == 1:
                     celery_log_error.error(ret["msg"])

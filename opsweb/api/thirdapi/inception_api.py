@@ -201,6 +201,7 @@ class InceptionApi(object):
                 %s
                 inception_magic_commit;''' % (self.user, self.password, self.host, self.port, self.db_name, self.sql_str)
 
+        print("sql_str: ",sql)
         return self.inception_server(sql)
 
     ''' 通过sql_sha1 获取使用osc执行 alter 的执行进度 '''
@@ -240,6 +241,6 @@ if __name__ == '__main__':
     sql_str = '''
             insert into mytest.log123 (id,operator,operation_type,operation_result,delete_mark,gmt_create,gmt_modified,reference_id,content) VALUES (2,'bb',1,1,0,now(),now(),1234567,'hehehe');
             '''
-    inc_obj = InceptionApi("root","123456","172.17.134.23","mytest",sql_str)
+    inc_obj = InceptionApi("root","Abcd1234!","192.168.0.67","mytest",sql_str)
 
     inc_obj.inception_exec()

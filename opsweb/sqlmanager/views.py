@@ -303,8 +303,8 @@ class DBChangeView(View):
         try:
             db_obj = DBModel.objects.get(id__exact=db_id)
             db_obj.save(update_fields=["last_update_time"])
-            db_obj.manage_group.set(db_change_form.cleaned_data.get("manage_group"))
-            db_obj.cluster.set(db_change_form.cleaned_data.get("cluster"))
+            db_obj.db_manage_group.set(db_change_form.cleaned_data.get("db_manage_group"))
+            db_obj.cluster_name.set(db_change_form.cleaned_data.get("cluster_name"))
         except Exception as e:
             ret["result"] = 1
             ret["msg"] = "DBModel 更新 id: %s 的对象失败，错误信息: %s" % (db_id,e.args)

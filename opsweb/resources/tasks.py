@@ -24,7 +24,7 @@ def ServerAliyunAutoAddCrontab(self):
 @shared_task(bind=True,name="ServerAliyunAutoRefreshCrontab")
 def ServerAliyunAutoRefreshCrontab(self):
     current_process()._config = {'semprefix': '/mp'}
-    id_list = [i["id"] for i in ServerModel.objects.exclude(private_ip__startswith="10.82").values("id")]
+    id_list = [i["id"] for i in ServerModel.objects.exclude(private_ip__startswith="172").values("id")]
     for id in id_list:
         try:
             server_aliyun_obj = ServerModel.objects.get(id__exact=id)
@@ -61,7 +61,7 @@ def ServerStatisticByDayCrontab():
         celery_log_info.info("统计 %s 的服务器总数成功" % (myday))
 
 
-''' cmdb 中应用按天统计'''
+''' cmdb 中应用按天统计 '''
 @app.task(name="CmdbStatisticByDayCrontab")
 def CmdbStatisticByDayCrontab():
     myday = date.today().isoformat()
@@ -84,7 +84,7 @@ def CmdbStatisticByDayCrontab():
 @app.task(name="CmdbAutoAddCrontab")
 def CmdbAutoAddCrontab():
     server_ip_name_list = list(
-        ServerModel.objects.exclude(private_ip__startswith="10.82").values("id", "private_ip", "instance_name",
+        ServerModel.objects.exclude(private_ip__startswith="172").values("id", "private_ip", "instance_name",
                                                                            "status"))
 
     # 根据 CmdbModel 模型中的 instance_name 字段自动添加 CMDB,如果没有该字段则不能自动添加 CMDB,

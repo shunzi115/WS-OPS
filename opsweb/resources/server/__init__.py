@@ -78,8 +78,8 @@ def GetServerInfoFromApi(private_ip,server_aliyun_obj):
 
         ''' 通过 ansible api 获取服务器信息 '''
         try:
-            if private_ip == '172.17.134.23':
-                server_info_ansible = ansible_adhoc('setup','gather_subset=hardware',"127.0.0.1")["localhost"]['ansible_facts']
+            if private_ip == '192.168.0.66':
+                server_info_ansible = ansible_adhoc('setup','gather_subset=hardware',"localhost")["localhost"]['ansible_facts']
             else:
                 server_info_ansible = ansible_adhoc('setup','gather_subset=hardware,!facter',private_ip)[private_ip]['ansible_facts']
         except Exception as e:
@@ -146,7 +146,7 @@ class ServerAliyunListView(LoginRequiredMixin,ListView):
     # 过滤模型中的数据
     def get_queryset(self):
         queryset = super(ServerAliyunListView,self).get_queryset()
-        queryset = queryset.exclude(private_ip__startswith="10.")
+        queryset = queryset.exclude(private_ip__startswith="172.")
 
         search_name = self.request.GET.get('search',None)
         if search_name:
@@ -462,7 +462,7 @@ def ServerAliyunAutoAdd():
 ''' IDC服务器列表 '''
 class ServerIdcListView(LoginRequiredMixin,View):
     def get(self,resuest):
-        server_idc_list = list(ServerModel.objects.filter(private_ip__startswith="10.").values('id','hostname','ssh_port','private_ip','env','os_version','cpu_count','mem','disk','idc_id','status','last_update_time'))
+        server_idc_list = list(ServerModel.objects.filter(private_ip__startswith="172.").values('id','hostname','ssh_port','private_ip','env','os_version','cpu_count','mem','disk','idc_id','status','last_update_time'))
         for server in server_idc_list:
             server_obj = ServerModel.objects.get(id__exact=server["id"])
             server["env"] = server_obj.get_env_display()

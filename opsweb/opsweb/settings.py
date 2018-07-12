@@ -96,15 +96,14 @@ DATABASES = {
         #'ENGINE': 'django.db.backends.sqlite3',
         #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 	    'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'opsweb_dev2',
+        'NAME': 'opsweb',
         'USER': 'root',
-        'PASSWORD': '123456',
-        'HOST': '127.0.0.1',
+        'PASSWORD': 'Abcd1234!',
+        'HOST': '192.168.0.67',
         'PORT': 3306,
         'CONN_MAX_AGE': 600,
     }
 }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -216,45 +215,45 @@ CAPTCHA_LENGTH = 5 # 字符个数
 CAPTCHA_TIMEOUT = 1 # 超时(minutes)
 
 ## ldap 配置
-from dashboard.utils.get_ws_conf import get_myconf
-import ldap
-from django_auth_ldap.config import LDAPSearch
-
-ldap_conf = get_myconf(section="ldap_config")
-
-if ldap_conf["result"] == 0:
-    BASE_DN = ldap_conf["mysec_conf"]["base_dn"]
-    AUTH_LDAP_ldap_URI = ldap_conf["mysec_conf"]["auth_ldap_server_uri"]
-    AUTH_LDAP_BIND_DN = ldap_conf["mysec_conf"]["auth_ldap_bind_dn"]
-    AUTH_LDAP_BIND_PASSWORD = ldap_conf["mysec_conf"]["auth_ldap_bind_password"]
-    MY_DN = ldap_conf["mysec_conf"]["my_dn"]
-else:
-    #AUTH_LDAP_START_TLS = True
-    AUTH_LDAP_SERVER_URI = '' 
-    AUTH_LDAP_BIND_DN = '' 
-    AUTH_LDAP_BIND_PASSWORD = ''
-    MY_DN = '' 
-
-AUTH_LDAP_USER_SEARCH = LDAPSearch(MY_DN, ldap.SCOPE_SUBTREE, '(&(objectCategory=Person)(sAMAccountName=%(user)s))')
-
-AUTH_LDAP_CONNECTION_OPTIONS = {
-    ldap.OPT_REFERRALS: 0
-}
-
-AUTH_LDAP_ALWAYS_UPDATE_USER = True
-
-AUTH_LDAP_USER_ATTR_MAP = {
-    "first_name": "givenName",
-    "username": "sAMAccountName",
-    "last_name": "sn",
-    "email": "mail",
-    "userextend.cn_name": "displayName"
-}
-
-AUTHENTICATION_BACKENDS = (
-    'django_auth_ldap.backend.LDAPBackend',
-    'django.contrib.auth.backends.ModelBackend',
-)
+# from dashboard.utils.get_ws_conf import get_myconf
+# import ldap
+# from django_auth_ldap.config import LDAPSearch
+#
+# ldap_conf = get_myconf(section="ldap_config")
+#
+# if ldap_conf["result"] == 0:
+#     BASE_DN = ldap_conf["mysec_conf"]["base_dn"]
+#     AUTH_LDAP_ldap_URI = ldap_conf["mysec_conf"]["auth_ldap_server_uri"]
+#     AUTH_LDAP_BIND_DN = ldap_conf["mysec_conf"]["auth_ldap_bind_dn"]
+#     AUTH_LDAP_BIND_PASSWORD = ldap_conf["mysec_conf"]["auth_ldap_bind_password"]
+#     MY_DN = ldap_conf["mysec_conf"]["my_dn"]
+# else:
+#     #AUTH_LDAP_START_TLS = True
+#     AUTH_LDAP_SERVER_URI = ''
+#     AUTH_LDAP_BIND_DN = ''
+#     AUTH_LDAP_BIND_PASSWORD = ''
+#     MY_DN = ''
+#
+# AUTH_LDAP_USER_SEARCH = LDAPSearch(MY_DN, ldap.SCOPE_SUBTREE, '(&(objectCategory=Person)(sAMAccountName=%(user)s))')
+#
+# AUTH_LDAP_CONNECTION_OPTIONS = {
+#     ldap.OPT_REFERRALS: 0
+# }
+#
+# AUTH_LDAP_ALWAYS_UPDATE_USER = True
+#
+# AUTH_LDAP_USER_ATTR_MAP = {
+#     "first_name": "givenName",
+#     "username": "sAMAccountName",
+#     "last_name": "sn",
+#     "email": "mail",
+#     "userextend.cn_name": "displayName"
+# }
+#
+# AUTHENTICATION_BACKENDS = (
+#     'django_auth_ldap.backend.LDAPBackend',
+#     'django.contrib.auth.backends.ModelBackend',
+# )
 
 ## 邮件发送设置
 from dashboard.utils.get_ws_conf import get_myconf
@@ -275,7 +274,7 @@ EMAIL_USE_SSL = True
 ## celery 配置
 import  djcelery
 djcelery.setup_loader()
-BROKER_URL = 'redis://172.17.134.23:6379/8'
+BROKER_URL = 'redis://192.168.0.67:6379/8'
 BROKER_TRANSPORT = 'redis'
 CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend'
@@ -285,3 +284,18 @@ CELERY_TIMEZONE = 'Asia/Shanghai'
 CELERYD_MAX_TASKS_PER_CHILD = 10
 CELERYD_LOG_FILE = os.path.join(BASE_DIR,'logs','celery.log')
 #CELERYD_HIJACK_ROOT_LOGGER = False
+
+## redis 缓存配置
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://192.168.0.67:6379/10",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            # "PASSWORD": "mysecret"
+        },
+        # key 前缀
+        "KEY_PREFIX": "mydjango",
+    }
+}
+

@@ -26,13 +26,13 @@ else:
 # 获取ECS所有实例或者指定实例的所有信息
 def AliyunDescribeInstances(**kwargs):
 
-    clt = client.AcsClient(accessKeyId,accessSecret,'cn-hangzhou')
+    clt = client.AcsClient(accessKeyId,accessSecret,'cn-shenzhen')
 
     # 设置参数
     request = DescribeInstancesRequest.DescribeInstancesRequest()
     request.set_accept_format('json')
 
-    request.add_query_param('RegionId', 'cn-beijing')
+    request.add_query_param('RegionId', 'cn-shenzhen')
     request.add_query_param('PageSize', 100)
 
     if kwargs:
@@ -51,12 +51,12 @@ def AliyunDescribeInstances(**kwargs):
 # 获取ECS是否是自动续费
 def AliyunDescribeInstanceAutoRenewAttribute(instance_id):
 
-    clt = client.AcsClient(accessKeyId,accessSecret,'cn-hangzhou')
+    clt = client.AcsClient(accessKeyId,accessSecret,'cn-shenzhen')
     request = DescribeInstanceAutoRenewAttributeRequest.DescribeInstanceAutoRenewAttributeRequest()
     request.set_accept_format('json')
 
     request.add_query_param('InstanceId', instance_id)
-    request.add_query_param('RegionId', 'cn-beijing')
+    request.add_query_param('RegionId', 'cn-shenzhen')
     ret = {"result":0,"msg":None}
 
     # 发起请求
@@ -72,4 +72,3 @@ def AliyunDescribeInstanceAutoRenewAttribute(instance_id):
 if __name__ == "__main__":
     result = AliyunDescribeInstances()
     ecs_list = [i["NetworkInterfaces"]["NetworkInterface"][0]["PrimaryIpAddress"] for i in result]
-

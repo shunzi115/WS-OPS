@@ -86,8 +86,8 @@ class PublishAnsiblePlaybookView(LoginRequiredMixin,View):
                 dingding_messageUrl = "%s" %(request.get_host() + reverse("publish_list"))
                 data = {"title":dingding_title,"text":dingding_text ,"messageUrl":dingding_messageUrl,"picUrl":pic_url}
                 wx_data = {"title":dingding_title,"content":dingding_text.replace("\n","<br>"),"url":dingding_messageUrl}
-                dingding_msg_send.delay(data)
-                wx_msg_send.delay(wx_data)
+                # dingding_msg_send.delay(data)
+                # wx_msg_send.delay(wx_data)
             except:
                 pass
         return JsonResponse(ret)

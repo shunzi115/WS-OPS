@@ -17,7 +17,8 @@ def get_db_type_count():
     db_name_str = '|'.join(['Q(db_name__exact="%s")' %(db["db_name"]) for db in db_opera_top10 ])
 
     ''' [{'sql_type': 'UPDATE', 'db_name': 'zabbix', 'type_count': 1},{'sql_type': 'ALTERTABLE', 'db_name': 'mytest', 'type_count': 1}] '''
-    db_type_list = list(my_queryset.annotate(type_count=Count("id")).filter(eval(db_name_str)).order_by("db_name","-type_count"))
+
+    db_type_list = list(my_queryset.annotate(type_count=Count("id")).filter(eval(db_name_str)).order_by("db_name","-type_count")) if db_name_str else []
 
     for dbs in db_opera_top10:
         db_data = {}

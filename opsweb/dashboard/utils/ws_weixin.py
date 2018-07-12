@@ -17,5 +17,5 @@ def WxMsgSend(send_data):
         wslog_error().error("微信消息 发送 失败,错误信息: %s" % (json.loads(r.content)["errmsg"]))
 
 if __name__ == '__main__':
-    data = {"title":"应用 发布: mop","content":"发布 IP: 172.17.134.76 <br>发布人: 皇阿 玛 <br>发布时间: 2018-03-27 22:55:12","url":"39.106.70.239:8888/publish/list/"}
+    data = {"title":"应用 发布: haha","content":"发布 IP: 192.168.0.67 <br>发布人: 皇阿 玛 <br>发布时间: 2018-03-27 22:55:12","url":"192.168.0.66/publish/list/"}
     WxMsgSend(data)

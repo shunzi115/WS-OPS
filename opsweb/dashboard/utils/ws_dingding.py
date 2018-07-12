@@ -58,6 +58,6 @@ class DingDingMsgSend(object):
             self.msg_post(send_data,self.webhook)
 
 if __name__ == '__main__':
-    #send_dingding_markdown({"title":"应用发布：**mop**","text": "### 应用发布：**mop**\n#### 发布 IP：**172.17.134.23**\n#### 发布人：**你猜猜**\n#### 发布结果：![](http://39.106.70.239:8888/static/img/success.png)\n#### 发布时间：**公元前22012年**\n#### [发布详情](http://39.106.70.239:9999/publish/list/)\n"})
+    #send_dingding_markdown({"title":"应用发布：**haha**","text": "### 应用发布：**haha**\n#### 发布 IP：**192.168.0.66**\n#### 发布人：**你猜猜**\n#### 发布结果：![](http://192.168.0.66/static/img/success.png)\n#### 发布时间：**公元前22012年**\n#### [发布详情](http://192.168.0.66/publish/list/)\n"})
     dd = DingDingMsgSend()
-    dd.send_dingding_link({"title":"应用发布：mop","text": "发布 IP：172.17.134.23\n发布人：你猜猜\n发布时间：公元前22012年\n","messageUrl":"http://39.106.70.239:9999/publish/list/","picUrl": "http://39.106.70.239:8888/static/img/failed_2.png"})
+    dd.send_dingding_link({"title":"应用发布：haha","text": "发布 IP：192.168.0.66\n发布人：你猜猜\n发布时间：公元前22012年\n","messageUrl":"http://192.168.0.66/publish/list/","picUrl": "http://192.168.0.66/static/img/failed_2.png"})

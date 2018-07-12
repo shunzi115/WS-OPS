@@ -1,16 +1,39 @@
-2018-07-02 15:20:51,460-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
-2018-07-02 15:20:51,462-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:32]-模型 CmdbStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
-2018-07-02 17:16:05,883-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
-2018-07-02 17:16:05,888-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:32]-模型 CmdbStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
-2018-07-02 17:39:22,969-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
-2018-07-02 17:39:22,971-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:32]-模型 CmdbStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
-2018-07-02 17:49:24,262-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
-2018-07-02 17:49:24,269-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:32]-模型 CmdbStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
-2018-07-02 18:07:26,830-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
-2018-07-02 18:07:26,830-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:32]-模型 CmdbStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
-2018-07-02 18:07:39,446-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
-2018-07-02 18:07:39,446-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:32]-模型 CmdbStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
-2018-07-02 18:08:16,061-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
-2018-07-02 18:08:16,062-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:32]-模型 CmdbStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
-2018-07-02 18:09:03,229-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
-2018-07-02 18:09:03,234-[ERROR]-/ops-data/zp/haha/dev-mysite/opsweb/api/myapi/get_dashboard_info.py-[line:32]-模型 CmdbStatisticByDayModel 获取对象 2018-07-01 失败,不存在这个对象
+2018-07-12 11:36:37,941-[ERROR]-/data/mysite/opsweb/api/thirdapi/inception_api.py-[line:91]-连接 Inception 备份服务器执行SQL错误，错误信息 1045: Access denied for user 'root'@'192.168.0.66' (using password: YES)
+2018-07-12 11:36:37,941-[ERROR]-/data/mysite/opsweb/sqlmanager/tasks.py-[line:209]-SQLExecDetailModel 对象 id: 14 查询备份表失败,错误信息: 连接 Inception 备份服务器执行SQL错误，错误信息 1045: Access denied for user 'root'@'192.168.0.66' (using password: YES)
+2018-07-12 11:43:00,933-[ERROR]-/data/mysite/opsweb/api/thirdapi/inception_api.py-[line:91]-连接 Inception 备份服务器执行SQL错误，错误信息 1045: Access denied for user 'root'@'192.168.0.66' (using password: YES)
+2018-07-12 11:43:00,933-[ERROR]-/data/mysite/opsweb/sqlmanager/tasks.py-[line:209]-SQLExecDetailModel 对象 id: 14 查询备份表失败,错误信息: 连接 Inception 备份服务器执行SQL错误，错误信息 1045: Access denied for user 'root'@'192.168.0.66' (using password: YES)
+2018-07-12 11:45:55,096-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 11:48:47,188-[ERROR]-/data/mysite/opsweb/sqlmanager/tasks.py-[line:200]-SQLExecDetailModel 对象 id: 10 备份失败或不需要备份,因此不需要查询备份语句
+2018-07-12 11:48:50,141-[ERROR]-/data/mysite/opsweb/sqlmanager/tasks.py-[line:200]-SQLExecDetailModel 对象 id: 11 备份失败或不需要备份,因此不需要查询备份语句
+2018-07-12 11:48:54,234-[ERROR]-/data/mysite/opsweb/sqlmanager/tasks.py-[line:200]-SQLExecDetailModel 对象 id: 12 备份失败或不需要备份,因此不需要查询备份语句
+2018-07-12 11:48:56,841-[ERROR]-/data/mysite/opsweb/sqlmanager/tasks.py-[line:200]-SQLExecDetailModel 对象 id: 13 备份失败或不需要备份,因此不需要查询备份语句
+2018-07-12 11:49:06,236-[ERROR]-/data/mysite/opsweb/sqlmanager/tasks.py-[line:200]-SQLExecDetailModel 对象 id: 17 备份失败或不需要备份,因此不需要查询备份语句
+2018-07-12 11:49:16,737-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 11:49:19,126-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 11:52:36,760-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 12:07:21,483-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 12:08:00,967-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 12:09:55,472-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 12:11:45,419-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 12:12:43,827-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 12:12:52,490-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 12:14:05,277-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 12:15:13,358-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 14:16:21,332-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 14:18:28,598-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 14:34:45,032-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 14:35:33,291-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 14:37:25,874-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 15:02:41,337-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 15:06:59,821-[ERROR]-/data/mysite/opsweb/sqlmanager/tasks.py-[line:73]-SQLExecDetailModel 模型更新对象id: 257 执行有错误,错误信息: Process completed with error: pt-online-schema-change: 2 (No such file or directory)'pt-online-schema-change' failed: 2 (No such file or directory)
+2018-07-12 15:06:59,848-[ERROR]-/data/mysite/opsweb/sqlmanager/tasks.py-[line:200]-SQLExecDetailModel 对象 id: 257 备份失败或不需要备份,因此不需要查询备份语句
+2018-07-12 15:07:15,176-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 15:15:35,766-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 15:16:27,682-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 15:17:06,764-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 15:19:30,986-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 15:24:28,865-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 15:25:11,955-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 15:34:51,592-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 15:42:52,868-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象
+2018-07-12 15:44:45,625-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-11 失败,不存在这个对象

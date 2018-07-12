@@ -120,11 +120,11 @@ Dashboard / <strong class="active">概览</strong>
 
 <script>
 
-$('#wrapper').showLoading()
-$("#loading-indicator-wrapper").html("<p style='color:#00c0ef;font-size: 25px'>使劲加载中，请稍等 ......</p>")
-setTimeout(function() {
-    $('#wrapper').hideLoading()
-}, 3000)
+{#$('#wrapper').showLoading()#}
+{#$("#loading-indicator-wrapper").html("<p style='color:#00c0ef;font-size: 25px'>使劲加载中，请稍等 ......</p>")#}
+{#setTimeout(function() {#}
+{#    $('#wrapper').hideLoading()#}
+{#}, 3000)#}
 
 $.getJSON("{% url 'get_server_statistic' %}",function(data){
     $("#server_count").text(data.count)
