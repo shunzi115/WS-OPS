@@ -3,16 +3,55 @@
     <head>
         <meta charset="utf-8">
         <title>Just For Test</title>
+        <style type="text/css">
+            body{
+                margin: 0px;
+            }
+            .header{
+                height: 20px;
+                width: 80%;
+                border: 2px red solid;
+                background-color: red;
+                margin: 10px;
+                position: fixed;
+                top: 10px;
+            }
+
+            .main{
+                height: 8000px;
+                border: 2px gray solid;
+                background-color: green;
+            }
+            .left{
+                height: 600px;
+                width: 80%;
+                border: 2px red solid;
+                background-color: yellow;
+                margin-top: 100px;
+                {#float: left;#}
+                position: relative;
+                {#left: 100px;#}
+                {#top: 100px;#}
+            }
+            .content{
+                height: 100px;
+                width: 40%;
+                border: 2px red solid;
+                background-color: orange;
+                {#margin-top: 100px;#}
+                {#margin-left: 10px;#}
+                {#float: left;#}
+                position: absolute;
+                left: 50px;
+                top: 50px;
+            }
+
+        </style>
     </head>
     <body>
-
-        {% load cache %}
-
-        <h2> 使用缓存 </h2>
-{#        {% cache 10 key %}#}
-        <p>{{ mytime }}</p>
-{#        {% endcache %}#}
-        <h2> 不使用缓存 </h2>
-        <p>{{ mytime }}</p>
+        <div class="header">
+        </div>
+        <div class="main">
+        </div>
     </body>
 </html>

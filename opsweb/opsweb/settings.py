@@ -26,7 +26,7 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880
 
 # SECURITY WARNING: keep the secret key used in production secret!
 #SECRET_KEY = ')wl07)zwx1ou41mef(=@&1#9ru0bmt1)aeqb&%x3xnv1$d#dw@'
-SECRET_KEY = ')wl07)zwx1ou41mef(=@&1#9ru0bmt1)ebqb&%x3wnv1$d#dw@'
+SECRET_KEY = ')w824)zwx0ou87mef(=@&1#0ru9bmt2)ebqb&%x5wnv1$d#dw@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
