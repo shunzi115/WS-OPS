@@ -57,7 +57,7 @@ function START {
     else
         /data/mysite/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
         -n ${NAME} \
-        -w 4 \
+        -w 2 \
         --reload \
         --max-requests ${MAX_REQUESTS} \
         --user ${USER} \

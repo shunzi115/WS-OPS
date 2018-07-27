@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.views.generic import RedirectView
 from django.conf.urls.static import static  
 from django.conf import settings  
+import debug_toolbar
 
 
 urlpatterns = [
@@ -33,4 +34,10 @@ urlpatterns = [
     url(r'^publish/', include("publish.urls")),
     url(r'^taskschedule/', include("taskschedule.urls")),
     url(r'^sqlmanager/', include("sqlmanager.urls")),
+    url(r'^__debug__/', include(debug_toolbar.urls)),
 ]
+
+
+#if settings.DEBUG:
+#    import debug_toolbar
+#    urlpatterns.append(url(r'^__debug__/', include(debug_toolbar.urls)))

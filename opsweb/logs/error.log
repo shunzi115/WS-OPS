@@ -1,4 +1,2 @@
-2018-07-16 10:17:44,533-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-15 失败,不存在这个对象
-2018-07-16 10:17:45,388-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:32]-模型 CmdbStatisticByDayModel 获取对象 2018-07-15 失败,不存在这个对象
-2018-07-16 10:17:55,817-[ERROR]-/data/mysite/opsweb/resources/server/__init__.py-[line:265]-服务器 192.168.0.67 在 zabbix 中不存在
-2018-07-16 10:18:04,268-[ERROR]-/data/mysite/opsweb/resources/server/__init__.py-[line:265]-服务器 192.168.0.66 在 zabbix 中不存在
+2018-07-25 10:24:41,985-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:32]-模型 CmdbStatisticByDayModel 获取对象 2018-07-24 失败,不存在这个对象
+2018-07-25 10:24:41,991-[ERROR]-/data/mysite/opsweb/api/myapi/get_dashboard_info.py-[line:18]-模型 ServerStatisticByDayModel 获取对象 2018-07-24 失败,不存在这个对象

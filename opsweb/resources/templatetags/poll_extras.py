@@ -12,7 +12,7 @@ def replace_to_br(value,args):
 @register.filter(name="get_version")
 def get_version(value):
     version_list = []
-    ip_ibj_list = value.ips.all()
+    ip_ibj_list = value.ips.all().distinct()
     for ip_obj in ip_ibj_list:
         try:
             ph_obj = ip_obj.publishhistorymodel_set.filter(module_name__exact=value).latest("id")

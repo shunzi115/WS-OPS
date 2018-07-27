@@ -81,6 +81,7 @@ def CmdbDevTeamUpdate(group_list,cmdb_obj,ret):
 class CmdbListView(LoginRequiredMixin,ListView):
     template_name = "cmdb/cmdb_list.html"
     model = CmdbModel
+    queryset = CmdbModel.objects.prefetch_related("ips").all() 
     paginate_by = 10
     page_total = 11
 
